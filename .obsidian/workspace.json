@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Elettronica/Silicio.md",
+                "file": "Elettronica/Modello lineare diodo.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Elettronica/Silicio.md",
+                "file": "Elettronica/Modello lineare diodo.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Elettronica/Silicio.md",
+                "file": "Elettronica/Modello lineare diodo.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Elettronica/Silicio.md"
+                "file": "Elettronica/Modello lineare diodo.md"
               }
             }
           }
@@ -148,8 +148,9 @@
   },
   "active": "704168654c4d695f",
   "lastOpenFiles": [
-    "AlgoritmiXIngegneria/Identità polinomiale.md",
     "Elettronica/Silicio.md",
+    "Elettronica/Modello lineare diodo.md",
+    "AlgoritmiXIngegneria/Identità polinomiale.md",
     "Elettronica",
     "AlgoritmiXIngegneria/Untitled",
     "AlgoritmiXIngegneria/Ibridazione algoritmi D&C.md",

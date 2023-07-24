@@ -9,4 +9,5 @@ Se $N_A > N_D \rightarrow$ semiconduttore di tipo p
 * concentrazione effettiva di accettori $N_A' = N_A - N_D$
 ## Formule 
 
-# TODO AGGIUNGERE FORMULE SILICO PRIMO PDF
+# TODO AGGIUNGERE FORMULE SILICO PRIMO PDF 
+da legge azione di massa in poi
