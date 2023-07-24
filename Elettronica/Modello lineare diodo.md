@@ -6,5 +6,5 @@
  È equivalente ad un circuito aperto.
 ### Zona di breakdown
  $i_D=\frac{V_d+V_Z}{R_Z},\  V_D<V_Z$
-
-# AGGIUNGI DISEGNI circuiti equivalenti
+Disegni dei circuiti equivalenti:
+![[immagini/zoneDiodo.png]]
