@@ -1,3 +1,6 @@
+---
+tags: algoritmiXingegneria 
+---
 ##### Radici $n$-esime dell'unità sono a modulo $n$:
 ${\omega_n^{k}=\omega_n^{k\ mod\ n}}$
 

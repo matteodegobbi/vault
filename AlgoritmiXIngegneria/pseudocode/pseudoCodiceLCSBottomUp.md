@@ -1,3 +1,6 @@
+---
+tags: algoritmiXingegneria 
+---
 codice bottom up LCS
 ```
 LCS(x,y)//solo costi

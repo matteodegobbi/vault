@@ -1,3 +1,6 @@
+---
+tags: elettronica
+---
 ### Zona diretta
  $i_D=\frac{V_d-V_{ON}}{R_{ON}},\  V_D>V_{ON}$
  Nel caso in cui $R_{ON}=0$ allora la zona diretta si verifica con: $V_D=V_{ON},\ i_D>0$

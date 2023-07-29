@@ -1,3 +1,6 @@
+---
+tags: algoritmiXingegneria 
+---
 ```
 //chiamata principale (A,s,1,n)
 //A e' la sequenza di matrici la utilizzo come fosse un'array di matrici
