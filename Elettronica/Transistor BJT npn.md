@@ -1,3 +1,6 @@
+---
+tags: elettronica
+---
 ![[npn.png]]
 ## Modello BJT valido in tutte le zone di funzionamento:
 $I_F=I_{S_0}(e^{\frac{V_{BE}}{U_T}}-1)$, $I_R=I_{S_0}(e^{\frac{V_{BC}}{U_T}}-1)$ e $I_{S_0}=\alpha_T I_S$

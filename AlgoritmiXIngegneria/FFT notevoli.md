@@ -1,3 +1,6 @@
+---
+tags: algoritmiXingegneria 
+---
 Alcune [[FFT]] su vettori particolari possono essere calcolate più velocemente.
 ##### Vettori a componenti uguali
 Sia $\vec{a}=(a,a,\dotsb,a)\in \mathbb{C}^n$ allora $FFT(\vec{a})=(a\cdot n,0,\dotsb,0)$

@@ -1,3 +1,6 @@
+---
+tags: elettronica
+---
 ## Definizioni:
 * $n$ = concentrazione di elettroni liberi $[cm^{-3}]$
 * $p$ = concentrazione di lacune $[cm^{-3}]$

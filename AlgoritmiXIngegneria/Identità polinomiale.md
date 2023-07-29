@@ -1,3 +1,6 @@
+---
+tags: algoritmiXingegneria 
+---
 Dato il polinomio $p(x)$ definisco ${p^{[0]}(x)}$ e ${p^{[1]}(x)}$ come i polinomi ottenuti considerando rispettivamente solo i coefficienti di indice pari/dispari.
 
 Vale la seguente identità:

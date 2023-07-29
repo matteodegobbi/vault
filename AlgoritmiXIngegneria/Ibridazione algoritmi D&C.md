@@ -1,3 +1,6 @@
+---
+tags: algoritmiXingegneria 
+---
 Ho due algoritmi: A D&C che ha $T_A(n)$ asintoticamente minore e B con $T_B(n)$ con una costante minore davanti al termine di grado maggiore.
 
 Ibridazione significa mantenere la  struttura dell'algoritmo A ma utilizzare l'algoritmo B per risolvere tutte le chiamate ricorsive con taglia$\le n_0$, cioè il caso di base sarà l'algoritmo B.
