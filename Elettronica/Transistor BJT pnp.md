@@ -26,3 +26,4 @@ i_C < \beta_F i_B
 ![[SATpnp.png]]
 ## Zona attiva inversa 
 Non ci interessa un modello per questa zona in quanto non viene utilizzata negli amplificatori.
+![[Non idealità nei transistor#BJT Effetto Early]]
