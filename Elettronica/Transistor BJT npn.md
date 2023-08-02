@@ -33,3 +33,4 @@ Negli esercizi è più utile il secondo modello perché spesso viene data $V_{CE
 Il motivo della seconda condizione è dimostrato sul quaderno.
 ## Zona attiva inversa 
 Non ci interessa un modello per questa zona in quanto non viene utilizzata negli amplificatori.
+![[Non idealità nei transistor#BJT Effetto Early]]
