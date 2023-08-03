@@ -2,7 +2,7 @@
 tags: elettronica
 ---
 [[BJT]]
-DISEGNO
+![[modelloBJTpiccoliSegnali.png]]
 # Come si ricava questo modello
 Date:
 $\cases{v_{BE}(t)=V_{BE}+v_{be}(t)\\v_{CE}(t)=V_{CE}+v_{ce}(t)}$
@@ -15,3 +15,6 @@ $g_d=\frac{I_C}{V_A+V_{CE}}\simeq \frac{I_C}{V_A}$
 $g_m=\frac{I_C}{U_T}$
 $r_{\pi}=\frac{1}{g_\pi}=\frac{U_T \beta_F}{I_C}=\frac{\beta_F}{g_m}$
 $r_0=\frac{1}{g_d}=\frac{V_{CE}+V_A}{I_C}\simeq \frac{V_A}{I_C}$
+
+# Uguaglianza modello npn e pnp 
+A differenza del modello dc i modelli ai piccoli segnali di npn e pnp sono uguali perché basta invertire tutte le correnti e le tensioni. 

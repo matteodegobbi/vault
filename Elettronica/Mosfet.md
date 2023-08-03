@@ -3,6 +3,7 @@ tags: elettronica
 ---
 Definiamo $V_{OV}\triangleq |V_{GS}-V_t|$
 # NMOS: Regioni di funzionamento canale n
+![[nmos.png]]
 * $V_{DS}>0$
 * $V_{GS}>0$
 * $i_D, i_G$ sono entranti mentre $i_S$ è uscente
@@ -15,6 +16,7 @@ $i_D=k_n'\frac{W}{L}\frac{V_{OV}^2}{2}$ se $V_{GS}>V_t,\ V_{DS}\ge V_{OV}$
 ## Cutoff/interdizione
 $i_D=0$ se $V_{GS}<V_t$
 # PMOS: Regioni di funzionamento canale p
+![[pmos.png]]
 A differenza dell N-Mos si ha:
 * $V_{DS}<0$
 * $V_{GS}<0$
