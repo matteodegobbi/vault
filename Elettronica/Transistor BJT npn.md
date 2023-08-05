@@ -30,7 +30,9 @@ i_C < \beta_F i_B
 ![[satBJT.png]]
 Notiamo come in saturazione si ha che $V_{CE}=V_{CESAT}\triangleq V_{BEON}-V_{BCON}$, ciò da il nome a $V_{CESAT}$.
 Negli esercizi è più utile il secondo modello perché spesso viene data $V_{CESAT}$.
-Il motivo della seconda condizione è dimostrato sul quaderno.
+Il motivo della seconda condizione è dimostrato sul quaderno (Lezione 10).
 ## Zona attiva inversa 
 Non ci interessa un modello per questa zona in quanto non viene utilizzata negli amplificatori.
+
+# Non idealità del BJT 
 ![[Non idealità nei transistor#BJT Effetto Early]]
