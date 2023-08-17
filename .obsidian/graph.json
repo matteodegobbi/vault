@@ -1,6 +1,6 @@
 {
   "collapse-filter": false,
-  "search": "path:Elettronica",
+  "search": " path:Elettronica",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
@@ -15,17 +15,17 @@
       }
     },
     {
-      "query": "",
-      "color": {
-        "a": 1,
-        "rgb": 11657298
-      }
-    },
-    {
       "query": "tag:#elettronica",
       "color": {
         "a": 1,
         "rgb": 14701138
+      }
+    },
+    {
+      "query": "tag:#discreti",
+      "color": {
+        "a": 1,
+        "rgb": 11657298
       }
     }
   ],
@@ -35,10 +35,10 @@
   "nodeSizeMultiplier": 1.32754677754678,
   "lineSizeMultiplier": 1.28679833679834,
   "collapse-forces": false,
-  "centerStrength": 0.825259515570934,
+  "centerStrength": 0.717413818612221,
   "repelStrength": 20,
-  "linkStrength": 1,
+  "linkStrength": 0.423879272081669,
   "linkDistance": 30,
-  "scale": 1.255826452941493,
+  "scale": 0.823192172178228,
   "close": false
 }
