@@ -1,5 +1,6 @@
 # Specchio di tipo [[Mosfet#NMOS Regioni di funzionamento canale n|n]]
 # DISEGNO MODELLO DC 
+$M_1,M_2$ hanno lo stesso $k_n',V_t,L$ e $m \triangleq \frac{W_2}{W_1}$
 dc
 $I_O= m\  I_{REF}$  se $I_{REF}>0,\ V_O > V_{OV}$ 
 ac
@@ -25,7 +26,11 @@ con $R_O \simeq (g_{m4} r_{o4})\cdot r_{o2}$ senza approssimazione sarebbe $r_{o
 
 # Specchio [[BJT]]
 ################################
+$Q_1,Q_2$hanno gli stessi $\beta, I_{S0}$ con $I_S = I_{S0}A_E$ e $m=\frac{A_{E2}}{A_{E1}}$ 
+dall'analisi dc
+$I_o=m I_R \cdot (\frac{1}{1+\frac{1+m}{\beta}})$
 
 Beta helper lo metto?????????????
 
+$I_o=m I_R \cdot (\frac{1}{1+\frac{1+m}{\beta(\beta+1)}})$
 
