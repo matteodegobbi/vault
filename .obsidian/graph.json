@@ -1,12 +1,19 @@
 {
   "collapse-filter": false,
-  "search": " path:Elettronica",
+  "search": "path:Elettronica",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": true,
   "collapse-color-groups": false,
   "colorGroups": [
+    {
+      "query": "tag:#importante",
+      "color": {
+        "a": 1,
+        "rgb": 13893887
+      }
+    },
     {
       "query": "tag:#algoritmiXingegneria",
       "color": {
@@ -39,6 +46,6 @@
   "repelStrength": 20,
   "linkStrength": 0.423879272081669,
   "linkDistance": 30,
-  "scale": 0.823192172178228,
+  "scale": 0.5396011134725474,
   "close": false
 }
