@@ -1,7 +1,7 @@
 {
   "collapse-filter": false,
   "search": "",
-  "showTags": false,
+  "showTags": true,
   "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": true,
@@ -15,31 +15,17 @@
       }
     },
     {
-      "query": "tag:#algoritmiXingegneria",
-      "color": {
-        "a": 1,
-        "rgb": 14725458
-      }
-    },
-    {
-      "query": "tag:#elettronica",
-      "color": {
-        "a": 1,
-        "rgb": 14701138
-      }
-    },
-    {
-      "query": "tag:#discreti",
-      "color": {
-        "a": 1,
-        "rgb": 11657298
-      }
-    },
-    {
       "query": "tag:#tesi  ",
       "color": {
         "a": 1,
         "rgb": 5431473
+      }
+    },
+    {
+      "query": "tag:#opresearch  ",
+      "color": {
+        "a": 1,
+        "rgb": 11657298
       }
     }
   ],
@@ -51,7 +37,7 @@
   "collapse-forces": false,
   "centerStrength": 0.717413818612221,
   "repelStrength": 20,
-  "linkStrength": 0.423879272081669,
+  "linkStrength": 0.987889273356401,
   "linkDistance": 30,
   "scale": 0.5396011134725474,
   "close": false

@@ -1,3 +1,4 @@
 ---
-tags: discreti
+tags:
+  - elettronica
 ---
