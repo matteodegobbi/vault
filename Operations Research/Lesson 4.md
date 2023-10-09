@@ -1,3 +1,5 @@
+#opresearch 
+10/10/2023
 Def $\{ x\in\mathbb{R}^n:\alpha^Tx\le\alpha_0 \}$ is called an affine half space
 Def $\{ x\in\mathbb{R}^n:\alpha^Tx=\alpha_0 \}$ is called an hyperplane 
 The set of feasible points $P=\{x\in\mathbb{R}^n:Ax\geqq b\}$######GE or EQ

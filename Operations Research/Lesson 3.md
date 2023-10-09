@@ -13,11 +13,11 @@ a_{11} & \dotsi & a_{1n}\\
 a_{m1} & \dotsi & a_{mn}\\   
 \end{bmatrix}
 $$
-$A_i$ is the i-th column of the matric $A=[A_1,\dotsi,A_n]$
+$A_i$ is the i-th column of the matrix $A=[A_1,\dotsi,A_n]$
 
 We can write $(\star)$ as:
 1. $\sum_{j=1}^n{c_j x_j}\ge b_i \ \forall i=1,\dots,m$ 
-2. $a_i^T\ge b_i\ \forall i=1,\dots,m$
+2. $a_i^T x\ge b_i\ \forall i=1,\dots,m$
 3. $A x\ge b\ \ \ b\in \mathbb{R}^m$ in which $Ax=A_1 x_1+ \dotsi +A_n x_n$
 
 ---
