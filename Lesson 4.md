@@ -1,0 +1,103 @@
+Def $\{ x\in\mathbb{R}^n:\alpha^Tx\le\alpha_0 \}$ is called an affine half space
+Def $\{ x\in\mathbb{R}^n:\alpha^Tx=\alpha_0 \}$ is called an hyperplane 
+The set of feasible points $P=\{x\in\mathbb{R}^n:Ax\geqq b\}$######GE or EQ
+Def the intersection of a FINITE number of affine half space and/or hyperplanes convex polyhedron. (We need the finite because otherwise we can get a smooth surface which is not a polyhedron)
+
+A polyhedron can be unbounded.#########DISEGNO
+
+Sometimes we can show that the polyhedrons of interest are in a ball of radius M for example in the nurses we might constraint M to 1000.
+
+A polytope is a bounded polyhedron.
+
+Def A point $x\in P$ is said to be a vertex of $P$ if it cannot be expressed as the STRICT convex combination of two DISTINCT points $y,z \in P$
+
+(We get to the vertices deleting from the polyhedron all points that can be expressed as a STRICT convex combination of two DISTINCT points)
+
+---
+
+# Theorem of Minkowski-Weyl
+
+We have a polytope (we are then assuming bounded polyhedra) ###DISEGNO with vertices $x^1,x^2,\dotsi,x^k \in P$, For every $y \in P, \exists \lambda_1,\dotsi,\lambda_k \ge 0$
+1. $\sum_{i=1}^k{\lambda_i}=1$
+2. $y=\sum_{i=1}^k{\lambda_i x^i}$
+
+It is important that it's a polytope because if its unbounded we have a "missing vertex" and we cannot express ALL points with a convex combination.
+
+no proof
+
+---
+Theorem: $P$ bounded polyhedron (polytope) $\to \min_{x\in P}{c^T x}$ has an optimal solution arising on a vertex of P.
+
+Proof: Let $x^1,x^2,\dotsi,x^k$ be the vertices of $P$.
+Compute $z^* = \min\{c^T x^i :i=1,\dotsi,k\}$
+(we claim $z^*$ is the optimal solution, we need to prove this)
+Now take any $y\in P \to^{MW} \exists\lambda\ge0$ $\sum_{i=1}^k{\lambda_i}=1$, $y=\sum_{i=1}^k{\lambda_i x^i}$
+$c^T y=c^T \sum_{i=1}^k{\lambda_i x^i}=\sum_{i=1}^k{\lambda_i c^T x^i}\ge^{(\star)}\sum_{i=1}^k{\lambda_i z^*}=z^*$
+$(\star)$ holds because we have $\lambda_i>0,\ \  c^T x^i \ge z^*$. $\square$
+
+---
+
+Example of lesson 3 
+$$\begin{cases}
+\min -x_1 -x_2 \\
+6x_1+4x_2\le 24 (I) \\
+3x_1-2x_2\le 6 (II)\\  
+x_1\ge 0 \\
+x_2\ge 0 \\
+\end{cases}
+$$but in standard form it becomes: 
+$$\begin{cases}
+\min -x_1 -x_2 \\
+6x_1+4x_2 +x_3 = 24 (I) \\
+3x_1-2x_2+x_4 = 6 (II)\\  
+x_1,x_2,x_3,x_4\ge 0 \\
+\end{cases}
+$$
+notice how different inequalities need a different slack variable
+###DISEGNO
+From the drawing we see how we can express the boundaries of the polytope as the points for which a variable (either original or slack) is 0.
+If this is true then we can express any vertex  as the intersection of two of those boundaries.
+Vertex A $\to x_1=x_2=0$
+Vertex B $\to x_2=x_4=0$
+Vertex C $\to x_4=x_3=0$
+Vertex D $\to x_1=x_3=0$
+
+But we need to be careful, if we set $x_2=x_3=0$ we get the $\star$ point in the drawing but if we check the other components of this point and we see that for $\star$ $x_4\le0$ so it violates the non negativity condition and it's not feasible and can't be a vertex.
+
+If when we solve the system to check the other components we get either infinite or no solutions it means the two lines are parallel or coincident and this is of no interest for us because we cannot get a vertex in these two cases.
+
+---
+$A\in \mathbb{R}^{m\times n}$ with $m\le n$
+In general $Ax=b$ $(x\ge0)$ 
+Hp: all the rows of $A$ are linearly independent $\leftrightarrow \text{rank}(A)=m$
+Def A basis $B$ of $A$ is a set of $m$ lin indip columns of $A$
+$A=\begin{bmatrix} A_1 | A_2 | \dotsi | A_n \end{bmatrix}\to B=\begin{bmatrix} A_{\beta[1]} | A_{\beta[2]} | \dotsi | A_{\beta[m]} \end{bmatrix}$ 
+(we need \beta  because otherwise we would get the first $m$ columns)
+$B\in \mathbb{R}^{m\times m}$ with $\det{B}\ne0$ because all the columns are lin indip.
+
+---
+
+$Ax=b$
+($A_1 x_1+ \dotsi +A_n x_n$)
+Take any basis $B$
+###ROBA DEI COLORI DAL FOGLIO
+we can rewrite the matrix A and the vector x to divide the columns of two different color 
+$A=[B|F]$
+$X=\begin{bmatrix}x_B\\ \hline x_F\end{bmatrix}$
+
+$Ax=\begin{bmatrix}B|F\end{bmatrix}\begin{bmatrix} x_B \\ \hline  x_F \end{bmatrix}=B x_B + F x_F=b$ 
+For a system basis B since B is not singular we can
+$B^{-1}(B x_B  =b-F x_F)\to x_B=B^{-1}b-B^{-1}F x_F$
+this is the canonical WRT B
+
+
+Given B a solution where we fix  $x=\begin{bmatrix}x_B=B^{-1}b\\ \hline x_F=0\end{bmatrix}$
+$x_F=0$
+$x_B= B^{-1}b$
+is called a basic solutions to $B$
+
+and it is feasible if $B^{-1}b\ge0$
+
+
+
+---
