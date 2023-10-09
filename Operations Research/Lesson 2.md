@@ -1,5 +1,6 @@
 #opresearch
 3/10/2023
+# Mathematical optimization
 We have a mathematical optimization problem:
 $x\in\mathbb{R}^n$
 $f:\mathbb{R}^n\to\mathbb{R}$ objective function 
@@ -16,11 +17,11 @@ Local minima can be "easily" found searching when the gradient is 0 but this is 
 
 If we can assume some regularity conditions the local optimal solution will also be the global optimal solution, for this we need to assume
 1. $X$ is convex.
-2. the objective function $f$ is convex
+2. the objective function $f$ is convex.
 
 Why do we need both?
-For example if we have $f(x)=x_2$ and $X$ is not convex we can find a local optimal solution that is not a global optimal solution.
-If we have a function that is not convex a locally optimal solution may not be the minimum because the function could "increase again after having decreased".
+1. For example if we have $f(x)=x_2$ and $X$ is not convex we can find a local optimal solution that is not a global optimal solution.
+2. If we have a function that is not convex a locally optimal solution may not be the minimum because the function could "increase again after having decreased".
 ![[convexXandConvexf.png]]
 ---
 # Convexity of a set
@@ -28,7 +29,7 @@ Definition: convex combination: $x,y \in \mathbb{R}^n$ $z=\lambda x+ (1-\lambda)
 
 The convex combination is said strict if $\lambda \ne0,1$.
 
-Definition convex combination of $k$ points: $x^1,x^2,\dotsi,x^k \in \mathbb{R}^n$ $z=\sum_{i=1}^{k}{\lambda_i x^i}$, $\lambda_i>0$ and $\sum_{i=1}^{k}{\lambda_i}=1$
+Definition: convex combination of $k$ points: $x^1,x^2,\dotsi,x^k \in \mathbb{R}^n$ $z=\sum_{i=1}^{k}{\lambda_i x^i}$, $\lambda_i>0$ and $\sum_{i=1}^{k}{\lambda_i}=1$
 ![[convComb.png]]
 ![[convHull.png]]
 
