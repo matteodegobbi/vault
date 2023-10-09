@@ -55,9 +55,9 @@ $f(\lambda x + (1-\lambda)y)\le \lambda f(x)+ (1-\lambda)f(y)$ for $\lambda \in 
 # Set described by convex inequalities
 We can prove a set is convex if it is defined as a set of inequalities:
 $X=\{x\in \mathbb{R}^n: g_i(x)\le 0, \ \ \ i=1,\dots,m\}$
-Th. 1.1.1: If $g_i(x)$ are convex then $X$ is convex.
+Theorem 1.1.1: If $g_i(x)$ are convex then $X$ is convex.
 (For example in the special case where all $g_i$ are linear $\to$ they are convex, like with the nurses example)
-Proof: $X=\bigcap_{i=1}^m X_i$  $X_i\triangleq\{x\in \mathbb{R}^n: g_i(x)\le 0\}$ if we can prove that all $X_i$ are convex their intersection will be convex. 
+Proof: $X=\bigcap_{i=1}^m X_i$  $X_i\triangleq\{x\in \mathbb{R}^n: g_i(x)\le 0\}$ if we can prove that all $X_i$ are convex their intersection will be convex (because of the previous proposition). 
 For any $X_i$ and any two points $x,y\in X_i$ and any $\lambda\in[0,1]$: $z=\lambda x + (1-\lambda)y$ 
 $g_i(z)=g_i(\lambda x + (1-\lambda)y)\le \lambda g_i(x)+(1-\lambda)g_i(y)$ the last step because of the convexity of $g_i$
 And since $\lambda \ge 0,\ \ (1-\lambda)\ge 0$ because $\lambda \in [0,1]$ and $g_i(x)\le0,\ g_i(y)\le0$ because $x,y \in X_i$
