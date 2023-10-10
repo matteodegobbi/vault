@@ -31,14 +31,24 @@ x_1\ge 0 \\
 x_2\ge 0 \\
 \end{cases}
 $$
+All the feasible points must be on the first quadrant because of the implicit constraints (non negativity of $x_1,x_2$)
 ##disegno copia
 
+A graphical approach can be used to find the minimum of the objective function in the polyhedron $P$.
+We find the gradient of the objective function, in this case $\nabla f=[-1,-1]$.
+Then we draw level curves of $f$ going along the opposite direction of the gradient, when we find the last curve that still contains feasible points the points in this curve will be optimal solutions because we went along the direction of maximum decrease.
+With this graphical approach we find that $x^*=\begin{bmatrix}0 \\ 6\end{bmatrix}$ is the optimal solution.
+
 If we keep the same constraints but with a different objective function we can find different optimal solution.
-A,B,C,D are called the vertices of the polyhedron and an optimal solution will always be one of these vertices in linear programming. 
-If the objective function is $0x_1+0x_2$ every point in $P$ is an optimal solution.
+A,B,C,D are called the vertices of the polyhedron and an optimal solution will always be one of these vertices in linear programming (we prove this in [[Lesson 4#Optimal solution in LP will always be a vertex|Lesson 4]]). 
+
+Pathological case: if the objective function is $0x_1+0x_2$ every point in $P$ is an optimal solution.
 
 ##disegno in R3 pdf 
-##Simplex
+##Simplex MANCA TODO
+
+---
+# Linear optimization standards/tricks
 Canonical form of linear programming:
 $$
 \begin{cases}
@@ -56,23 +66,25 @@ Ax = b \\
 x \ge 0
 \end{cases}
 $$
+## Switching from canonical to standard form
 We can use some tricks to go from inequalities to equalities and back (canonical $\leftrightarrow$ standard)
 
 * $a_i^T x\ge b_i \leadsto a_i^T x -s_i= b_i$
 * $a_i^T x\le b_i \leadsto a_i^T x +s_i= b_i$
-s_i \ge 0 surplus or slack
+$s_i \ge 0$ is called a surplus or slack variable
 * $a_i^T x = b_i \begin{cases}a_i^T x \ge b_i \\ a_i^T x \le b_i\end{cases}$
-
----
-$x_i \lesseqgtr 0$ is free this is not valid for linear programing we need to use another trick:
+⚠️ Each inequality we convert needs their own slack variable, be careful.
+## Free variable
+If$x_i \lesseqgtr 0$ it's called free. This is not valid for linear programing and we need to use another trick:
 $x_i=x_i^+ - x_i^-,\ \ \ x_i^+\ge0,\ \ x_i^-\ge0$
-if we subsitute every occurence of $x_i$ with this trick we can then use linear programming
+If we substitute every occurence of $x_i$ with this trick we can then use linear programming because we have two non negative variables.
 
 ---
+# Strict inequalities are not valid
+If we have $a_i^T < b_i$  a strict inequality we CANNOT USE LP. We would want to get a $\le$ inequality because if we have a strict inequality we are excluding the boundary of the polyhedron.
+but we can approximate for example we can $< 3 \to \le 2.9999999999999$.
+In practice this works but it's not formally correct and we will not use this trick in the course.
 
-if we have $a_i^T < b_i$  a strict inequality we would want to get a $\le$ inequalty but we can't because if we have a strict inequality we are excluding the boundary of the polyhedron.
-but we can approximate for example we can $< 3 \to \le 2.9999999999999$ 
-
-<p style="color: YELLOW">⚠Important: In linear programming we need non strict inequalities, if we have &lt or &gt IT'S NOT A LINEAR PROGRAMMING PROBLEM </p> 
+<p style="color: orange">⚠Important: In linear programming we need non strict inequalities, if we have &lt or &gt IT'S NOT A LINEAR PROGRAMMING PROBLEM </p> 
 
 ---
