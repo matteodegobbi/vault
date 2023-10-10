@@ -28,6 +28,7 @@ It is important that it's a polytope because if its unbounded we have a "missing
 no proof
 
 ---
+# Optimal solution in LP will always be a vertex
 Theorem: $P$ bounded polyhedron (polytope) $\to \min_{x\in P}{c^T x}$ has an optimal solution arising on a vertex of P.
 
 Proof: Let $x^1,x^2,\dotsi,x^k$ be the vertices of $P$.
