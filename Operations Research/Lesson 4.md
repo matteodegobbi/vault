@@ -95,12 +95,13 @@ this is the canonical WRT B
 
 
 Given B a solution where we fix  $x=\begin{bmatrix}x_B=B^{-1}b\\ \hline x_F=0\end{bmatrix}$
-$x_F=0$
-$x_B= B^{-1}b$
-is called a basic solutions to $B$
+1. $x_F=0$
+2. $x_B= B^{-1}b$
+If these two equalities hold $x$ is called a basic solutions to $B$.
+	
+And it is said feasible if $B^{-1}b\ge0$.
 
-and it is feasible if $B^{-1}b\ge0$
-
+$B$ has $m$ columns and $F$ has $n-m$ columns
 
 
 ---
