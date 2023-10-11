@@ -5,7 +5,7 @@ If $(B^{-1}b)_i=0$ for any $i\in 1,\dots,m$ we have a degenerate basic solution
 
 ---
 
-Theorem A point $x\in P$ is a vertex of $P:= \{ x\ge0 : Ax=b \} \ne \null$ (standard form with equations)
+Theorem A point $x\in P$ is a vertex of $P:= \{ x\ge0 : Ax=b \} \ne \emptyset$ (standard form with equations)
 if and only $x$ is a BFS (Basic Feasible Solution) of the system $Ax=b$.
 
 _Proof_:
@@ -17,7 +17,7 @@ Assume, by contradiction, $x$ is not a vertex. $\exists y,z, \in P, y\ne z, \lam
 I claim
 $y=[y_1,y_2,\dots,y_k,0,0,\dots,0]^T$
 $z=[z_1,z_2,\dots,z_k,0,0,\dots,0]^T$
-because if one of the z_i or y_i was $\ne 0$ then we would have x_i \ne 0 because we are summating two positive numbers when we do a convex combination with $0<\lambda<1$ (this is why we need an open interval for $\lambda$)
+because if one of the $z_i$ or $y_i$ was $\ne 0$ then we would have $x_i \ne 0$ because we are summating two positive numbers when we do a convex combination with $0<\lambda<1$ (this is why we need an open interval for $\lambda$)
 $y\in P\to A_1 y_1+\dotsi+A_k y_k = b$ $(\star)$
 $z\in P\to A_1 z_1+\dotsi+A_k z_k = b$ $(\star\star)$
 $(\star)$-$(\star\star)=A_1(y_1-z_1)+\dotsi+A_k(y_k-z_k)=0$
