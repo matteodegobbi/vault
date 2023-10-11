@@ -83,3 +83,5 @@ If $\bar {c_F} \ge 0$ (component by component )then $c_T x \ge 0$
 this is the optimality test (sufficient condition to stop)
 $\bar {c_F} \triangleq c_F^T -c_B^T B^{-1} F$
 If $\bar {c_F} \ge 0$ then we can stop.
+
+(we dont need to compute the reduced cost vector components for basic components because we already know its 0)
