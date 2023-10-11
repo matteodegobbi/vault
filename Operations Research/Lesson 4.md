@@ -1,17 +1,20 @@
 #opresearch 
 10/10/2023
-Def $\{ x\in\mathbb{R}^n:\alpha^Tx\le\alpha_0 \}$ is called an affine half space
-Def $\{ x\in\mathbb{R}^n:\alpha^Tx=\alpha_0 \}$ is called an hyperplane 
-The set of feasible points $P=\{x\in\mathbb{R}^n:Ax\geqq b\}$######GE or EQ
-Def the intersection of a FINITE number of affine half space and/or hyperplanes convex polyhedron. (We need the finite because otherwise we can get a smooth surface which is not a polyhedron)
+Definition $\{ x\in\mathbb{R}^n:\alpha^Tx\le\alpha_0 \}$ is called an affine half space.
+Definition: $\{ x\in\mathbb{R}^n:\alpha^Tx=\alpha_0 \}$ is called an hyperplane 
+The set of feasible points $P=\{x\in\mathbb{R}^n:Ax\geqq b\}$ 
+($\geqq$ means that for every row it could either be $\le$ or $=$)
+
+Definition: the intersection of a FINITE number of affine half spaces and/or hyperplanes is a convex polyhedron. 
+(We need to specify finite because otherwise we can get a smooth surface which is not a polyhedron)
 
 A polyhedron can be unbounded.#########DISEGNO
 
 Sometimes we can show that the polyhedrons of interest are in a ball of radius M for example in the nurses we might constraint M to 1000.
 
-A polytope is a bounded polyhedron.
+Definition: a polytope is a bounded polyhedron.
 
-Def A point $x\in P$ is said to be a vertex of $P$ if it cannot be expressed as the STRICT convex combination of two DISTINCT points $y,z \in P$
+Defintion: a point $x\in P$ is said to be a vertex of $P$ if it cannot be expressed as the STRICT convex combination of two DISTINCT points $y,z \in P$
 
 (We get to the vertices deleting from the polyhedron all points that can be expressed as a STRICT convex combination of two DISTINCT points)
 
@@ -23,9 +26,9 @@ We have a polytope (we are then assuming bounded polyhedra) ###DISEGNO with vert
 1. $\sum_{i=1}^k{\lambda_i}=1$
 2. $y=\sum_{i=1}^k{\lambda_i x^i}$
 
-It is important that it's a polytope because if its unbounded we have a "missing vertex" and we cannot express ALL points with a convex combination.
-
-no proof
+It is important that it's a polytope because if it's unbounded we have a "missing vertex" and we cannot express ALL points with a convex combination.
+(some points in the direction where the polyhedron is unbounded cannot be expressed as a convex combination of two vertices)
+no proof.
 
 ---
 # Optimal solution in LP will always be a vertex
