@@ -21,7 +21,7 @@ We call $\underline{w} \triangleq[\dotsi \underline{w_i} \dotsi]$   which is a l
 and $\underline{b}=[\dotsi \underline{b_i} \dotsi]$ 
 
 ## Stochastic gradient descent
-To compute: ![[Tesi#^a6a5d4]]We need to calculate the argument of the sum for every $x$ in the training dataset, this could take a long time for large datasets.
+To compute: ![[Neural networks tutorial notes#^a6a5d4]]We need to calculate the argument of the sum for every $x$ in the training dataset, this could take a long time for large datasets.
 Stochastic gradient descent can be used to speed up this process: instead of calculating the argument of the sum for every $x$ we can only use a small random subset of the dataset called _mini-batch_ with $m$ data points. 
 $\nabla C \approx \frac{1}{m}\sum_{j=1}^m \nabla C_{X_j}$ (instead of $\nabla C \approx \frac{1}{n}\sum_{x} \nabla C_{X}$)
 After training with the mini-batch we choose another one and repeat this process until we have exausted the whole dataset, when we finish we say we have completed a training epoch. We repeat this procedure for a fixed amount of epochs.
