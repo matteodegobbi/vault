@@ -67,7 +67,7 @@ then $g_i(z)\le 0$ which implies $z\in X_i$ and since we said this is true for e
 # Local optimal = Global optimal if $f$ and $X$ are convex
 Theorem: For the optimization problem $\min\{f(x):x\in X\}$
 if $f,X$ are convex every local optimal solution is also globally optimal.
-Proof on the pdf and another version is in the book.
+Proof: on the pdf and another version is in the book.
 ![[localGlobalOptimalConvex.png]]
 
 ---

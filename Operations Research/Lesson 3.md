@@ -2,10 +2,10 @@
 4/10/2023
 # Linear programming
 ## Notation
-$f(x)=\sum_{i=1}^n{c_j x_j}$ linear function (particular case of convex function)
+$f(x)=\sum_{j=1}^n{c_j x_j}$ linear function (particular case of convex function)
 $g_i(x)=b_i-\sum_{j=1}^n{c_j x_j}\le0 \ \forall i=1,\dots,m$ affine inequality $(\star)$
 we can simplify notation using matrices: $c,x\in \mathbb{R}^n$
-$\sum_{i=1}^n{c_j x_j}=\langle c,x \rangle=c^T x$ (row vector $\times$ column vector)
+$\sum_{j=1}^n{c_j x_j}=\langle c,x \rangle=c^T x$ (row vector $\times$ column vector)
 
 $$\begin{bmatrix}   
 a_{11} & \dotsi & a_{1n}\\   
