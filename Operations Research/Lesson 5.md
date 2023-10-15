@@ -69,7 +69,7 @@ and we want to use a better algorithm.
 George Dantzig developed:
 1. Optimality test
 2. Change the basis
-$Ax=b,\ x\ge 0$, current basis $B$ we rewrite the system in canonical form in respect to the current base
+$Ax=b,\ x\ge 0$, current basis $B$ we rewrite the system in canonical form in respect to (WRT) the current base
 $x_B=B^{-1}b-B^{-1} F x_F$
 For every $x\in P:$
 $c^Tx=[c_B^T, c_F^T] \begin{bmatrix} x_B\\x_F \end{bmatrix}=c_B^T x_B + c_F^T x_F=$
