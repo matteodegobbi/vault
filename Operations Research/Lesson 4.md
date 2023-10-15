@@ -42,8 +42,7 @@ $c^T y=c^T \sum_{i=1}^k{\lambda_i x^i}=\sum_{i=1}^k{\lambda_i c^T x^i}\ge^{(\sta
 $(\star)$ holds because we have $\lambda_i>0,\ \  c^T x^i \ge z^*$. $\square$
 
 ---
-
-Example of lesson 3 
+# Example of lesson 3
 $$\begin{cases}
 \min -x_1 -x_2 \\
 6x_1+4x_2\le 24 (I) \\
@@ -51,7 +50,9 @@ $$\begin{cases}
 x_1\ge 0 \\
 x_2\ge 0 \\
 \end{cases}
-$$but in standard form it becomes: 
+$$
+but in standard form it becomes: 
+
 $$\begin{cases}
 \min -x_1 -x_2 \\
 6x_1+4x_2 +x_3 = 24 (I) \\
@@ -59,7 +60,7 @@ $$\begin{cases}
 x_1,x_2,x_3,x_4\ge 0 \\
 \end{cases}
 $$
-notice how different inequalities need a different slack variable
+notice how different inequalities need a different slack variable (Like we said previously in [[Lesson 3#Switching from canonical to standard form]])
 ###DISEGNO
 From the drawing we see how we can express the boundaries of the polytope as the points for which a variable (either original or slack) is 0.
 Since this is true then we can express any vertex  as the intersection of two of those boundaries.
@@ -73,35 +74,37 @@ But we need to be careful, if we set $x_2=x_3=0$ we get the $\star$ point in the
 If when we solve the system to check the other components we get either infinite or no solutions it means the two lines are parallel or coincident and this is of no interest for us because we cannot get a vertex in these two cases.
 
 ---
+# Basis
 $A\in \mathbb{R}^{m\times n}$ with $m\le n$
-In general $Ax=b$ $(x\ge0)$ 
+In general $Ax=b$ ($x\ge0$,non negativity condition)  
 Hp: all the rows of $A$ are linearly independent $\leftrightarrow \text{rank}(A)=m$
 Definition: a basis $B$ of $A$ is a set of $m$ linearly independent columns of $A$
 $A=\begin{bmatrix} A_1 | A_2 | \dotsi | A_n \end{bmatrix}\to B=\begin{bmatrix} A_{\beta[1]} | A_{\beta[2]} | \dotsi | A_{\beta[m]} \end{bmatrix}$ 
 (we need the permutation $\beta[\cdot]$  because otherwise we would get the first $m$ columns)
-$B\in \mathbb{R}^{m\times m}$ with $\det{B}\ne0$ because all the columns are linearly independet.
+$B\in \mathbb{R}^{m\times m}$ with $\det{B}\ne0$ because all the columns are linearly independent.
 
 ---
-
+# In base and out of base components
 $Ax=b$
 ($A_1 x_1+ \dotsi +A_n x_n$)
-Take any basis $B$
-###ROBA DEI COLORI DAL FOGLIO
-We can rewrite the matrix A and the vector x to divide the columns of two different color 
+
+Take any basis $B$, we can colour all the columns in $A$ with <span style="color:blue"> blue </span> if they are in the base $B$ or<span style="color:red"> red</span> if they aren't.
+This also colours the components of $x$ with whether they correspond to an in base column of $A$ or an out of base column. 
+We can then rearrange the order of columns in $A$ and their corresponding components in $x$ to have first the<span style="color:blue"> blue </span>then the<span style="color:red"> red</span>.
+###DISEGNO ROBA DEI COLORI DAL FOGLIO
 $A=[B|F]$
 $X=\begin{bmatrix}x_B\\ \hline x_F\end{bmatrix}$
-
 $Ax=\begin{bmatrix}B|F\end{bmatrix}\begin{bmatrix} x_B \\ \hline  x_F \end{bmatrix}=B x_B + F x_F=b$ 
-For a system basis B since B is not singular we can
+For a system basis B since B is not singular we can multiply both sides by the inverse of $B$:
 $B^{-1}(B x_B  =b-F x_F)\to x_B=B^{-1}b-B^{-1}F x_F$
-this is the canonical WRT B
+this is the canonical WRT $B$.
 
 
 Given B there is a solution where we fix  $x=\begin{bmatrix}x_B=B^{-1}b\\ \hline x_F=0\end{bmatrix}$
 1. $x_F=0$
 2. $x_B= B^{-1}b$
 If these two equalities hold $x$ is called a basic solutions to $B$.
-	
+
 And it is said feasible if $B^{-1}b\ge0$.
 
 ($B$ has $m$ columns and $F$ has $n-m$ columns)
