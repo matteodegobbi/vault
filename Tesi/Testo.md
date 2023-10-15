@@ -12,7 +12,8 @@ Ci concentreremo su questo secondo modello in quanto è più simile ad un caso r
 Detto $\mathcal T$ il modello target su cui vogliamo svolgere l'attacco.  
 Detto $\mathcal D_{train,\mathcal T}$ il dataset di training di $\mathcal T$.
 
-Nei modelli di machine learning di classificazione, il modello determina a quale tra k classi è più probabile appartenga l'input.
+Nei modelli di machine learning di classificazione, il modello determina a quale tra 
+$k$ classi è più probabile appartenga l'input.
 Il classificatore da in output un vettore lungo k dove ogni componente rappresenta la probabilità che l'input appartenga alla corrispondente classe. Ad esempio $\begin{bmatrix}cane\\gatto\\orso\\volpe \end{bmatrix}=\begin{bmatrix}0.6\\0.1\\0.1\\0.2 \end{bmatrix}$
 L'intuizione su cui ci basiamo è che il modello classificherà in maniera diversa input che erano già presenti nei dati di training ($\mathcal D_{train,\mathcal T}$), ovvero con una confidenza maggiore ad esempio:
 $\begin{bmatrix}cane\\gatto\\orso\\volpe \end{bmatrix}=\begin{bmatrix}0.9\\0.025\\0.025\\0.05 \end{bmatrix}$
@@ -27,19 +28,16 @@ Non abbiamo a disposizione questi dati per il modello $\mathcal T$ quindi creiam
 Siccome questi $\mathcal S_i$ sono creati da noi possiamo controllarne il training set  $\mathcal D_{train,\mathcal S_i}$([[#creazione dataset shadow]]) e quindi abbiamo a disposizione dei vettori di predizione con la corrispondente label `in` e `out`. 
 Possiamo quindi addestrare il classificatore binario $\mathcal M_{inference}$ in modo che capisca se un certo input appartenga a $\mathcal D_{train,\mathcal S_i}$ oppure no in base al vettore di predizione corrispondente.
 L'idea è che se gli shadow models $\mathcal S_i$ si comportano in maniera abbastanza simile a $\mathcal T$ la capacità di $\mathcal M_{inference}$ di discriminare in e out di $\mathcal D_{train,\mathcal S_i}$ si tradurrà nella capacità di discriminare in e out in $\mathcal D_{train,\mathcal T}$.
-
-
-
-TODO finisci per classifier e aggiungi per GANs
-
-
+In questo caso avere informazioni aggiuntive su $\mathcal T$ (ad esempio il tipo del modello) permette di creare dei $\mathcal S_i$ più simili aumentando l'accuratezza del nostro attacco.
+Per l'addestramento dei $\mathcal S_i$ avremo che $\mathcal D_{train,\mathcal S_i}$ contiene tutti dati con una determinata classe $i$ (ad esempio $\mathcal D_{train,\mathcal S_i}$ ha tutti cani,$\mathcal D_{train,\mathcal S_2}$ ha tutti gatti ecc...), questo perché la distribuzione del vettore di predizione può dipendere dalla classe dell'input (ad esempio se è più facile per un modello classificare certi animali rispetto ad altri). 
+Per il modello $\mathcal M_{inference}$ si può utilizzare qualsiasi modello che permetta la classificazione binaria.
 
 ---
 # creazione dataset shadow
 come creiamo i dataset shadow TODO se serve
 
 ---
-
+TODO aggiungi per GANs
 
 
 
