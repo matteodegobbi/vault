@@ -1,34 +1,35 @@
 #opresearch 
 10/10/2023
 Continuing from [[Lesson 4]]...
-If $(B^{-1}b)_i=0$ for any $i\in 1,\dots,m$ we have a degenerate basic solution 
+<mark style="background: #D2B3FFA6;">Definition</mark>: If $(B^{-1}b)_i=0$ for any $i\in 1,\dots,m$ we have a degenerate basic solution ($B^{-1}b$ has one or more 0 components).
 
 ---
 
-Theorem A point $x\in P$ is a vertex of $P:= \{ x\ge0 : Ax=b \} \ne \emptyset$ (standard form with equations)
-if and only $x$ is a BFS (Basic Feasible Solution) of the system $Ax=b$.
+<mark style="background: #FFB86CA6;">Theorem</mark>: A point $x\in P$ is a vertex of $P:= \{ x\ge0 : Ax=b \} \ne \emptyset$ (standard form with equations)
+if and only if $x$ is a BFS (Basic Feasible Solution) of the system $Ax=b$.
 
-_Proof_:
+_Proof_ (also at page 37):
 First we prove: "$x$ is a BFS $\to$ $x$ is a vertex".
-WLOG we put the components $> 0$ at the start of the vector (like we did previously with coloring the components) $x=[x_1,x_2,\dots,x_k,0,0,\dots,0]^T$ for $k\ge0$
-$\to A_1,A_2,\dots,A_k$ are linearly independent because since $x_1,x_2,\dots,x_k$ are basic variables ........TODO......
+WLOG we put the components $> 0$ at the start of the vector (like we did previously with coloring the components) $x=[x_1,x_2,\dots,x_k,0,0,\dots|,0,\dots,0]^T$ for $k\ge0$ ($m$ components up to the $|$ and $n-m$ after the $|$, $k$ could be less than $m$ because the base could be degenerate) 
+$\to A_1,A_2,\dots,A_k$ must be linearly independent because since $x_1,x_2,\dots,x_k$ are basic variables then the corresponding columns in $A$ must also be basic column (meaning they appear in $B$) in order to be basic they need to be linearly independent.
 
-Assume, by contradiction, $x$ is not a vertex. $\exists y,z, \in P, y\ne z, \lambda \in (0,1): \ x=\lambda y+(1-\lambda)z$ 
-I claim
+Assume, by contradiction, $x$ is not a vertex, then by definition of vertex: $\exists y,z, \in P, y\ne z, \lambda \in (0,1): \ x=\lambda y+(1-\lambda)z$ 
+I claim:
 $y=[y_1,y_2,\dots,y_k,0,0,\dots,0]^T$
 $z=[z_1,z_2,\dots,z_k,0,0,\dots,0]^T$
-because if one of the $z_i$ or $y_i$ was $\ne 0$ then we would have $x_i \ne 0$ because we are summating two positive numbers when we do a convex combination with $0<\lambda<1$ (this is why we need an open interval for $\lambda$)
+because if one of the $z_i$ or $y_i$ were $\ne 0$ then we would have $x_i \ne 0$ because we are summing two positive numbers when we do a convex combination with $0<\lambda<1$ (this is why we need an open interval for $\lambda$)
 $y\in P\to A_1 y_1+\dotsi+A_k y_k = b$ $(\star)$
 $z\in P\to A_1 z_1+\dotsi+A_k z_k = b$ $(\star\star)$
+(since they belong in $P$ they both satisfy the system in standard form)
 $(\star)$-$(\star\star)=A_1(y_1-z_1)+\dotsi+A_k(y_k-z_k)=0$
 $\alpha_i\triangleq y_i-z_i$
-where $\alpha_1,\dots,\alpha_k$ are NOT ALL $=0$.
-$\to A_1+\dotsi+A_k$  are linearly dependent because we are getting 0 for a linear combination with coefficients that are not all zeroes.
-This is a contradiction $\contradiction$
-This means that $x$ is a vertex. $\square$
+where $\alpha_1,\dots,\alpha_k$ are NOT ALL $=0$ (because we have $y\ne z$).
+$\to A_1+\dotsi+A_k$  are linearly dependent because we are getting 0 for a linear combination with coefficients that are not all zeroes (definition of linear dependence).
+This is a contradiction. ↯
+This means that $x$ must be a vertex. $\square$
 
 Now we need to prove the other implication (the theorem says _iff_).
-We will prove: "$x$ is a vertex $\to x$ is a BFS" (we already know it is feasible because it's a vertex, we need to prove only that it is a basic solution) 
+We will prove: "$x$ is a vertex $\to x$ is a BFS" (we already know it is feasible because it's a vertex, we need to prove only that it is a basic solution). 
 
 Again we put the $k$ components $>0$ at the start of the vector as we did before.
 
@@ -61,9 +62,10 @@ $\to y,z \in P,\ y\ne z$ (spiegazione nel video)
 $x=\frac{1}{2}x+\frac{1}{2}z\to x$ is not a vertex, this is a contradiction $\contradiction$.
 So case ii) cannot arise $\to A_1,\dots,A_k$ are linearly independent. $\square$
 
-Controllare tutta questa dimostrazione dal libro
+#####Controllare tutta questa dimostrazione dal libro
 
 ---
+####NAIVE ALGO ENUMRATE ALL VERTICES AND FIND THE BEST scrivi
 We have $m \choose n$ possible choices of $n$ columns out of $m$ to enumerate all the vertices
 and we want to use a better algorithm.
 George Dantzig developed:
