@@ -108,7 +108,7 @@ $B^{-1}(B x_B  =b-F x_F)\to x_B=B^{-1}b-B^{-1}F x_F$
 this is the canonical form WRT $B$.
 
 
-Given B there is a solution where we fix  $x=\begin{bmatrix}x_B=B^{-1}b\\ \hline x_F=0\end{bmatrix}$
+<mark style="background: #D2B3FFA6;">Definition</mark>: given B there is a solution where we fix  $x=\begin{bmatrix}x_B=B^{-1}b\\ \hline x_F=0\end{bmatrix}$
 1. $x_F=0$
 2. $x_B= B^{-1}b$
 If these two equalities hold $x$ is called a basic solution to $B$.
