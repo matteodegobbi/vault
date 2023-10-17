@@ -11,7 +11,7 @@ if and only if $x$ is a BFS (Basic Feasible Solution) of the system $Ax=b$.
 _Proof_ (also at page 37):
 First we prove: "$x$ is a BFS $\to$ $x$ is a vertex".
 WLOG we put the components $> 0$ at the start of the vector (like we did previously with coloring the components) $x=[x_1,x_2,\dots,x_k,0,0,\dots|,0,\dots,0]^T$ for $k\ge0$ ($m$ components up to the $|$ and $n-m$ after the $|$, $k$ could be less than $m$ because the base could be degenerate) 
-$\to A_1,A_2,\dots,A_k$ must be linearly independent because since $x_1,x_2,\dots,x_k$ are basic variables then the corresponding columns in $A$ must also be basic column (meaning they appear in $B$) in order to be basic they need to be linearly independent.
+$\to A_1,A_2,\dots,A_k$ must be linearly independent because since $x_1,x_2,\dots,x_k$ are basic variables then the corresponding columns in $A$ must also be basic columns (meaning they appear in $B$) in order to be basic they need to be linearly independent.
 
 Assume, by contradiction, $x$ is not a vertex, then by definition of vertex: $\exists y,z, \in P, y\ne z, \lambda \in (0,1): \ x=\lambda y+(1-\lambda)z$ 
 I claim:
@@ -37,8 +37,8 @@ $x\in P \to A_1 x_1,A_2 x_2,\dots,A_k x_k=b$ $(\triangle)$
 now we have two possible cases:
 i. $A_1,A_2,\dots,A_k$ are linearly independent 
 $x=[x_1,x_2,\dots,x_k,0,\dots,0,|0,\dots,0]^T$ 
-in presence of degeneracy we dont have all the basis only k vectors we need another m-k
-$A=[A_1,A_2,\dots,A_k,A_{k+1},\dots]$
+in presence of degeneracy we dont have all $m$ vectors needed in the basis, we only have $k$ vectors and we need another $m-k$
+$A=[A_1,A_2,\dots,A_k,A_{k+1},\dots]$ 
 
 ######RIGUARDA STA PARTE
 
