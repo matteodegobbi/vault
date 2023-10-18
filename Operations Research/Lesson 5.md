@@ -33,57 +33,58 @@ We will prove: "$x$ is a vertex $\to x$ is a BFS" (we already know it is feasibl
 
 Again we put the $k$ components $>0$ at the start of the vector as we did before.
 
-$x\in P \to A_1 x_1,A_2 x_2,\dots,A_k x_k=b$ $(\triangle)$
+$x\in P \to A_1 x_1+A_2 x_2+\dotsi+A_k x_k=b$ $(\triangle)$
 now we have two possible cases:
 i. $A_1,A_2,\dots,A_k$ are linearly independent 
 $x=[x_1,x_2,\dots,x_k,0,\dots,0,|0,\dots,0]^T$ 
-in presence of degeneracy we dont have all $m$ vectors needed in the basis, we only have $k$ vectors and we need another $m-k$
-$A=[A_1,A_2,\dots,A_k,A_{k+1},\dots]$ 
-
-######RIGUARDA STA PARTE
+in presence of degeneracy we dont have all $m$ vectors needed in the basis, we only have $k$ vectors and we need another $m-k$ we can just take another $m-k$ linearly independent vectors (we can always do this because the have $m$ components)
+$B=[A_1,A_2,\dots,A_k,A_{k+1},\dots]$ since $x_i=0$ for $i>k$ we have that $x$ is a basic solution associated to $B$.
 
 $B\to \begin{bmatrix}x_B=B^{-1}b\\ \hline x_F=0\end{bmatrix}$
-to compute the basis we take the first k columns and we compute the other ones with B^-1 b
+to compute the components of $x$ we take the first $k$ columns and we can compute $x_B$  with $B^{-1} b$, the other $n-m$ non basic components will be 0.
 
-ii. $A_1,A_2,\dots,A_k$ are lin dependent
+ii. $A_1,A_2,\dots,A_k$ are linearly dependent
 $\to \exists \alpha_1,\dots,\alpha_k$, not all =0 such that 
-$(\triangle\triangle)$ $A_1 \alpha_1 + A_2 \alpha_2 +\dotsi +A_k \alpha_k$
+$(\triangle\triangle)$ $A_1 \alpha_1 + A_2 \alpha_2 +\dotsi +A_k \alpha_k=0$
 
-take $\epsilon \geapprox 0$
-$(\triangle)-\epsilon(\triangle\triangle)\to (x_1+\epsilon)###################$
+take $\epsilon \gtrsim 0$
+$(\triangle)-\epsilon(\triangle\triangle)\to (x_1-\epsilon \alpha_1)A_1+\dotsi+(x_k-\epsilon \alpha_k)A_k=b$
+$(\triangle)+\epsilon(\triangle\triangle)\to (x_1+\epsilon \alpha_1)A_1+\dotsi+(x_k+\epsilon \alpha_k)A_k=b$
+we define:
+$y\triangleq[x_1-\epsilon \alpha_1,\dots,x_k-\epsilon \alpha_k,0,\dotsi,0]$
+$z\triangleq[x_1+\epsilon \alpha_1,\dots,x_k+\epsilon \alpha_k,0,\dotsi,0]$
 
-############ contnua dal pdf
-
-for $\epsilon$ suffieciently small, $y,z \ge 0$
+for $\epsilon$ sufficiently small, $y,z \ge 0$ (in every component)
 Also:
 $Ay=b$
 $Az=b$
-$\to y,z \in P,\ y\ne z$ (spiegazione nel video)
-$x=\frac{1}{2}x+\frac{1}{2}z\to x$ is not a vertex, this is a contradiction $\contradiction$.
+$\to y,z \in P,\ y\ne z$ 
+$x=\frac{1}{2}y+\frac{1}{2}z\to x$ is not a vertex (it can be expressed as a convex combination of two points $\in P$), this is a contradiction ↯.
 So case ii) cannot arise $\to A_1,\dots,A_k$ are linearly independent. $\square$
 
-#####Controllare tutta questa dimostrazione dal libro
+also look at this proof in the book <mark style="background: #FF5582A6;">(annotate it!)</mark>
+
+<mark style="background: #FF5582A6;">GEOMETRIC INTERPRETATION IN THE VIDEO</mark>
 
 ---
-####NAIVE ALGO ENUMRATE ALL VERTICES AND FIND THE BEST scrivi
-We have $m \choose n$ possible choices of $n$ columns out of $m$ to enumerate all the vertices
+# The simplex method
+In a naive solution we could enumerate all the basic solutions to the problem and identify the feasible one that minimizes the objective function.
+We have $m \choose n$ possible choices of $n$ columns out of $m$ to enumerate all the vertices (BFSs)
 and we want to use a better algorithm.
-George Dantzig developed:
+George Dantzig developed an algorithm that consists of:
 1. Optimality test
 2. Change the basis
 $Ax=b,\ x\ge 0$, current basis $B$ we rewrite the system in canonical form in respect to (WRT) the current base
-$x_B=B^{-1}b-B^{-1} F x_F$
+$(\diamond)\ \ x_B=B^{-1}b-B^{-1} F x_F$
 For every $x\in P:$
-$c^Tx=[c_B^T, c_F^T] \begin{bmatrix} x_B\\x_F \end{bmatrix}=c_B^T x_B + c_F^T x_F=$
-$c_B(B^{-1}b-B^{-1} F x_F)+c_F^T=c_B B^{-1}b + 0^T x_B + (c_F^T -c_B^T B^{-1} F) x_F$  
-												c_0              \bar c_F^T
-												cost of the      reduced cost vector
-												current BFS
+$c^Tx=[c_B^T, c_F^T] \begin{bmatrix} x_B\\x_F \end{bmatrix}=c_B^T x_B + c_F^T x_F=^{(\diamond)}$
+$=c_B^T(B^{-1}b-B^{-1} F x_F)+c_F^T x_F=\underbrace{c_B^T B^{-1}b}_{c_0}+ 0^T x_B +\underbrace{ (c_F^T -c_B^T B^{-1} F)}_{\overline{c_F}^T} x_F$  
 
+where $c_0$ is the cost of the current BFS and $\overline{c_F}^T$ is the reduced cost vector for out of basis components WRT $B$.
 
-If $\bar {c_F} \ge 0$ (component by component )then $c_T x \ge 0$
+If $\overline {c_F} \ge 0$ (component by component )then $c^T x \ge 0$
 this is the optimality test (sufficient condition to stop)
-$\bar {c_F} \triangleq c_F^T -c_B^T B^{-1} F$
-If $\bar {c_F} \ge 0$ then we can stop.
+$\overline {c_F} \triangleq c_F^T -c_B^T B^{-1} F$
+If $\overline {c_F}^T \ge 0$ then we can stop.
 
-(we dont need to compute the reduced cost vector components for basic components because we already know its 0)
+(we dont need to compute the reduced cost vector components for basic components because we already know its 0, in the book this is not clearly stated)
