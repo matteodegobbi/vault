@@ -82,9 +82,12 @@ $=c_B^T(B^{-1}b-B^{-1} F x_F)+c_F^T x_F=\underbrace{c_B^T B^{-1}b}_{c_0}+ 0^T x_
 
 where $c_0$ is the cost of the current BFS and $\overline{c_F}^T$ is the reduced cost vector for out of basis components WRT $B$.
 
-If $\overline {c_F} \ge 0$ (component by component )then $c^T x \ge 0$
+If $\overline {c_F} \ge 0$ (component by component )then $c^T x \ge c_0$ for every $x\ge0$ (add $c_0$ on both sides of equation) 
 this is the optimality test (sufficient condition to stop)
+because $c_0$ is the cost associated with the BFS $x=\begin{bmatrix}B^{-1}b\\ \hline 0\end{bmatrix}$ 
 $\overline {c_F} \triangleq c_F^T -c_B^T B^{-1} F$
-If $\overline {c_F}^T \ge 0$ then we can stop.
+Summarizing if $\overline {c_F}^T \ge 0$ then we can stop because we found an optimal solution.
 
-(we dont need to compute the reduced cost vector components for basic components because we already know its 0, in the book this is not clearly stated)
+(we don't need to compute the reduced cost vector components for basic components because we already know its 0, in the book this is not clearly stated)
+
+---
