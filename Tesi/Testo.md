@@ -56,5 +56,5 @@ Guardare da tutti i paper per le varie spiegazioni specialmente Reza e GANMIA.
 
 
 ---
-# M.I.A su GAN
+# M.I.A su fingerprint GAN
 
