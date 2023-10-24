@@ -50,12 +50,14 @@ Per l'addestramento dei $\mathcal S_i$ avremo che $\mathcal D_{train,\mathcal S_
 Per il modello $\mathcal M_{inference}$ si può utilizzare qualsiasi modello che permetta la classificazione binaria.
 
 ---
+
 # creazione dataset shadow
 come creiamo i dataset shadow TODO se serve
 Guardare da tutti i paper per le varie spiegazioni specialmente Reza e GANMIA.
 
 
 ---
+
 # GAN
 Le generative neural network sono una classe di modelli di deep learning utilizzati per generare dei dati dalla stessa distribuzione dei dati di training.
 Una GAN è composta da due reti neurali: una rete generatrice che prende in input rumore e genera dei dati e una rete discriminatrice che prende in input i dati provenienti dalla distribuzione originale oppure quelli generati dalla rete generatrice e cerca di determinare se siano dati originali o generati.
@@ -63,9 +65,15 @@ La rete discriminatrice viene addestrata in modo da raggiungere la massima proba
 La rete generatrice viene addestrata in modo da massimizzare la probabilità che la rete discriminatrice classifichi i dati generati come dati originali.
 Le due reti vengono addestrate alternandosi cercando di tenere la rete discriminatrice vicino all'ottimalità in modo da forzare la rete generatrice a generare dati più simili a quelli originali.
 # M.I.A su GAN HAyes ecc TODO
+Un M.I.A su una GAN presenta delle difficoltà ulteriori rispetto a quello su un modello classificatore.
+Infatti per l'attacco su un classificatore si ha a disposizione il vettore di predizione che l'attaccante può sfruttare per i diversi livelli di confidenza del classificatore su input appartenenti dati di training rispetto a dati mai visti dal classificatore.
+Nel paradigma di attacco black box su una GAN non abbiamo a disposizione gli output delle rete neurale discriminatrice, abbiamo solo a disposizione i dati generati dalla GAN ed eventualmente alcuni dei dati utilizzati per addestrarla (TODO nelle altre versioni tipo GANMIA i requisiti sono diversi).
+
+
 
 ---
 
 # M.I.A su fingerprint GAN
+
 
 ---
