@@ -1,7 +1,12 @@
+
+
+<mark style="background: #FF5582A6;">CHIEDERE SE CHIAMARE ATTACKER E TARGET MODEL O LASCIARE COSI TODO</mark>
+
 # M.I.A e I.I.A
 I modelli di machine learning possono presentare dei rischi per la privacy nel caso in cui facciano trasparire delle informazioni sensibili sui dati di training attraverso il loro output. 
 Si parla di Membership Inference Attack se è possibile con una certa accuratezza determinare se un certo dato fosse presente nei dati di training di un modello.
 Si parla invece di Identity Inference Attack se è possibile determinare se nel training dataset fosse presente qualche dato corrispondente ad una certa persona avendo a disposizione un altro dato della stessa persona (ad esempio a partire da una foto di un individuo determinare se nel training dataset fosse presente un'altra foto dello stesso individuo).
+
 # Privacy nei modelli di machine learning
 Dobbiamo definire cosa si intende per privacy nel machine learning:
 Una definizione possibile è quella che viene chiamata "differential privacy" ovvero si richiede che un attaccante non possa usare il modello per risalire a informazioni sul training dataset che non avrebbe potuto dedurre da un altro modello addestrato sulla stessa distribuzione del dataset.
@@ -15,14 +20,13 @@ In questo esempio si nota che violare la differential privacy è particolarmente
 
 [[Comprehensive_Privacy_Analysis_of_Deep_Learning_Passive_and_Active_White-box_Inference_Attacks_against_Centralized_and_Federated_Learning.pdf]] (qua evidenziato in rosa e anche nell'altro paper di Reza) TODO da mettere a posto
 
-
-
 # Black Box e White Box
 Per gli inference attacks possiamo usare due paradigmi diversi.
 * White box (scatola bianca) ovvero l'attaccante conosce informazioni sul modello da attaccare come, tipo di modello utilizzato, numero di layer, parametri. (il paper di Zhang sfrutta federated learning per ottenere dei parametri e' quasi white box TODO)
 * Black box (scatola nera) ovvero l'attaccante non ha alcuna informazione sul funzionamento interno del modello e può solo utilizzarlo osservando gli output corrispondenti agli input che gli fornisce.
 Il modello black box può essere visto come una API a cui è possibile fare delle richieste con degli input scelti dall'attaccante e ottenere le risposte da utilizzare per l'attacco.
 Ci concentreremo su questo secondo modello in quanto è più simile ad un caso reale in cui un attaccante effettui un M.I.A. su un modello a cui non ha accesso direttamente.
+
 # M.I.A. su classificatori
 Chiamiamo $\mathcal T$ il modello target su cui vogliamo svolgere l'attacco.  
 Chiamiamo $\mathcal D_{train,\mathcal T}$ il dataset di training di $\mathcal T$.
@@ -64,12 +68,44 @@ Una GAN è composta da due reti neurali: una rete generatrice che prende in inpu
 La rete discriminatrice viene addestrata in modo da raggiungere la massima probabilità che riesca a distinguere dati originali da quelli generati.
 La rete generatrice viene addestrata in modo da massimizzare la probabilità che la rete discriminatrice classifichi i dati generati come dati originali.
 Le due reti vengono addestrate alternandosi cercando di tenere la rete discriminatrice vicino all'ottimalità in modo da forzare la rete generatrice a generare dati più simili a quelli originali.
+
 # M.I.A su GAN HAyes ecc TODO
 Un M.I.A su una GAN presenta delle difficoltà ulteriori rispetto a quello su un modello classificatore.
 Infatti per l'attacco su un classificatore si ha a disposizione il vettore di predizione che l'attaccante può sfruttare per i diversi livelli di confidenza del classificatore su input appartenenti dati di training rispetto a dati mai visti dal classificatore.
-Nel paradigma di attacco black box su una GAN non abbiamo a disposizione gli output delle rete neurale discriminatrice, abbiamo solo a disposizione i dati generati dalla GAN ed eventualmente alcuni dei dati utilizzati per addestrarla (TODO nelle altre versioni tipo GANMIA i requisiti sono diversi).
+
+## paradigma white box
+Nel paradigma white box contro una GAN si ha disposizione la rete neurale discriminatrice. 
+Per l'attacco è sufficiente utilizzare la rete discriminatrice e nel caso di overfitting gli input appartenenti al training dataset avranno una confidenza più alta quando vengono classificati.
+Questo procedimento è simile al M.I.A. su classificatori che utilizza la confidenza del vettore di predizione.
+
+## paradigma black box senza alcuna informazione addizionale
+Nel paradigma di attacco black box senza informazioni addizionali su una GAN non abbiamo a disposizione gli output delle rete neurale discriminatrice, abbiamo solo a disposizione i dati generati dalla GAN.
+
+L'idea per poter effettuare un attacco è di addestrare localmente una GAN. Si può sfruttare l'attacco white box sulla GAN locale di cui abbiamo a disposizione la rete discriminatrice. Se la GAN locale è abbastanza simile a quella da attaccare e quest'ultima ha overfitting possiamo con successo determinare se un dato era presente nel training dataset. Questa idea è simile a quella degli shadow models utilizzati per il M.I.A. nei classificatori di creare un modello locale di cui l'attaccante ha il controllo per simulare il modello che vuole attaccare. Per addestrare la GAN locale non si hanno a disposizione membri del traning dataset della GAN attaccata quindi si usano i dati generati da quest'ultima.
 
 
+## black box con informazioni addizionali
+Il paradigma precedente dove l'attaccante non ha nessuna informazione sul modello da attaccare è molto restrittiva, spesso l'attaccante ha a disposizione una parte del dataset originale (una parte del dataset è pubblica, data breach, foto o testi presi da internet ecc.).
+Ad esempio per una GAN che genera testi l'attaccante può sapere che nel training dataset fosse presente un certo romanzo e voler inferire altri testi usati nell'addestramento.
+L'attaccante può sfruttare queste informazioni aggiuntive sul training dataset per migliorare le prestazioni dell'attacco in due modi: attacco discriminativo e attacco generativo.
+
+Nell'attacco discriminativo è richiesto che l'attaccante abbia a disposizione:
+Alcuni dati che non siano stati utilizzati nel training della GAN, che chiamiamo $\mathcal A_{\text{not train}}$, ed eventualmente alcuni dati appartenenti al training set, chiamati $\mathcal A_{\text{train}}$.
+Si addestra una rete discriminatrice locale dove come input falsi vengono dati $\mathcal A_{\text{not train}}$ e come input veri dei dati generati dalla GAN target più se sono a disposizione dell'attaccante anche i dati di $\mathcal A_{\text{train}}$. 
+In questo modo il discriminatore locale impara a differenziare dati non presenti nel training set da quelli presenti nel training set o generati dalla GAN target, che se presenta overfitting danno informazioni sul training set.
+Una volta addestrato il discriminatore locale si può procedere con un attacco uguale a quello white box.
+
+Nell'attacco generativo è richiesto che l'attaccante abbia a disposizione:
+Alcuni dati che siano stati utilizzati nel training della GAN, che chiamiamo $\mathcal A_{\text{train}}$, ed eventualmente alcuni dati appartenenti al test set, chiamati $\mathcal A_{\text{test}}$.
+Si addestra una GAN locale dove come input veri vengono usati $\mathcal A_{\text{train}}$ e dati generati dalla GAN target mentre come input falsi vengono usati dati generati dalla GAN target e se sono a disposizione anche i dati di $\mathcal A_{\text{train}}$.
+Di nuovo si può usare il discriminatore della GAN locale per procedere con un attacco white box.
+
+È da notare come nell'approccio discriminativo sia necessario avere $\mathcal A_{\text{not train}}$ ma $\mathcal A_{\text{train}}$ potrebbe essere vuoto in questo caso si usano solo dati generati dalla GAN.
+Nell'approccio generativo invece è $\mathcal A_{\text{test}}$ a non essere necessario.
+In ogni caso avere più informazioni possibili sia sul training che sul test dataset originale migliorerà le prestazioni dell'attacco.
+
+
+(TODO nelle altre versioni tipo GANMIA i requisiti sono diversi).
 
 ---
 
@@ -77,3 +113,4 @@ Nel paradigma di attacco black box su una GAN non abbiamo a disposizione gli out
 
 
 ---
+# Precisione VS Recall nei Membership ineference attacks
