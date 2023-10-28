@@ -1,7 +1,4 @@
 
-
-<mark style="background: #FF5582A6;">CHIEDERE SE CHIAMARE ATTACKER E TARGET MODEL O LASCIARE COSI TODO</mark>
-
 # M.I.A e I.I.A
 I modelli di machine learning possono presentare dei rischi per la privacy nel caso in cui facciano trasparire delle informazioni sensibili sui dati di training attraverso il loro output. 
 Si parla di Membership Inference Attack se è possibile con una certa accuratezza determinare se un certo dato fosse presente nel training set di un modello.
@@ -14,8 +11,11 @@ Questo quindi non significa che non si possa dedurre alcuna informazione sulla d
 Richiedere che dal modello non si possa dedurre alcuna informazione sulla distribuzione del dataset equivale a chiedere che il modello non funzioni.
 Differential privacy quindi è la richiesta che dal modello non si possa risalire a informazioni specifiche dei dati della distribuzione che erano presenti nel training dataset.
 Ad esempio un modello che identifica che una certa categoria di persone è predisposta ad una certa malattia non viola la differential privacy se:
+
 1. È possibile costruire un altro modello tale che addestrandolo sulla stessa distribuzione troverà la stessa relazione tra categoria di persone e malattia.
+
 2. Non è possibile ricavare informazioni sulle persone presenti nel training dataset, quindi il modello deve essere resistente a M.I.A. e I.I.A.
+
 In questo esempio si nota che violare la differential privacy è particolarmente grave in quanto permette di accedere allo stato di salute di una specifica persona se presente nel dataset di addestramento.
 
 [[Comprehensive_Privacy_Analysis_of_Deep_Learning_Passive_and_Active_White-box_Inference_Attacks_against_Centralized_and_Federated_Learning.pdf]] (qua evidenziato in rosa e anche nell'altro paper di Reza) TODO da mettere a posto
@@ -86,50 +86,55 @@ Dati:
 
 Una GAN può essere modellata come un gioco minimax dove il generatore $G$ e il discriminatore $D$ competono con la seguente value function:
 $\min_{G}\max_{D}\{ \underbrace{\mathbb{E}_{x}[\log D(x)]}_{\bigstar}+\underbrace{\mathbb{E}_{z}[1-\log D(G(z))]}_{\blacklozenge}\}$
+
 Il generatore può intervenire solo su $\blacklozenge$. Minimizzando $\blacklozenge$ il generatore sta diminuendo la probabilità(TODO forse sarebbe corretto scrivere likelihood???) che $D$ riesca a distinguere gli output di $G$ da dati reali. Quindi $G$ cerca di aumentare i falsi positivi di $D$.
 
 Il discriminatore cerca di massimizzare $\blacklozenge$ ovvero la probabilità (TODO forse va likelihood) di identificare come falsi i dati generati da $G$. Quindi $D$ cerca di diminuire i falsi positivi.
 Inoltre $D$ massimizza $\bigstar$ ovvero la probabilità (TODO forse likelihood) che classifichi come veri i dati provenienti dalla distribuzione originale. Quindi $D$ cerca di diminuire i falsi negativi.
 
-Il termine $\bigstar$ è necessario nella value function per evitare che $D$ classifichi come falso ogni input, ottenendo precisione del $100\%$ ma recall del $0\%$.
+Il termine $\bigstar$ nella value function è necessario per evitare che $D$ classifichi come falso ogni input, ottenendo precisione del $100\%$ ma recall del $0\%$.
 
 
-È stato dimostrato nel paper di Ian Goodfellow (TODO link) che alternando il gradient descent di $D$ e $G$ la GAN converge a..................... 
+È stato dimostrato nel paper di Ian Goodfellow (TODO link) che alternando il gradient descent di $D$ e $G$ la GAN converge a $D(x)=\frac{1}{2}$ ovvero il generatore crea dei dati che $D$ non riesce a distinguere da quelli originali.  
 
 
 
-# M.I.A su GAN HAyes ecc TODO
-Un M.I.A su una GAN presenta delle difficoltà ulteriori rispetto a quello su un modello classificatore.
-Infatti per l'attacco su un classificatore si ha a disposizione il vettore di predizione che l'attaccante può sfruttare per i diversi livelli di confidenza del classificatore su input appartenenti dati di training rispetto a dati mai visti dal classificatore.
+# M.I.A su GAN
+(TODO mettere link al paper di Hayes)
+Un M.I.A. su una GAN presenta delle difficoltà ulteriori rispetto a quello su un modello classificatore.
+Infatti per l'attacco su un classificatore si hanno a disposizione i vettori di predizione. 
+L'attaccante può sfruttare i diversi livelli di confidenza nei vettori di predizione su input appartenenti ai dati di training rispetto a dati mai visti dal classificatore per determinare se un certo dato appartenente al training set.
 
 ## paradigma white box
-Nel paradigma white box contro una GAN si ha disposizione la rete neurale discriminatrice. 
-Per l'attacco è sufficiente utilizzare la rete discriminatrice e nel caso di overfitting gli input appartenenti al training dataset avranno una confidenza più alta quando vengono classificati.
+Nel paradigma white box contro una GAN si ha disposizione la rete neurale discriminatrice $D$ utilizzata durante il training. 
+Per l'attacco è sufficiente utilizzare la rete discriminatrice e, nel caso di overfitting, gli input appartenenti al training dataset avranno una confidenza più alta quando vengono classificati.
 Questo procedimento è simile al M.I.A. su classificatori che utilizza la confidenza del vettore di predizione.
+
 
 ## paradigma black box senza alcuna informazione addizionale
 Nel paradigma di attacco black box senza informazioni addizionali su una GAN non abbiamo a disposizione gli output delle rete neurale discriminatrice, abbiamo solo a disposizione i dati generati dalla GAN.
 
-L'idea per poter effettuare un attacco è di addestrare localmente una GAN. Si può sfruttare l'attacco white box sulla GAN locale di cui abbiamo a disposizione la rete discriminatrice. Se la GAN locale è abbastanza simile a quella da attaccare e quest'ultima ha overfitting possiamo con successo determinare se un dato era presente nel training dataset. Questa idea è simile a quella degli shadow models utilizzati per il M.I.A. nei classificatori di creare un modello locale di cui l'attaccante ha il controllo per simulare il modello che vuole attaccare. Per addestrare la GAN locale non si hanno a disposizione membri del traning dataset della GAN attaccata quindi si usano i dati generati da quest'ultima.
+L'idea per poter effettuare un attacco è di addestrare localmente una GAN. Si può sfruttare l'attacco white box sulla GAN locale di cui abbiamo a disposizione la rete discriminatrice. Se la GAN locale è abbastanza simile a quella da attaccare e quest'ultima ha overfitting possiamo con successo determinare se un dato era presente nel training set. Questa idea è simile a quella degli shadow models utilizzati per il M.I.A. nei classificatori: creare un modello locale di cui l'attaccante ha il controllo per simulare il modello target che vuole attaccare. Per addestrare la GAN locale non si hanno a disposizione membri del traning dataset della GAN attaccata quindi si usano i dati generati da quest'ultima.
 
 
 ## black box con informazioni addizionali
-Il paradigma precedente dove l'attaccante non ha nessuna informazione sul modello da attaccare è molto restrittiva, spesso l'attaccante ha a disposizione una parte del dataset originale (una parte del dataset è pubblica, data breach, foto o testi presi da internet ecc.).
+Il paradigma precedente dove l'attaccante non ha nessuna informazione sul modello da attaccare è molto restrittiva, a volte l'attaccante ha a disposizione una parte del dataset originale (una parte del dataset è pubblica, data breach, foto o testi presi da internet ecc.).
 Ad esempio per una GAN che genera testi l'attaccante può sapere che nel training dataset fosse presente un certo romanzo e voler inferire altri testi usati nell'addestramento.
 L'attaccante può sfruttare queste informazioni aggiuntive sul training dataset per migliorare le prestazioni dell'attacco in due modi: attacco discriminativo e attacco generativo.
 
 Nell'attacco discriminativo è richiesto che l'attaccante abbia a disposizione:
 Alcuni dati che non siano stati utilizzati nel training della GAN, che chiamiamo $\mathcal A_{\text{not train}}$, ed eventualmente alcuni dati appartenenti al training set, chiamati $\mathcal A_{\text{train}}$.
-Si addestra una rete discriminatrice locale dove come input falsi vengono dati $\mathcal A_{\text{not train}}$ e come input veri dei dati generati dalla GAN target più se sono a disposizione dell'attaccante anche i dati di $\mathcal A_{\text{train}}$. 
-In questo modo il discriminatore locale impara a differenziare dati non presenti nel training set da quelli presenti nel training set o generati dalla GAN target, che se presenta overfitting danno informazioni sul training set.
+Si addestra una rete discriminatrice locale dove come input falsi vengono dati $\mathcal A_{\text{not train}}$ e come input veri dei dati generati dalla GAN target più, se sono a disposizione dell'attaccante, anche i dati di $\mathcal A_{\text{train}}$. 
+In questo modo il discriminatore locale impara a differenziare dati non presenti nel training set da quelli presenti nel training set o generati dalla GAN target.
+Se la GAN target presenta overfitting danno informazioni sul training set.
 Una volta addestrato il discriminatore locale si può procedere con un attacco uguale a quello white box.
 
 Nell'attacco generativo è richiesto che l'attaccante abbia a disposizione:
 Alcuni dati che siano stati utilizzati nel training della GAN, che chiamiamo $\mathcal A_{\text{train}}$, ed eventualmente alcuni dati appartenenti al test set, chiamati $\mathcal A_{\text{test}}$.
-Si addestra una GAN locale dove come input veri vengono usati $\mathcal A_{\text{train}}$ e dati generati dalla GAN target mentre come input falsi vengono usati dati generati dalla GAN target e se sono a disposizione anche i dati di $\mathcal A_{\text{train}}$.
+Si addestra una GAN locale dove come input veri vengono usati $\mathcal A_{\text{train}}$ e dati generati dalla GAN target mentre come input falsi vengono usati dati generati dalla GAN target e, se sono a disposizione, anche i dati di $\mathcal A_{\text{train}}$.
 Di nuovo si può usare il discriminatore della GAN locale per procedere con un attacco white box.
 
-È da notare come nell'approccio discriminativo sia necessario avere $\mathcal A_{\text{not train}}$ ma $\mathcal A_{\text{train}}$ potrebbe essere vuoto in questo caso si usano solo dati generati dalla GAN.
+È da notare come nell'approccio discriminativo sia necessario avere $\mathcal A_{\text{not train}}$ ma $\mathcal A_{\text{train}}$ potrebbe essere vuoto, in questo caso si possono anche usare solo i dati generati dalla GAN target.
 Nell'approccio generativo invece è $\mathcal A_{\text{test}}$ a non essere necessario.
 In ogni caso avere più informazioni possibili sia sul training che sul test dataset originale migliorerà le prestazioni dell'attacco.
 
@@ -138,8 +143,6 @@ In ogni caso avere più informazioni possibili sia sul training che sul test dat
 
 ---
 
-# M.I.A su fingerprint GAN
+# Precisione VS Recall nei Membership inference attacks
 
-
----
-# Precisione VS Recall nei Membership ineference attacks
+TODO da mettere se ha senso
