@@ -145,4 +145,8 @@ In ogni caso avere più informazioni possibili sia sul training che sul test dat
 
 # Precisione VS Recall nei Membership inference attacks
 
-TODO da mettere se ha senso
+Nei modelli di machine learning utilizziamo due metriche per valutare il successo di un discriminatore:
+1. $\text{Precision}=\frac{\text{truePositives}}{\text{truePositives}+\text{falsePositives}}$ ovvero la frazione degli input considerati reali dal discriminatore che lo era per davvero.
+2.  $\text{Recall}=\frac{\text{truePositives}}{\text{truePositives}+\text{falseNegatives}}$ ovvero la frazione degli input reali che il discriminatore identifica correttamente come reali.
+In pratica la precision rappresenta la probabilità che un input classificato come reale sia veramente reale e il recall rappresenta la probabilità che un input reale venga riconosciuto come reale.
+(Queste metriche non sono definite solo per i discriminatori delle GAN ma in generale per qualsiasi classificatore binario)
