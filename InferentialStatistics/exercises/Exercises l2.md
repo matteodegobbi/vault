@@ -54,3 +54,87 @@ iv) Bz??????
 * Gamma: it's a generalization of the exponential distribution. It is also used to model waiting times.
 * Weibull: for example it can model the time an electronic device lasts.
 * Uniform: in telecommunications it can model the granular error of a symmetrical quantizer.
+
+
+---
+# Exercise 2.4
+i) The following script:
+```
+get_theta <- function(x_1,x_2,x_3){
+  beta0=0.5
+  beta1=-1
+  beta2=1
+  beta3=0.1
+  mu=beta0+beta1*x_1+beta2*x_2+beta3*x_3
+  return(1/(1+exp(-mu)))
+}
+
+
+tabella=read.table('C:\\Users\\matteo\\Desktop\\eggs.txt')
+
+
+
+number_of_pred_M=0
+for(i in (2:101)){
+  theta_i=get_theta(as.double(tabella[i,"V1"]),as.double(tabella[i,"V2"]),as.double(tabella[i,"V3"]))
+  predictedsex=rbinom(1,1,prob=theta_i)
+  cat(predictedsex)
+  cat(" ")
+  number_of_pred_M=number_of_pred_M+predictedsex
+}
+print("number of males")
+print(number_of_pred_M)
+```
+
+produces: 
+```
+1 1 1 1 1 1 1 1 1 0 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+[1] "number of males"
+[1] 96
+```
+
+ii) with the following script 
+```
+qvolume=as.double(quantile(as.double(tabella[2:101,1]))[2])
+qheight=as.double(quantile(as.double(tabella[2:101,2])))[2]
+qrough=as.double(quantile(as.double(tabella[2:101,3])))[2]
+rbinom(1,1,prob=get_theta(qvolume,qheight,qrough))
+```
+we get very often male as the result with $\theta=0.9441$.
+
+---
+
+# Exercise 2.3
+
+i) plots in R:
+![[qqplot1.png]]
+![[qqplot0,25.png]]
+
+![[qqplot4.png]]
+ii) 
+boxplot by hand:
+sort the samples: 0.111  0.492  2.120  2.699  3.255  4.102  6.254  6.951  8.935 29.389
+$q_1=X_{\lfloor 0.25 \cdot 11 \rfloor}=X_{(2)}=0.492$
+$q_2=\frac{3.255+4.102}{2}=3.6785$
+$q_3=X_{\lfloor 0.75 \cdot 11 \rfloor}=X_{(8)}=6.951$
+$iqr=q_3-q_1=6.459$
+$q_1-1.5iqr=-9.1965$
+$q_3+1.5iqr=16.6395$
+bottom whisker = $0.11$
+upper whisker = $8.935$ 
+we have an outlier $29.389$ outside the whiskers 
+boxplot in R:
+![[boxplotSample2.3.png]]
+the difference is that the boxplot in R is not using the first and third quartiles as the boundaries of the box, from the R documentation we can find that R is plotting the hinges instead of $q_1$ and $q_3$.
+iii) in R
+```
+fn = ecdf(x)
+fn(5.25)
+```
+returns 0.6
+
+
+by hand we can compute the ecdf: there are six sample points smaller than $5.25$
+$\hat F_n(5.25)=\frac{1}{10}6=0.6$
+
+---
