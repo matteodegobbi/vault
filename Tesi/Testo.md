@@ -103,7 +103,7 @@ Il termine $\bigstar$ nella value function è necessario per evitare che $D$ cla
 (TODO mettere link al paper di Hayes)
 Un M.I.A. su una GAN presenta delle difficoltà ulteriori rispetto a quello su un modello classificatore.
 Infatti per l'attacco su un classificatore si hanno a disposizione i vettori di predizione. 
-L'attaccante può sfruttare i diversi livelli di confidenza nei vettori di predizione su input appartenenti ai dati di training rispetto a dati mai visti dal classificatore per determinare se un certo dato appartenente al training set.
+L'attaccante può sfruttare i diversi livelli di confidenza nei vettori di predizione su input appartenenti ai dati di training rispetto a dati mai visti dal classificatore per determinare se un certo dato appartenente al training set. Questo non è possibile nelle GAN quindi sono stati trovati paradigmi alternativi:
 
 ## paradigma white box
 Nel paradigma white box contro una GAN si ha disposizione la rete neurale discriminatrice $D$ utilizzata durante il training. 
@@ -112,9 +112,9 @@ Questo procedimento è simile al M.I.A. su classificatori che utilizza la confid
 
 
 ## paradigma black box senza alcuna informazione addizionale
-Nel paradigma di attacco black box senza informazioni addizionali su una GAN non abbiamo a disposizione gli output delle rete neurale discriminatrice, abbiamo solo a disposizione i dati generati dalla GAN.
+Nel paradigma di attacco black box senza informazioni addizionali su una GAN non abbiamo a disposizione gli output delle rete neurale discriminatrice, abbiamo solo a disposizione i dati generati dalla GAN target.
 
-L'idea per poter effettuare un attacco è di addestrare localmente una GAN. Si può sfruttare l'attacco white box sulla GAN locale di cui abbiamo a disposizione la rete discriminatrice. Se la GAN locale è abbastanza simile a quella da attaccare e quest'ultima ha overfitting possiamo con successo determinare se un dato era presente nel training set. Questa idea è simile a quella degli shadow models utilizzati per il M.I.A. nei classificatori: creare un modello locale di cui l'attaccante ha il controllo per simulare il modello target che vuole attaccare. Per addestrare la GAN locale non si hanno a disposizione membri del traning dataset della GAN attaccata quindi si usano i dati generati da quest'ultima.
+L'idea per poter effettuare un attacco è di addestrare localmente una GAN detta shadow. Si può sfruttare l'attacco white box sulla shadow GAN locale di cui abbiamo a disposizione la rete discriminatrice. Se la GAN locale è abbastanza simile a quella da attaccare e quest'ultima ha overfitting possiamo con successo determinare se un dato era presente nel training set. Questa idea è simile a quella degli shadow models utilizzati per il M.I.A. nei classificatori: creare un modello locale di cui l'attaccante ha il controllo per simulare il modello target che vuole attaccare. Per addestrare la GAN locale non si hanno a disposizione membri del traning dataset della GAN attaccata quindi si usano i dati generati da quest'ultima.
 
 
 ## black box con informazioni addizionali
@@ -142,11 +142,29 @@ In ogni caso avere più informazioni possibili sia sul training che sul test dat
 (TODO nelle altre versioni tipo GANMIA i requisiti sono diversi).
 
 ---
+# DA QUA IN POI VA CORRETTO  TODO
 
-# Precisione VS Recall nei Membership inference attacks
+# Precisione e Recall nei Membership inference attacks
 
 Nei modelli di machine learning utilizziamo due metriche per valutare il successo di un discriminatore:
 1. $\text{Precision}=\frac{\text{truePositives}}{\text{truePositives}+\text{falsePositives}}$ ovvero la frazione degli input considerati reali dal discriminatore che lo era per davvero.
 2.  $\text{Recall}=\frac{\text{truePositives}}{\text{truePositives}+\text{falseNegatives}}$ ovvero la frazione degli input reali che il discriminatore identifica correttamente come reali.
 In pratica la precision rappresenta la probabilità che un input classificato come reale sia veramente reale e il recall rappresenta la probabilità che un input reale venga riconosciuto come reale.
 (Queste metriche non sono definite solo per i discriminatori delle GAN ma in generale per qualsiasi classificatore binario)
+
+Negli attacchi di membership inference in letteratura viene utilizzata la precision come metrica per valutare il successo dell'attacco. Anche negli attacchi presentati in seguito viene usata la precision come metrica di performance.
+
+---
+
+
+# Setting sperimentale 
+Per gli esperimenti è stato utilizzato Python 3.9.18 con la libreria Tensorflow 2.10.0 usando una NVidia RTX 4070.
+I dataset utilizzati sono stati (TODO aggiungi altri datset):
+* MNIST, immagini 28x28 di cifre da 0 a 9 scritte a mano
+* 
+Le GAN target e shadow hanno la stessa architettura e non sono state utilizzate informazioni sulla architettura nell'attacco, riprendendo il modello di Reza in cui l'attaccante usa una API per il machine learning come quella di Google o di Amazon. Il generatore e discriminatore delle GAN sono Convolutional Neural Networks.
+
+Le grandezze dei layer delle GAN sono state adattate in base alle differenti dimensioni delle immagini dei diversi dataset ma per il resto l'archittetura usata è stata la stessa per tutti i dataset.
+
+
+
