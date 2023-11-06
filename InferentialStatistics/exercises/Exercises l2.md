@@ -39,7 +39,18 @@ we can find the df of $Z$, $F_{Z}=\int\limits_{B_{z}}{\prod\limits_{i=1}^{n}{f(x
 Now we can take the derivative:
 $f(z)=n(F(z))^{n-1}f(z) \ \ \ \square$
 iii) if they are not independent we cannot factorize the pdfs and we would need the joint pdf to be able to calculate the integrals.
-iv) Bz??????
+iv) $f_{X_{k}}(t)$
+$F_{X_{k}}(t)=P(X_{k}(t)\le t, X_{k}=X_{1})+P(X_{k}(t)\le t, X_{k}=X_{2})+\dotsi+P(X_{k}(t)\le t, X_{k}=X_{n})=$
+$\underbracket{=}_{\text{all the same}}nP(X_{k}(t)\le t, X_{k}=X_{1})=$
+$=nP(X_{1}\le t,\text{exactly }k-1\text{ rv of } X_2,\dotsi, X_{n} \text{ are less than } X_{1}\text{ the remaining } n-k \text{ are greater than } X_{1})=$
+$=n {{n-1}\choose{k-1}} P(X_{1}\le t,X_{2}\le X_{1},\dotsi, X_{k}\le X_{1}, X_{k+1} > X_{1},\dotsi,X_{n}>X_{1})=$ 
+$=n {{n-1}\choose{k-1}}\int\limits_{x_1=-\infty}^{t}\int\limits_{x_2=-\infty}^{x_{2}}\dotsi\int\limits_{x_k=-\infty}^{x_{1}}\int\limits_{x_k+1=x_1}^{+\infty}\int\limits_{x_n=x_1}^{+\infty}\prod\limits_{i=1}^{n}{f(x_i)} \,dx_{1}\dotsi dx_{n}=$
+$=\int\limits_{x_{1}=-\infty}^{t}n {{n-1}\choose{k-1}}(F(x_{1}))^{k-1}(1-F(x_{1}))^{n-k}f(x_1)\,dx_{1}$
+
+now if take the derivative wrt to t we get:
+$f_{X_{k}}(t)=n {{n-1}\choose{k-1}}(F(x_{1}))^{k-1}(1-F(x_{1}))^{n-k}f(x_1)$
+$\square$
+
 
 ---
 # Exercise 2.5
