@@ -1,0 +1,2 @@
+model_checkpoint_path: "ckptEpoch:11000-1"
+all_model_checkpoint_paths: "ckptEpoch:11000-1"
