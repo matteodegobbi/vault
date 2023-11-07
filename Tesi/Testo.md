@@ -162,9 +162,19 @@ Per gli esperimenti è stato utilizzato Python 3.9.18 con la libreria Tensorflow
 I dataset utilizzati sono stati (TODO aggiungi altri datset):
 * MNIST, immagini 28x28 di cifre da 0 a 9 scritte a mano
 * 
-Le GAN target e shadow hanno la stessa architettura e non sono state utilizzate informazioni sulla architettura nell'attacco, riprendendo il modello di Reza in cui l'attaccante usa una API per il machine learning come quella di Google o di Amazon. Il generatore e discriminatore delle GAN sono Convolutional Neural Networks.
+Le GAN target e shadow hanno la stessa architettura e non sono state utilizzate informazioni sulla architettura nell'attacco, riprendendo il modello di Reza Shokri in cui l'attaccante usa una API per il machine learning come quella di Google o di Amazon. Il generatore e discriminatore delle GAN sono Convolutional Neural Networks.
 
 Le grandezze dei layer delle GAN sono state adattate in base alle differenti dimensioni delle immagini dei diversi dataset ma per il resto l'archittetura usata è stata la stessa per tutti i dataset.
 
+Negli attacchi presentati in seguito gli obiettivi sono:
+
+* Mostrare le differenza nelle performance di attacchi white box e black box
+* Studiare l'effetto della grandezza del dataset della GAN target sugli attacchi (sia white che black box)
+* Studiare l'effetto del numero di epoch del training della GAN target sugli attacchi (sia white che black box)
+* Studiare l'effetto del numero di immagini generate dalla GAN target a disposizione della GAN shadow sugli attacchi black box
+* Studiare l'effetto del numero di epoch del training della GAN shadow sugli attacchi black box
+* Capire se l'attacco black box può avere successo avendo a disposizione meno immagini ma compenando con più epoch di training della shadow
+* Studiare il collegamento tra la qualità delle immagini generate dalla GAN target (misurata con Inception Score) e il successo degli attacchi (sia white che black box)
+* Studiare se è possibile addestrare una GAN che sia resistente agli attacchi black box e white box
 
 
