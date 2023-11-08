@@ -1,3 +1,0 @@
-target GAN epochs:10000
-target GAN dataset:128
-shadow GAN dataset:6000
