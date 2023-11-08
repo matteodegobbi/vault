@@ -1,2 +1,0 @@
-target GAN epochs:5000
-target GAN dataset:8192
