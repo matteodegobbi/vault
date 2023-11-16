@@ -121,5 +121,43 @@ we get ![[hist3.2.png]]
 
 ---
 # Exercise 3.3
+Contours of likelihood
+![[weiLikelihood.png]]
+Contours of loglikelihood:
+![[logLikeweibull.png]]
+computed with ```
+like_wei<- function(sample,alpha,beta){
+ return(prod((sapply(sample, dweibull,shape=alpha,scale=beta))) )
+}
 
-~~
+log_like_wei <- function(sample,alpha,beta){
+ return(sum(log(sapply(sample, dweibull,shape=alpha,scale=beta))) )
+}```
+ii) Implementing multivariate Newton-Raphson:
+```
+llikeF<-function(v) {
+  return(sum(log(dweibull(observed_samples,v[1],v[2]))))
+}
+hessianLlikeF <- function(v) {
+  return(numDeriv::hessian(llikeF, v))
+}
+gradientLlikeF<- function(v) {
+  return(numDeriv::jacobian(llikeF, v))
+}
+root = c(2,17)
+for (i in 0:1000){
+  gradient=gradientLlikeF(root)
+  inverseHess=solve(hessianLlikeF(root))
+  root = root - inverseHess%*%t(gradient) 
+}
+
+print(root)
+```
+we get the optimum $\alpha = 2.757154, \beta = 17.556447$
+iii) Using `optim`: 
+```
+result = optim(par = c(2.5,10),fn = function(parameters) -log_like_wei(observed_samples,parameters[1],parameters[2]),method = "BFGS")
+
+```
+we get the optimum  $\alpha = 2.757227,\beta =  17.557161$
+which is similar to the Newton-Raphson result.
