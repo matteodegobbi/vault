@@ -1,7 +1,7 @@
 o = c(7, 4, 2, 4, 3, 2, 5, 10, 7, 7, 3, 5, 5, 5, 4, 3, 7, 3, 6, 4)
 
 
-l_lambda = function(lambda,samples) {
+l_lambda <- function(lambda,samples) {
   loglikPoi = c()
   for (lambda_i in lambda) {
     loglikPoi = append(loglikPoi, sum(log(dpois(samples, lambda_i))))
@@ -29,8 +29,10 @@ lines(lambdas,l_lambda(lambdas,resampled_o),col="blue")
 maximum_likelihood_vector = c()
 for(i in (0:1000)){
   resampled_o = sample(o,20,replace = TRUE)
-  ML = uniroot(function(lambda) derivative_l_lambda(lambda,resampled_o), interval = interval)$root
+  #ML = uniroot(function(lambda) derivative_l_lambda(lambda,resampled_o), interval = interval)$root
+  ML = mean(resampled_o)#MLE for Poisson
   maximum_likelihood_vector=append(maximum_likelihood_vector,ML)
 }
 
-hist(maximum_likelihood_vector,freq = FALSE)
+hist(maximum_likelihood_vector,freq = FALSE,breaks = 25)
+abline(v=mean(o),lwd=2,col=3)
