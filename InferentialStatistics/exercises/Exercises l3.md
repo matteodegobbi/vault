@@ -1,6 +1,7 @@
 # Exercise 3.1
-i) With the R script
+i) With the R script:
 ```
+
 o = c(5.1, 7.4, 10.9, 21.3, 12.3, 15.4, 25.4, 18.2, 17.4, 22.5)
 loglikGamma = c()
 alphas = seq(from = 0.01, to = 100, by = 0.1)
@@ -11,8 +12,10 @@ for (alpha_i in alphas) {
 }
 
 plot(alphas,loglikGamma,xlab = "alpha",ylab = "l(alpha)")
+
 ```
-we plot the log likelihood of the observed sample:
+
+We plot the log likelihood of the observed sample:
 ![[loglikelihood3.1.png]]
 ii) With the R script 
 ```
@@ -41,14 +44,13 @@ newton_raphson = function(starting_value, n_iterations) {
 interval = c(0.01, 100)
 uniroot_result = uniroot(derivative_l_alpha, interval = interval)$root
 newton_raphson_result = newton_raphson(1, 100)
-
 ```
 
 and we get 14.54997 using `uniroot` and 14.54997 using my implementation of Newton-Raphson with 100 iterations.
 
 iii) We can use the `observed_info` function we defined previously to get $J(\hat \alpha)=0.711444$ 
 
-iv)...
+iv) 
 
 ---
 
