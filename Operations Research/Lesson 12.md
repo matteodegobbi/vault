@@ -1,3 +1,4 @@
+#opresearch 
 Dual of the dual pag 69
 
 ---

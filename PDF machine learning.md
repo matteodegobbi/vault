@@ -1,3 +1,4 @@
+#ml 
 # Intro and probability review 
 [[2_ML23_Intro.pdf]]
 [[2_ML23_ProbReview.pdf]]

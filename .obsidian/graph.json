@@ -1,5 +1,5 @@
 {
-  "collapse-filter": false,
+  "collapse-filter": true,
   "search": "",
   "showTags": true,
   "showAttachments": false,
@@ -15,10 +15,10 @@
       }
     },
     {
-      "query": "tag:#tesi  ",
+      "query": "tag:#ml",
       "color": {
         "a": 1,
-        "rgb": 5431473
+        "rgb": 16749824
       }
     },
     {
@@ -26,6 +26,27 @@
       "color": {
         "a": 1,
         "rgb": 11657298
+      }
+    },
+    {
+      "query": "tag:#statistics",
+      "color": {
+        "a": 1,
+        "rgb": 52479
+      }
+    },
+    {
+      "query": "tag:#elettronica ",
+      "color": {
+        "a": 1,
+        "rgb": 16711680
+      }
+    },
+    {
+      "query": "tag:#algoritmiXingegneria  ",
+      "color": {
+        "a": 1,
+        "rgb": 4607
       }
     }
   ],
@@ -39,6 +60,6 @@
   "repelStrength": 20,
   "linkStrength": 0.987889273356401,
   "linkDistance": 30,
-  "scale": 0.5396011134725474,
+  "scale": 0.31214753848498683,
   "close": false
 }
