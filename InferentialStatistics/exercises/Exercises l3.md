@@ -1,3 +1,4 @@
+#statistics 
 # Exercise 3.1
 i) With the R script:
 ```

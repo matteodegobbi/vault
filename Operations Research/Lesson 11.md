@@ -1,3 +1,4 @@
+#opresearch 
 # Duality in linear programming
 
 Definition: an inequality $\alpha^T \ge \alpha_0$ is valid for $X$ iff $\alpha^T \ge \alpha_0,\ \ \forall x\in X$

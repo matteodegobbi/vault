@@ -1,3 +1,4 @@
+#elettronica 
 Un segnale unipolare è caratterizzato da una singola tensione $v_x(t)$ ciò lo rende debole ai disturbi.
 Un segnale differenziale è caratterizzato da tue tensioni $v_{x_1}(t),\ v_{x_2}(t)$ che possono essere riscritte con una trasformazione lineare nella:
 ## Forma modo differenziale e modo comune 

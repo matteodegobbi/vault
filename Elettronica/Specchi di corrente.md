@@ -1,3 +1,4 @@
+#elettronica 
 # Specchio di tipo [[Mosfet#NMOS Regioni di funzionamento canale n|n]]
 ![[specchioMOSN.png]]
 $M_1,M_2$ hanno lo stesso $k_n',V_t,L$ e $m \triangleq \frac{W_2}{W_1}$

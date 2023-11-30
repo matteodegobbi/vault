@@ -1,3 +1,4 @@
+#statistics 
 # Exercise 2.1
 i) $S^{2}\le \frac{1}{n-1}\sum\limits_{i}^n{(X_{i}-a)^2}$ for any $a\in\mathbb{R}$ 
 $S^{2} =\frac{1}{n-1}\sum\limits_{i}^n{(X_{i}-\overline X)^2}\le \frac{1}{n-1}\sum\limits_{i}^n{(X_{i}-a)^2}$

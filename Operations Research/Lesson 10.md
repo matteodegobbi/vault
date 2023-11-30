@@ -1,3 +1,4 @@
+#opresearch 
 # Bland's rule 
 (pag 51)
 Scan the reduced costs and the first negative element you find will be the column of the pivot (selection of entering variable)

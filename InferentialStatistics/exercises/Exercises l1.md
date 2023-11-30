@@ -1,3 +1,4 @@
+#statistics 
 # Exercise 1.1
 Since $X\perp Y$  $f_{XY}(x,y)=f_X(x)f_X(y)=e^{-x-y}\mathbb{1}_{x\ge0,y\ge0}$
 

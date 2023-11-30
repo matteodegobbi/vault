@@ -1,3 +1,4 @@
+#elettronica 
 ##################### DISEGNI
 # Resistenza e [[Specchi di corrente|specchio]] p o n
 #############################
