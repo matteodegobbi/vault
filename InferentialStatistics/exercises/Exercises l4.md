@@ -23,8 +23,6 @@ For the sample $(8,2,3,1)$ $\overline x=\frac{8+2+3+1}{4}=3.5$, $\hat\theta=0.71
 
 (e) The answer is the same as in (d) because the sample is iid.
 
-
-
 ---
 
 # Example 4.2
@@ -40,3 +38,5 @@ $\ell'(\sigma)=\frac{-n}{\sigma}+\frac{\sum\limits_{i=1}^{n}x_{i}^{2}}{\sigma^3}
 
 solve $\ell'(\hat\sigma)=0$ we get  
 $\hat\sigma=\sqrt\frac{\sum\limits_{i=1}^{n}x_{i}^{2}}{n}$
+
+and since MLE is `equivariant` then $\hat\psi=\ln(\hat\sigma)$
