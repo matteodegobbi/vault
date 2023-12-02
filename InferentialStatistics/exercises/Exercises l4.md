@@ -62,3 +62,41 @@ provide an approximation for $P(\hat\psi>1+\psi)$
 $\hat\mu=1.5,\hat\sigma=\frac{3}{n}=0.3\rightarrow \hat\psi=0.2$
 $P(\hat\psi>1+\psi)=P(\psi<-0.8)$
 ...... need the distribution..............
+
+
+
+---
+
+# Example 4.4
+$X_1,\dots,X_n$ iid sample with $X_{i}\sim \mathcal N(\theta,\theta^{2})$ with $\theta>0$
+(a) sufficient statistic for $\theta$ is $T=[\overline{x^{2}},\overline x]$
+$f(\vec x,\theta)=\frac{1}{\theta^n{(2\pi)}^{n/2}}e^{-\frac{\sum\limits_{i=1}^{n}(x_{i}-\theta)^{2}}{2\theta^2}}=$ 
+
+$=\frac{1}{\theta^n{(2\pi)}^{n/2}}e^{-\frac{\sum\limits_{i=1}^{n}(x_{i}^2+\theta^2-2x_{i}\theta)}{2\theta^2}}=$
+$=\frac{1}{\theta^n{(2\pi)}^{n/2}}e^{-\frac{n\overline{x^{2}}+n\theta^{2}-2n\theta\overline x }{2\theta^2}}$
+and for the likelihood factorisation criterion $T$ is sufficient
+
+(b) MLE of $\theta$:
+
+$f(x,\theta)=\frac{1}{\theta\sqrt{2\pi}}e^{-\frac{(x-\theta)^2}{2\theta^2}}$ pdf of $X_i$
+
+
+$L(\theta)=\frac{1}{\theta^n{(2\pi)}^{n/2}}e^{-\frac{\sum\limits_{i=1}^{n}(x_{i}-\theta)^{2}}{2\theta^2}}$ 
+
+$\ell(\theta)=-n\ln{(\theta\sqrt{2\pi})}-\frac{\sum\limits_{i=1}^{n}(x_{i}-\theta)^{2}}{2\theta^2}$
+$=-n\ln{(\theta\sqrt{2\pi})}-\frac{\sum\limits_{i=1}^{n}(x_{i}^2+\theta^2-2x_{i}\theta)}{2\theta^2}=$
+$=-n\ln{(\theta\sqrt{2\pi})}-n\overline{x^{2}}- \frac{-n}{2}+\frac{n\overline x}{\theta}$
+
+$\frac{\partial\ell(\theta)}{\partial\theta}= -\frac{n}{\theta}-\frac{n\overline x}{\theta^{2}}$
+We solve $\frac{\partial\ell(\theta)}{\partial\theta}=0$ and get
+$\hat\theta=-\overline x$
+PROBABILMENTE SBAGLAITO
+
+---
+# Example 4.5
+
+
+
+
+
+
