@@ -95,8 +95,96 @@ PROBABILMENTE SBAGLAITO
 ---
 # Example 4.5
 
+$X_{1}, \dots ,X_n$ iid random sample with $X_{i}\sim\text Unif (\theta, 0)$
+(i) Distribution of MLE of $\theta$:
+$f(x,\theta)=-\frac{1}{\theta} \mathbb 1_{[\theta,0]}(x)$ pdf of $X_i$ ($\theta$ is negative) 
+
+$L(\theta) = \begin{cases} (-1)^{n} \frac{1}{\theta^{n}} \ \text{ if } x_{(1)} \ge \theta \\ 0\ \ \ \ \ \ \ \text{ otherwise} \end{cases}$
+
+I cannot compute the log likelihood since the likelihood is 0 for some values of $\theta$.
+
+$L'(\theta)= )
+.......BO..............
 
 
+---
+
+# Example 4.6
+
+$X_{1},X_{2},X_{3}$ iid sample with $X_{i}\sim \text Ber(\theta)$
+(a) $S = \sum\limits_{i=1}^{3}{X_{i}}$ is sufficient, prove it using the definition:
+We need to check that the following $(\star)$ conditional probability does not depend on $\theta$
+$(\star)=P_{\theta}(\vec X=\vec x| T(\vec X) = t(\vec x))=\frac{f(\vec x;\theta)}{q(t(\vec x);\theta)}$
+We have that the pdf of $\vec X$ is $f(\vec x;\theta)=\theta^{x_{1}+x_{2}+x_{3}}(1-\theta)^{3-x_{1}-x_{2}-x_{3}}$
+and since $S$ is the sum of 3 independent Bernoulli rvs we have that the pdf of $S$ is $q(x_{1}+x_{2}+x_{3};\theta)={3\choose x_{1}+x_{2}+x_{3}}  \theta^{x_{1}+x_{2}+x_{3}}(1-\theta)^{3-x_{1}-x_{2}-x_{3}}$
+which means that $(\star)=\frac{1}{{3 \choose x_{1}+x_{2}+x_{3}}}$ that doesn't depend on $\theta$. $\square$
+
+(b) Show that $X_{1}+ 2X_{2}+3X_{3}$ is not sufficient:
+The pdf of $\vec X$ is the same as in point (a)
+$A\triangleq X_{1}$ is a Bernoulli rv, $B \triangleq 2X_{2}$ has a pmf $f_{B}(b)=\theta ^{b}(1-\theta)^{2-b}$ and $C \triangleq 3X_{3}$ has a pmf $f_{C}(c)=\theta ^{c}(1-\theta)^{3-c}$
+functions of independent rvs are independent, which means $A,B,C$ are independent rvs.
+The rv $T=A+B+C$ takes values in ${0,1,2,3,4,5,6}$ and (since they are independent) we have that:
+
+| A+B+C | A  | B | C | $Pr$  |
+|-------|----|---|---|---|
+| 0     | 0  | 0 | 0 | $(1-\theta)^3$  |
+| 1     | 1  | 0 | 0 | $(1-\theta)^2\theta$  |
+| 2     | 0  | 2 | 0 | $(1-\theta)^2\theta$ |
+| 3     | 1  | 2 | 0 | $(1-\theta)\theta^2$ |
+| 3     | 0  | 0 | 3 | $(1-\theta)^2\theta$  |
+| 4     | 1  | 0 | 3 | $(1-\theta)\theta^2$  |
+| 5     | 0  | 2 | 3 | $(1-\theta)\theta^2$  |
+| 6     | 1  | 2 | 3 | $\theta^3$  |
+
+and for example for $x_{1}=1,x_{2}=1,x_{3}=0$ 
+$f(1,1,0;\theta)=\theta^{1+1+0}(1-\theta)^{3-1-1-0}=\theta^{2}(1-\theta)$
+and $Pr(A+B+C=3)=(1-\theta)\theta^{2}+(1-\theta)^{2}\theta=\theta(1-\theta)$ 
+which means that the conditional probability
+$(\star)={\theta}$: it depends on $\theta$ when the outcome is $A+B+C = 3$ which means that $A+B+C=X_{1}+2X_{2}+3X_{3}$ is not a sufficient statistic.
+(this is because there isn't a function that maps $A+B+C$ in $(A,B,C)$ )
+
+# Example 4.7
+
+Compute the method of moments estimator for 
+$X_{1}, \dots ,X_n$ iid random sample with $X_{i}\sim\text {Unif} (0, \theta)$
+
+Method of moments, we solve: $\mathbb E[Y]=\overline{Y}$ 
+$\mathbb E[Y] = \frac{\theta}{2}=\overline Y$ 
+which means that $\hat\theta_{MM}=2\overline Y$
+the bias of the method of moments estimator is 
+$b(\theta;\hat\theta_{MM})=\mathbb E_{\theta}(\hat\theta_{MM})-\theta=2 \frac{\theta}{2}-\theta=0$ , it's unbiased.
+To compute the MSE we also need 
+$\text{var}({\hat\theta_{MM}})=\text{var}(2\overline Y)\underbrace{=}_{\text{prop. of }\overline Y} \frac{4\sigma^{2}}{n}$
+
+so $\text{mse}(\theta;\hat\theta_{MM})=\frac{4\sigma^{2}}{n}$.
+
+For the MLE we have that $\hat\theta = Y_{(n)}$ is only asymptotically unbiased in fact:
+$f_{Y_{(n)}}(t)=n(F(t))^{n-1} f(t)=n(\frac{t}{\theta})^{n-1} \frac{1}{\theta}\mathbb 1_{[0,\theta]}$ 
 
 
+$E_{\theta}(\hat\theta)=\int\limits_{0}^{\theta}{t\  f_{Y_{(n)}}(t) \ \text{dt}}=$
+$=\int\limits_{0}^{\theta}{n\frac{t^{n}}{\theta^{n}} \ \text{dt}}=$
+$=\frac{n}{n+1}\frac{\theta^{n+1}}{\theta^{n}}= \frac{n}{n+1}\theta$
+
+$b(\theta;\hat\theta)=\mathbb E_{\theta}(\hat\theta)-\theta=\frac{n}{n+1}\theta-\theta=\frac{-1}{n-1}$  ,
+
+$\text{var}({\hat\theta})=\text{var}(Y_{(n)})\underbrace{=}_{\text{prop. of var}} \mathbb E[Y^{2}_{(n)}] - \mathbb E[Y_{(n)}]^{2}=$
+
+$(\mathbb E[Y^{2}_{(n)}] = \dots = \frac{n}{n+2}\theta^{2})$ $= \frac{n}{n+2}\theta^{2} -\frac{n^2}{(n+1)^2}\theta^{2}=$
+
+$=\theta^{2}(\frac{n(n+1)^{2}-n^{3}-2n^{2}}{(n+2)(n+1)^{2}})=$ 
+$=\theta^{2}(\frac{n^{3}+2n^{2}+n-n^{3}-2n^{2}}{(n+2)(n+1)^{2}})=$
+$=\theta^{2}(\frac{n}{(n+2)(n+1)^{2}})$ 
+
+
+$\text{mse}(\theta,\hat\theta)=\theta^{2}(\frac{n}{(n+2)(n+1)^{2}})+\frac{1}{(n-1)^{2}}$
+
+We see that both estimators are consistent because the $\text{mse}$ of both goes to $0$ for $n\to\infty$
+
+But the MM estimator is unbiased while the MLE is only asymptotically unbiased, also mse of MLE depends on $\theta$ while the mse of MM does not.
+
+###TODO controlla se questa parte e' giusta!
+
+
+---
 
