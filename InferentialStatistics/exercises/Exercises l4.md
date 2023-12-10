@@ -6,7 +6,7 @@ and solving the equation we get $f(x;\theta)=(1-\theta)\theta^{x-1}$ a geometric
 
 $f(\vec x;\theta)=\prod\limits_{i=1}^{n}{f(x_{i};\theta)}=(1-\theta)^{n}\theta^{\sum\limits_{i=1}^{n}{x_i}}\theta^{-n}$ 
 if we choose $h(x)=1$ and $g(\overline x;\theta)=\frac{(1-\theta)^n}{\theta^{n}}\theta^{n\overline x}$
-we see how $f(\vec x;\theta)=h(x)g(\overline x;\theta)$ which means that $\overline x$ is a sufficient statistic because of the factorisation criterion. $\square$
+we see how $f(\vec x;\theta)=h(x)g(\overline x;\theta)$ which means that $\overline x$ is a sufficient statistic because of the factorization criterion. $\square$
 
 (c) method of moments and asymptotic bias:
 Since $X_i$ is a geometric rv with parameter $1-\theta$ we have that $\mathbb E[X]=\frac{1}{1-\theta}$, solving the equation for the 1st moment we find:
@@ -122,7 +122,7 @@ this means that the distribution of the MLE is the distribution of the sample mi
 $f_{\hat\theta}(t)=n(1-F(t))^{n-1}f(t)=n(1-\frac{t-\theta}{-\theta})^{n-1}(\frac{-1}{\theta}\mathbb 1_{[\theta,0]}(t))$
 $=-nt^{n-1}\frac{1}{\theta}\mathbb 1_{[\theta,0]}(t)$
 
-(ii) We can use the property of the MLE that it's asymptotically normal:
+(ii) We can use the property that tell us that MLE is asymptotically normal:
 $\hat\theta \rightarrow^{d} \mathcal N(\theta,\text{var}(\hat\theta))$
 
 
@@ -202,7 +202,6 @@ We see that both estimators are consistent because the $\text{mse}$ of both goes
 
 But the MM estimator is unbiased while the MLE is only asymptotically unbiased, also mse of MLE depends on $\theta$ while the mse of MM does not.
 
-###TODO controlla se questa parte e' giusta!
 
 
 ---
