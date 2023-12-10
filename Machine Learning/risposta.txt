@@ -1,0 +1,7 @@
+The generalization score is lower than the training score.
+This is in agreement with the theory because according to the theory
+the generalization error can be bigger than the training error. This is
+not always guaranteed to be the case, it could happen that a model performs better on unseen data than on training data.
+However in practice it's more common to have a lower generalization score
+than training score because of overfitting.
+
