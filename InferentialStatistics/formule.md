@@ -1,5 +1,5 @@
 #statistics
-# L4
+# L4 - Point estimation
 
 ## Statistics
 In the following we always assume i.i.d. $Y_1,\dotsi,Y_n$ with $\mathbb E [Y_{i}]=\mu,\ \  \text var[Y_i]=\sigma^2$
