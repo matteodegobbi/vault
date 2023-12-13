@@ -1,4 +1,88 @@
 #statistics
+# L2 - Descriptive statistic, statistical models
+## Samples
+We call $x_{1},\dots,x_{n}$ the observations of an experiment _observed sample_, with $n$ being the sample size.
+We assume they are a realization of the _random sample_ $X_{1},\dots,X_{n}$ with $X_{i}$ mutually independent and with the same marginal pdf $f(x;\theta)$.
+
+Since $X_{i}$ are independent the joint pdf of the sample is: 
+$f(x_{1},\dots,x_{n};\theta)=\prod\limits_{i=1}^{n}{f(x_{i};\theta)}$ 
+## Summary statistics
+* Sample average $\overline X = \frac{1}{n}\sum\limits_{i=1}^{n}X_{i}$ 
+* Sample variance $S^{2} = \frac{1}{n-1}\sum\limits_{i=1}^{n}{(X_{i}-\overline X)^{2}}$ 
+* Sample k-th moment $\overline{X^{k}} = \frac{1}{n}\sum\limits_{i=1}^{n}X_{i}^{k}$ 
+and their observed counterparts (in lowercase). 
+### Order statistic
+$X_{(1)}=\min\limits_{1\le i\le n}{X_{i}}$ is the smallest observation,
+$X_{(i)}$ is the i-th smallest observation,
+$X_{(n)}=\max\limits_{1\le i\le n}{X_{i}}$ is the biggest observation,
+The list $X_{1},\dots,X_{n}$ is called order statistics and it's used to define the following statistics.
+The sample median  
+* $Q_{2}=\begin{cases}X_{\left(\frac{n+1}{2}\right) \text{ if } n \text{ is odd }}\\ \frac{X_{(\frac{n}{2})}+X_{(\frac{n}{2}+1)}}{2} \text{ if } n \text{ is even } \end{cases}$
+* The first and third quartile $Q_{1} = X_{[0.25(n+1)]}$ and $Q_{3} = X_{[0.75(n+1)]}$
+* The p-th sample quantile, $p\in(0,1)$ is $X_{[p(n+1)]}$
+* Inter quartile range $\text{IQR}=Q_{3}-Q_{2}$
+* Median absolution deviation from the median $\text{MAD}=\text{median}(|X_{1}-Q_{2}|,\dots,|X_{n}-Q_{2}|)$
+(where $[x]$ is the floor function)
+Be careful to not confuse the sample median $Q_{2}$ with the median of the distribution.
+
+## Histogram
+TODO add
+
+## Box plot
+TODO
+## QQ plot
+TODO
+## Empirical distribution function
+The edf is defined as:
+$F_{n}(x)=\sum\limits_{i=1}^{n}{I_{X_{i}}(x)}$ for all $x\in\mathbb R$
+where $I_{X_{i}}$ is a Bernoulli rv with success probability $P(X_{i}\le x)$, which means $F_{n}$ is a rv.
+
+The corresponding observed version is $\hat F_{n}(x)=\frac{1}{n}\sum\limits_{i=1}^{n}(x)$ for all $x\in\mathbb R$
+the edf targets the population df.
+
+
+
+
+# L3 - The likelihood function
+## Likelihood function
+Let $X_{1},\dots,X_{n}$ be an iid sample with $X_i$ having pdf $f(x;\theta)$, the likelihood function is $L:\Theta\to\mathbb R_{\ge0}$ defined as:
+$L(\theta)=\prod\limits_{i=1}^{n}{f(X_{i};\theta)}$
+for an observed sample it's defined as:
+ $L(\theta)=\prod\limits_{i=1}^{n}{f(x_{i};\theta)}$
+ Be careful it's not a joint pdf because we are holding $X_{i}$ fixed while in a pdf $\theta$ is fixed.
+For discrete rvs it's a probability: the probability of observing that sample when the parameter is $\theta$ (under the chosen model).
+For continous rvs it's not a probability, but the higher the likelihood the higher the probability of observing that sample.
+
+We can look for the $\theta$ with the largest likelihood, this is called the maximum likelihood estimate: $\hat\theta = \arg\sup\limits_{\theta\in\Theta}L(\theta)$.
+Often we will work with $\ell(\theta)\triangleq\log{L(\theta)}$
+when it can be defined ($L(\theta)\ne0, \forall \theta\in\Theta$).
+## Observed information
+We can quantify the informativeness of a likelihood function:
+$J(\theta)=-\frac{\partial^{2}\ell(\theta)}{\partial\theta^{2}}$
+(or $J_{n}(\theta)$ if we want to emphasize $n$)
+$J\ge0$ and the higher the $J$ the higher the peakedness of the likelihood.
+### Observed information for vector $\theta$
+In the case where $\theta$ is a vector then $J(\theta)$ will be a symmetrical matrix where:
+$J(\theta)_{ij}=- \frac{\partial^{2}\ell(\theta)}{\partial\theta_{i}\partial\theta_{j}}$ 
+this is the Hessian matrix of the log likelihood multiplied by $-1$.
+
+In the following we call:
+* $J(\theta)_{ij}$ the cell of $J$
+* $J(\theta)^{ij}$ the cell of $J^{-1}$
+* $\hat J=J(\hat\theta)$
+
+## Computation of $\hat\theta$
+To compute $\hat\theta$ we:
+1. Compute the gradient of the log-likelihood and solve the likelihood equation: $\ell'(\theta^{*})=0$
+2. Check that $J(\theta^{*})>0$, if so $\hat\theta = \theta^{*}$
+(In this way we only check it's a local maximum)
+(Sometimes we can have a likelihood that is $=0$ for some values of $\theta$, in this case we cannot use $\ell$)
+### Newton-Raphson
+In some cases an analytical solution of the likelihood equation is not feasible, we can use a numerical approximation, we build a sequence that converges to $\hat\theta$:
+$\tilde\theta_{m+1}=\tilde\theta_{m}+\frac{\ell'(\tilde\theta_{m})}{J(\tilde\theta_{m})}$
+we stop after a finite number of iterations.
+
+
 # L4 - Point estimation
 
 ## Statistics
@@ -16,7 +100,6 @@ Furthermore if $Y_{i}\sim \mathcal N(\mu,\sigma^2)$ then $\overline Y \sim \math
 
 (or  $\frac{\sqrt{n}(\overline Y - \mu)}{\sqrt{\sigma^{2}}}\sim\mathcal N(0,1)$, be careful this last one is NOT a statistic) ^sampleAvgStdNorm
 
----
 ### Sample variances (both versions)
 $\mathbb E[S^2]=\sigma^2$
 $\mathbb E[\hat \sigma^2]=\frac{n-1}{n}\sigma^2$
@@ -29,7 +112,7 @@ where $\mu_{k}$ is the moment of order $k$ of $Y_i$
 In general $S^{2}$ and $\overline{Y}$ are NOT independent but if $Y_{i}\sim \mathcal N(\mu,\sigma^2)$ they are and:
 * $\frac{(n-1)S^2}{\sigma^2}\sim\chi^{2}_{n-1}$ and it follows that $\text var(S^2)=\frac{2\sigma^4}{n-1}$ (from the variance of chi squared and the property of variance of multiplying by a constant)
 * Combining the previous point with [[#^sampleAvgStdNorm|this]] we get: $\frac{\frac{\sqrt{n}(\overline Y - \mu)}{\sigma}}{\sqrt{\frac{(n-1)S^{2}}{\sigma^{2(n-1)}}}}=\frac{\sqrt{n}(\overline Y - \mu)}{S} \sim t_{n-1}$
-### Estimators
+## Estimators
 If a statistic targets the parameter of the distribution $\theta$ (or a component of it) we call it estimator denoted by $\hat\theta$ . We will look at methods to compute estimators.
 ### Method of moments
 The method consists in equating sample moments, e.g. $\overline{Y} , \overline{Y^2} , \overline{Y^3} , \dots$ with the corresponding population moments, e.g. $\mathbb E (Y), \mathbb E(Y^2), \mathbb E(Y^3)$
@@ -51,7 +134,7 @@ under _standard regularity conditions_ the MLE is also defined to the solution o
 
 ### Langrange multipier TODO
 TODO
-### Sufficiency
+## Sufficiency
 $T_n$ is a sufficient statistic for $\theta$ if the conditional distribution of the sample $\textbf Y=(Y_1,\dots,Y_n)$ given the value of $T(\textbf Y)$ does not depend on $\theta$.
 $P_{\theta}(\textbf Y = \textbf y | T(\textbf Y) = t(\textbf y))=\frac{P_{\theta}(\textbf Y = \textbf y)}{P_{\theta}(T(\textbf Y) = t(\textbf y))}=\frac{f(\textbf y;\theta)}{q(t(\textbf y);\theta)}$ 
 where $q$ is the pdf of $T(\textbf Y)$.
@@ -61,13 +144,13 @@ the Likelihood factorisation criterion is much easier:
 A statistic $T(\textbf Y)$ is a sufficient statistic for $\theta$, iff there is a function $g(t; θ)$
 and $h(y)$ such that, for all sample points $y$ and all parameter points $\theta$, $f(\textbf y;\theta)=g(T(\textbf y);\theta)h(\textbf y)$.
 
-### Unbiasedness
+## Unbiasedness
 
 Given $\hat\theta$ an estimator of $\theta$, based on a random sample $Y_1 , \dots  , Y_n$ from some distribution $F_{\theta}$ , the bias is defined as: $b(\theta;\hat\theta) = \mathbb E_{\theta}(\hat\theta) - \theta$
 We say $\hat\theta$ is an unbiased estimator if $b(\theta;\hat\theta)=0$ for all $\theta$.
 Many estimator are not unbiased but are instead asymptotically unbiased, ($n\to\infty$).
 
-### MSE
+## MSE
 Mean Squared Error is a measure of performance of an estimator that takes into account both the location and the variability.
 
 $\text{mse}(\theta;\hat\theta)=\mathbb E_{\theta}(\hat\theta - \theta)^{2}= \text{var}(\hat\theta)+(\text{bias}(\theta;\hat\theta))^{2}$
@@ -75,7 +158,7 @@ MSE is $\ge 0$ and unbounded, lower MSE is better.
 In general it depend on $\theta$.
 (Example in the pdf)
 
-### Consistency
+## Consistency
 
 An estimator $\hat\theta$ is consistent if it converges in probability to $\theta$:
 $\forall \epsilon>0,\ \ \lim\limits_{n\to\infty}{P(|\hat\theta-\theta|>\epsilon)}=0$
@@ -84,11 +167,11 @@ TODO controlla se serve anceh il bias che tende a 0
 To check for consistency we can also alternatively check that:
 $\lim\limits_{n\to\infty}{\text{mse}(\theta;\hat\theta)}=0$, this implies $\hat\theta$ is consistent.
 
-### Distribution of estimators
+## Distribution of estimators
 In general directly deriving the distribution of $\hat\theta$ can be difficult, we can use several ways to approximate it, we studied CLT and delta method.
 (TODO add link)
 
-### Properties of MLE
+## Properties of MLE
 For an iid random sample with pdf $f$ satisfying certain regularity conditions (not in this course):
 1. If there is a sufficient statistic for $\theta$ then the MLE is a function of a sufficient statistic (and MLE will also be suffcient).
 2. The MLE is equivariant, if $\tau=g(\theta)$ for any function $g$ then $\tau = g(\hat\theta)$ 
@@ -112,3 +195,19 @@ $I_{n}=\text{var}(\frac{\partial\ell(\theta)}{\partial\theta})=\sum\limits_{i}\t
 An alternate formula sometimes easier to compute is: $I_{1}(\theta) = -\mathbb E(\frac{\partial^{2}\log f(Y;\theta)}{\partial\theta^{2}})$
 
 ### Multivariate MLE
+
+The limiting normal distribution holds even for a vector-valued parameter.
+
+For $\theta \in \mathbb R^{d}$ under the regularity conditions:
+$I_{n}(\hat\theta)^{-\frac{1}{2}}(\hat\theta - \theta)\to^{d}N_{d}(0,\mathcal I)$ 
+where $I_{n}(\hat\theta)$ is a $d\times d$ matrix and $\mathcal I$ is the identity matrix. 
+
+$J_{n}(\hat\theta)^{-\frac{1}{2}}(\hat\theta - \theta)\to^{d}N_{d}(0,\mathcal I)$ 
+
+From this we can derive for any element of $\theta$ , $\text{se}(\hat\theta_{i})=\sqrt{J_{n}(\hat\theta)^{ii}}$
+
+$\frac{\hat\theta-\theta}{\text{se}(\hat\theta_{i})}\to^{d}\mathcal N(0,1)$ for $n\to\infty$
+
+
+---
+
