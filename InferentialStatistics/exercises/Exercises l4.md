@@ -29,7 +29,8 @@ we solve $L'(\hat\theta)=0$ and get $\hat\theta=\frac{\overline x -1}{\overline 
 The limiting distribution is the same as in the previous point.
 
 For the sample $(8,2,3,1)$ $\overline x=\frac{8+2+3+1}{4}=3.5$, $\hat\theta=0.71428$ 
-
+We are using a asymptotic approximation.
+(You could also use that $\hat\theta \dot\sim \mathcal N(\theta, I_{n}(\hat\theta)^{-1})$, for the sample we get $\hat\theta \dot\sim \mathcal N(\theta,\frac{1}{19.6})$)
 
 (e) The answer is the same as in (d) because the sample is iid.
 
@@ -49,6 +50,13 @@ $\hat\sigma=\sqrt\frac{\sum\limits_{i=1}^{n}x_{i}^{2}}{n}$
 
 and since MLE is `equivariant` then $\hat\psi=\ln(\hat\sigma)$.
 
+TODO
+########PROVA A RIFARLO CON DELTA METHOD (MLE è normale, calcola fisher information per la varianza, e poi usa delta method risultato $\sqrt{2}n(\hat\psi - \psi)\dot\sim \mathcal N(0,1)$)
+
+oppure si puo fare direttamente con psi ma e' piu' lungo
+
+
+
 ---
 # Example 4.3
 (a) MLE of $\psi=\frac{\sigma}{\mu}$ and its distribution:
@@ -63,14 +71,18 @@ $\begin{cases}\hat\mu=\frac{1}{n}\sum\limits_{i=1}^{n}{x_i}=\overline x \\ \hat\
 and for the `equivariant` property $\hat\psi= \frac{\hat\sigma}{\hat\mu}=\frac{\overline{x^{2}}-\overline x ^2}{\overline x}$
 
 We know that the asymptotic distribution of the MLE is normal.
+
 $\hat\psi \dot\sim \mathcal N(\frac{\sigma}{\mu},\text{var}(\hat\psi))$
+
+TODO da calcolare la varianza con fisher information matrix(matrice diagonale 2x2)
+forse multivariate delta method, $g=\frac{\sigma}{\mu}$??? poi prendo le derivate, matrice 1x2
 
 (b) sample size 10, $\overline x=1.5$ and $\sum\limits_{i=1}^{n}{(x_i-\overline x)^2}=3$
 provide an approximation for $P(\hat\psi>1+\psi)$
 $\hat\mu=1.5,\hat\sigma=\frac{3}{n}=0.3\rightarrow \hat\psi=0.2$
 $P(\hat\psi>1+\psi)=P(\psi<-0.8)$
 ...... need the distribution..............
-
+RISULTATO $\mathcal N(\psi,1.8)$
 
 
 ---
@@ -122,15 +134,18 @@ this means that the distribution of the MLE is the distribution of the sample mi
 $f_{\hat\theta}(t)=n(1-F(t))^{n-1}f(t)=n(1-\frac{t-\theta}{-\theta})^{n-1}(\frac{-1}{\theta}\mathbb 1_{[\theta,0]}(t))$
 $=-nt^{n-1}\frac{1}{\theta}\mathbb 1_{[\theta,0]}(t)$
 
-(ii) We can use the property that tell us that MLE is asymptotically normal:
-$\hat\theta \rightarrow^{d} \mathcal N(\theta,\text{var}(\hat\theta))$
+TODO la convergenza va cercata con la distribuzione non con la pdf IMPORTANTE!!!!!
 
+(ii) We can use the property that tells us that MLE is asymptotically normal:
+~$\hat\theta \rightarrow^{d} \mathcal N(\theta,\text{var}(\hat\theta))$sbagliato ~
+NO
 
 ---
 
 # Example 4.6
 
 $X_{1},X_{2},X_{3}$ iid sample with $X_{i}\sim \text Ber(\theta)$
+PUNTO a sbagliato TODO, basta trovare un punto dove non vale la suffcienza
 (a) $S = \sum\limits_{i=1}^{3}{X_{i}}$ is sufficient, prove it using the definition:
 We need to check that the following $(\star)$ conditional probability does not depend on $\theta$
 $(\star)=P_{\theta}(\vec X=\vec x| T(\vec X) = t(\vec x))=\frac{f(\vec x;\theta)}{q(t(\vec x);\theta)}$
@@ -161,7 +176,7 @@ and $Pr(A+B+C=3)=(1-\theta)\theta^{2}+(1-\theta)^{2}\theta=\theta(1-\theta)$
 which means that the conditional probability
 $(\star)={\theta}$: it depends on $\theta$ when the outcome is $A+B+C = 3$ which means that $A+B+C=X_{1}+2X_{2}+3X_{3}$ is not a sufficient statistic.
 (this is because there isn't a function that maps $A+B+C$ in $(A,B,C)$ )
-
+QUESTO e' GIUSTO
 # Example 4.7
 
 Compute the method of moments estimator for 
