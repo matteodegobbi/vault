@@ -40,8 +40,18 @@ where $I_{X_{i}}$ is a Bernoulli rv with success probability $P(X_{i}\le x)$, wh
 The corresponding observed version is $\hat F_{n}(x)=\frac{1}{n}\sum\limits_{i=1}^{n}(x)$ for all $x\in\mathbb R$
 the edf targets the population df.
 
+## Multivariate data summaries
+Often in real applications we collect data for several variables.
+A common question is if the variables from which we sampled the data are related to each other.
+We define the sample covariance as: $s_{xy}=\frac{1}{{n-1}}\sum\limits_{i}(x_{i}-\overline x)(y_{i}-\overline y)$ which targets $\sigma_{xy}$.
+and the sample Pearson correlation: $r_{xy}=\frac{s_{xy}}{s_{x}s_{y}}$ which targets $\rho_{xy}$.
 
+## Statistic models 
+$X_{1},\dots,X_{n}$ random sample with $X\sim F_{\theta}$. If in addition $X_{i}$ are independent we call it iid random sample. 
+The statistical model is the set $\{ f(x_{1},\dots,x_{n};\theta):\theta \in \Theta, x_{i}\in\mathcal X \}$ where $\Theta$ is the set of all possible values for $\theta$.
+(joint pdf can be factorized in single pdfs thanks to independence)
 
+Linear and logistic regression on the PDF L2.
 
 # L3 - The likelihood function
 ## Likelihood function
@@ -128,20 +138,26 @@ normally we compute the derivative and find where it's equal to $0$. (Example in
 ### Method of Maximum Likelihood
 
 MLE is $\hat\theta=\arg\sup\limits_{\theta\in\Theta}{L(\theta)}$ 
-under _standard regularity conditions_ the MLE is also defined to the solution of $\frac{\partial \ell(\theta)}{\partial \theta}=0$
-
+under _standard regularity conditions_ the MLE is also defined as the solution of $\frac{\partial \ell(\theta)}{\partial \theta}=0$ (only the case when log-likelihood can be defined)
 ($\theta$ may be a vector, in which case we need to solve a system of equations)
 
-### Langrange multipier TODO
-TODO
+### Langrange multipier
+It's a method to transform the minimization of a function subject to an equality constraint into a minimization of an unconstrained function.
+
+It works by making the constrainst into an equality with $0,\ g(x)=0$. And solving the derivatives of $f(x)+\lambda g(x)$ equal to $0$ (also the derivative wrt $\lambda$). 
+
+[Wikipedia Lagrange Multiplier](https://en.wikipedia.org/wiki/Lagrange_multiplier)
+
+It's useful when for example we need to be careful when estimating parameters that need to sum to 1 because the are probabilitis (Multinomial blood type pdf L4)
+
 ## Sufficiency
 $T_n$ is a sufficient statistic for $\theta$ if the conditional distribution of the sample $\textbf Y=(Y_1,\dots,Y_n)$ given the value of $T(\textbf Y)$ does not depend on $\theta$.
 $P_{\theta}(\textbf Y = \textbf y | T(\textbf Y) = t(\textbf y))=\frac{P_{\theta}(\textbf Y = \textbf y)}{P_{\theta}(T(\textbf Y) = t(\textbf y))}=\frac{f(\textbf y;\theta)}{q(t(\textbf y);\theta)}$ 
 where $q$ is the pdf of $T(\textbf Y)$.
 
 This method may be difficult to apply:
-the Likelihood factorisation criterion is much easier:
-A statistic $T(\textbf Y)$ is a sufficient statistic for $\theta$, iff there is a function $g(t; θ)$
+the Likelihood factorization criterion is much easier:
+A statistic $T(\textbf Y)$ is a sufficient statistic for $\theta$, iff there is a function $g(t; \theta)$
 and $h(y)$ such that, for all sample points $y$ and all parameter points $\theta$, $f(\textbf y;\theta)=g(T(\textbf y);\theta)h(\textbf y)$.
 
 ## Unbiasedness
@@ -163,7 +179,7 @@ In general it depend on $\theta$.
 An estimator $\hat\theta$ is consistent if it converges in probability to $\theta$:
 $\forall \epsilon>0,\ \ \lim\limits_{n\to\infty}{P(|\hat\theta-\theta|>\epsilon)}=0$
 
-TODO controlla se serve anceh il bias che tende a 0
+TODO controlla se serve anche il bias che tende a 0
 To check for consistency we can also alternatively check that:
 $\lim\limits_{n\to\infty}{\text{mse}(\theta;\hat\theta)}=0$, this implies $\hat\theta$ is consistent.
 
@@ -176,7 +192,7 @@ For an iid random sample with pdf $f$ satisfying certain regularity conditions (
 1. If there is a sufficient statistic for $\theta$ then the MLE is a function of a sufficient statistic (and MLE will also be suffcient).
 2. The MLE is equivariant, if $\tau=g(\theta)$ for any function $g$ then $\tau = g(\hat\theta)$ 
 3. MLE is consistent ($\hat\theta \to^P\theta$)
-4. MLE is asymptotically efficient (explantion in pdf)
+4. MLE is asymptotically efficient (explanation in pdf)
 5. MLE is asymptotically normal, $\frac{\hat\theta-\theta}{\sqrt{\text{var}(\hat\theta)}}\to^{d}\mathcal N(0,1)$ for $n\to\infty$
 
 Property 5. tells us that:
