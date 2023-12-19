@@ -207,9 +207,9 @@ $\frac{\hat\theta-\theta}{\sqrt{J_{n}(\hat\theta)}}\to^{d}\mathcal N(0,1)$ for $
 Where $J_{n}$ is the observed information, $I_{n}$ is the Fisher information, $\text{se}=\sqrt{I_{n}}$ is called standard error , $\hat{\text{se}}=\sqrt{I_{n}(\hat\theta)}$
 
 Under reg. cond. the Fisher Information is defined as:
-$I_{n}=\text{var}(\frac{\partial\ell(\theta)}{\partial\theta})=\sum\limits_{i}\text{var}\frac{\partial\log{f(Y_{i};\theta)}}{\partial\theta}=nI_{1}$ where $I_{1}$ is the Fisher info for a single observation.
+$I_{n}=\text{var}(\frac{\partial\ell(\theta)}{\partial\theta})=\sum\limits_{i}\text{var}\frac{\partial\log{f(Y_{i};\theta)}}{\partial\theta}=nI_{1}$ where $I_{1}$ is the Fisher info for a single observation (variance of the score).
 An alternate formula sometimes easier to compute is: $I_{1}(\theta) = -\mathbb E(\frac{\partial^{2}\log f(Y;\theta)}{\partial\theta^{2}})$
-
+(expected value of observed information)
 ### Multivariate MLE
 
 The limiting normal distribution holds even for a vector-valued parameter.
