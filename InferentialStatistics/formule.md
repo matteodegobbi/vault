@@ -227,3 +227,46 @@ $\frac{\hat\theta-\theta}{\text{se}(\hat\theta_{i})}\to^{d}\mathcal N(0,1)$ for 
 
 ---
 
+# L5 - Hypothesis testing 
+Let $Y_{1},\dots,Y_{n}$ an iid random sample with $Y_{i}\sim F_{\theta}$ where $\theta\in\Theta$ is the unknown parameter.
+We denote $\mathcal Y$ the range of $Y_{i}$.
+We want to build a decision rule from a sample to decide:
+$H_{0}:\theta\in\Theta_{0}$ against $H_{1}:\theta\in\Theta_{0}^{\mathsf c}$, where $\Theta_{0}\subset\Theta$
+we want to find $R\subset\mathcal Y^{n}$ s.t. we reject $H_{0}$ if $\vec y=(y_{1},\dots,y_{n})\in R$  and accept otherwise.
+
+To compute this region we define _test statistics_.
+
+For example we may be interested in testing:
+* $H_{0}:\mu\le\mu_{0}$ against $H_{1}:\mu>\mu_{0}$ (one-tailed hypotheses)
+* $H_{0}:\mu=\mu_{0}$ against $H_{1}:\mu\ne\mu_{0}$ (two tailed hypotheses)
+
+## Likelihood ratio test
+
+The likelihood ratio test statistic for $H_{0}:\theta\in\Theta_{0}$ against $H_{1}:\theta\in\Theta_{0}^{\mathsf c}$ is:
+$\lambda(\pmb y)=\frac{\sup_{\theta\in\Theta_{0}}{L(\theta)}}{\sup_{\theta\in\Theta}{L(\hat\theta)}}=\frac{L(\hat\theta_{0})}{L(\hat\theta)}$ (using MLE notation) and a likelihood ratio test has rejection region:
+$R=\{\pmb y: \lambda(\pmb y) < c \}$, where $0\le c\le1$.
+(In the case we have a sharp null hypothesis in the numerator the $\sup$ is useless)
+
+## Type I and type II error
+
+The decision taken (accept or reject) can be wrong. 
+We call type I error if we reject $H_{0}$ when it's true and type II error when we accept $H_{0}$ and it's false.
+
+We define the size of type I error as:
+$\alpha'=\sup\limits_{\theta\in\Theta_{0}}{P(\text{reject }H_{0}| H_{0} \text{ is true})}$ 
+and the size of type II error as:
+$\beta(\theta)=1-{P(\text{reject }H_{0}| H_{1} \text{ is true})},\ \forall\theta\in\Theta_{0}^{\mathsf c}$ .
+
+We'd like both error sizes to be $0$ but it's impossible. In practice we fix a small $\alpha$ and make sure that $\alpha'\le\alpha$, the maximum size of the type I error allowed Fixed $\alpha$ we have fixed the size of the rejection region.
+
+* If $\alpha' = \alpha$ the test is called a test of size $\alpha$.
+* If $\alpha'\le\alpha$, we call it a test of level $\alpha$.
+In practice we can often only compute tests of size $\alpha$ asymptotically.
+
+## Likelihood ratio is asymptotically $\chi_{r-q}^{2}$  
+$\theta=(\theta_{1}\dots,\theta_{q},\theta_{q+1},\dots,\theta_{r})$ and $\Theta_{0}\subset\Theta$ s.t. $\Theta_{0}=\{ \theta:\theta_{q+1}=\theta_{0,q+1},\dots,\theta_{r}=\theta_{0,r}\}$
+Under $H_{0}:\theta\in\Theta_{0}$ and suitable regularity conditions:
+$$-2\log{\lambda(\pmb y)}\to^{d}\chi_{r-q}^{2}\ \ \  \text{ as }  n\to\infty$$ 
+$q$ is the number of parameters we fixed.
+TODO chiedi spiegazione di sta roba
+
