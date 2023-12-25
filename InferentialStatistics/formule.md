@@ -196,15 +196,15 @@ For an iid random sample with pdf $f$ satisfying certain regularity conditions (
 5. MLE is asymptotically normal, $\frac{\hat\theta-\theta}{\sqrt{\text{var}(\hat\theta)}}\to^{d}\mathcal N(0,1)$ for $n\to\infty$
 
 Property 5. tells us that:
-$\frac{\hat\theta-\theta}{\sqrt{I_{n}(\theta)}}\to^{d}\mathcal N(0,1)$ for $n\to\infty$
+${(\hat\theta-\theta)}{\sqrt{I_{n}(\theta)}}\to^{d}\mathcal N(0,1)$ for $n\to\infty$
 and since this hold for every $\theta$ also for $\hat\theta$:
-$\frac{\hat\theta-\theta}{\sqrt{I_{n}(\hat\theta)}}\to^{d}\mathcal N(0,1)$ for $n\to\infty$
+$({\hat\theta-\theta}){\sqrt{I_{n}(\hat\theta)}}\to^{d}\mathcal N(0,1)$ for $n\to\infty$
 
-$\frac{\hat\theta-\theta}{\sqrt{J_{n}(\theta)}}\to^{d}\mathcal N(0,1)$ for $n\to\infty$
+$({\hat\theta-\theta}){\sqrt{J_{n}(\theta)}}\to^{d}\mathcal N(0,1)$ for $n\to\infty$
 
-$\frac{\hat\theta-\theta}{\sqrt{J_{n}(\hat\theta)}}\to^{d}\mathcal N(0,1)$ for $n\to\infty$
+$({\hat\theta-\theta}){\sqrt{J_{n}(\hat\theta)}}\to^{d}\mathcal N(0,1)$ for $n\to\infty$
 
-Where $J_{n}$ is the observed information, $I_{n}$ is the Fisher information, $\text{se}=\sqrt{I_{n}}$ is called standard error , $\hat{\text{se}}=\sqrt{I_{n}(\hat\theta)}$
+Where $J_{n}$ is the observed information, $I_{n}$ is the Fisher information, $\text{se}=\frac{1}{\sqrt{I_{n}}}$ is called standard error , $\hat{\text{se}}=\frac{1}{\sqrt{I_{n}(\hat\theta)}}$
 
 Under reg. cond. the Fisher Information is defined as:
 $I_{n}=\text{var}(\frac{\partial\ell(\theta)}{\partial\theta})=\sum\limits_{i}\text{var}\frac{\partial\log{f(Y_{i};\theta)}}{\partial\theta}=nI_{1}$ where $I_{1}$ is the Fisher info for a single observation (variance of the score).
@@ -270,3 +270,25 @@ $$-2\log{\lambda(\pmb y)}\to^{d}\chi_{r-q}^{2}\ \ \  \text{ as }  n\to\infty$$
 $q$ is the number of parameters we fixed.
 TODO chiedi spiegazione di sta roba
 
+## Wald test
+
+It's a test for testing $H_{0}:\theta=\theta_{0}$ against $H_{1}:\theta\ne\theta_{0}$ when an estimator has a normal distribution (can be a limiting distribution)
+Since we saw that MLE is asymptotically normal the Wald test is often used with the MLE.
+Since MLE is s.t. $\hat\theta\dot\sim\mathcal N(\theta,I_{n}(\hat\theta)^{-1})$, the Wald test of approximate level $\alpha$ is the to reject $H_{0}$ if:
+ $|W|=|\frac{\hat\theta - \theta_{0}}{\widehat{se}}|\ge z_{1-\frac{\alpha}{2}}$, with $\widehat{se}=\sqrt{\frac{1}{I_{n}(\hat\theta)}}$  is the estimated standard error of $\hat\theta$, we can use the asymptotical version $J$ in place of $I$.
+
+ Wald test for multivariate $\theta$ in pdf.
+
+## p-value
+
+The p-value is defined as the smallest $\alpha$ that leads to the rejection of $H_{0}$:
+For every $\alpha\in(0,1)$ if $R_{\alpha}$ is a rejection region of size $\alpha$, then $\text{p-value}=\inf\{ \alpha:T(X_{1},\dots,X_{n})\in R_{\alpha}\}$, a small p-value means that $H_{0}$ is incompatible with the data and must be rejected, we usually compare the p-value with $\alpha$ to determine if it's small.
+If the rejection region is in the form:$\{X_{1},\dots,X_{n}:T(X_{1},\dots,X_{n})\ge c\}$, then the p-value is:
+$\sup\limits_{\theta\in\Theta_{0}}P_{\theta}(T(X_{1},\dots,X_{n})\ge T^{obs})$
+
+If the rejection region is in the form:$\{X_{1},\dots,X_{n}:T(X_{1},\dots,X_{n})\le c\}$, then the p-value is:
+$\sup\limits_{\theta\in\Theta_{0}}P_{\theta}(T(X_{1},\dots,X_{n})\le T^{obs})$
+
+If the rejection region is in the form:$\{X_{1},\dots,X_{n}:T(X_{1},\dots,X_{n})\ge c_{1}\}\cup\{X_{1},\dots,X_{n}:T(X_{1},\dots,X_{n})\le c_{2}\}$
+then the p-value is: $2\min(\sup\limits_{\theta\in\Theta_{0}}P_{\theta}(T(X_{1},\dots,X_{n})\le T^{obs}),\sup\limits_{\theta\in\Theta_{0}}P_{\theta}(T(X_{1},\dots,X_{n})\ge T^{obs}))$
+(In the case which $\Theta_{0}=\{\theta_{0}\}$ we just ignore the sup)
