@@ -292,3 +292,29 @@ $\sup\limits_{\theta\in\Theta_{0}}P_{\theta}(T(X_{1},\dots,X_{n})\le T^{obs})$
 If the rejection region is in the form:$\{X_{1},\dots,X_{n}:T(X_{1},\dots,X_{n})\ge c_{1}\}\cup\{X_{1},\dots,X_{n}:T(X_{1},\dots,X_{n})\le c_{2}\}$
 then the p-value is: $2\min(\sup\limits_{\theta\in\Theta_{0}}P_{\theta}(T(X_{1},\dots,X_{n})\le T^{obs}),\sup\limits_{\theta\in\Theta_{0}}P_{\theta}(T(X_{1},\dots,X_{n})\ge T^{obs}))$
 (In the case which $\Theta_{0}=\{\theta_{0}\}$ we just ignore the sup)
+
+---
+
+t-test and LRT test for the variance in the PDF l5aggiornate.
+
+---
+# L6 - Confidence Sets
+
+Point estimates are a good guess for population moments but for example in the WM example $P_{\mu}(\overline X = \mu)=0$ , we may want a set that cointains $\mu$ with a pre-specified  probability.
+
+## Interval estimators
+
+An interval estimate of scalar parameter $\theta$ is a pair of functions $L(\pmb x),U(\pmb x)$ of sample $\pmb x = (x_{1},\dots,x_{n})$ s.t. $L(\pmb x)\le U(\pmb x),\ \forall \pmb x \in \mathcal X$ , in the observed sample we infer that $L(\pmb x)\le \theta \le U(\pmb x)$.
+
+The random interval  $[L(\pmb x),U(\pmb x)]$ base on the random sample $\pmb X = (X_{1},\dots,X_{n})$ is called an interval estimator. (It can also be upper or lower intervals with $\infty$ or $-\infty$ ).
+
+The _coverage probability_ for an interval estimator of $\theta$ is: $P_{\theta}(\theta\in[L(\pmb X),U(\pmb X)])$ (the probability that the interval contains $\theta$).
+The _confidence level_ is the smallest coverage probability among all $\theta$: $\inf\limits_{\theta\in\Theta}{P_{\theta}(\theta\in[L(\pmb X),U(\pmb X)])}$ 
+
+## Inverting a test statistics
+
+For two-tailed confidence intervals, the method for constructing a $1-\alpha$ level confidence set consists of:
+1. get $R$, the rejection region for $H_{0}:\theta=\theta_{0}$ vs $H_{1}:\theta\ne\theta_{0}$
+2. get the acceptance region $R^{\mathsf c}$
+3. invert the acceptance region
+Examples in the PDF.
