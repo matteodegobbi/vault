@@ -1,4 +1,34 @@
 #statistics
+# Useful stuff from L0 and L1
+
+## Covariance and correlation
+$\sigma_{ij}=\text{cov}(X_{i},X_{j})=E(X_{i},X_{j})-E(X_{i})E(X_{j})$
+$\rho_{ij}=\frac{\sigma_{ij}}{\sqrt{\sigma_{ii}\sigma_{jj}}}$
+covariance and correlation matrices have the previous two formulas as elements.
+$\rho_{ii}=1$ always
+
+## Change of variable argument
+
+$g:\mathbb R^{k}\to \mathbb R^{k}$ with $g(x)=(g_{1}(x),\dots,g_{k}(x))$ differentiable and bijective. Then $Y=g(X)$ is rve with pdf: $f_{Y}(y)=f_{X}(g^{-1}(y))|\det(J(y))|$ 
+where $J(y)=\det([\frac{\partial g^{-1}(y)}{\partial y_{1}},\dots,\frac{\partial g^{-1}(y)}{\partial y_{k}}])$, the Jacobian of the inverse of $g$.
+We can also use a $g$ with a 'dummy function' in order to satisfy the hypotheses of this theorem.
+It can be useful to call $y_{1}=y,y_{2}=z,\dots$ to simply the notation. 
+
+
+TODO Multinomial??????
+# Inequalities
+
+Markov: $X$ is a non-negative rv s.t. $E(X)<\infty$, $P(X>t)\le \frac{E(x)}{t}$, for any $t>0$.
+
+Chebyshev: $X$ real valued rv st $E(x)=\mu$ and $\text{var}(X)=\sigma^{2}$ are finite, $P(|X-\mu|\ge t)\le \frac{\sigma^{2}}{t^{2}}$, for any $t>0$.
+
+## Delta method
+Useful to find the limiting distribution of a function of a random variable whose limiting distribution is normal.
+Let $X_{n}$ a sequence of rv s.t. $\frac{\sqrt{n} (X_{n}-\mu)}{\sigma} \to^{d}\mathcal N(0,1)$ and that $g$ is differentiable and $g'(\mu)\ne0$. Then $\frac{\sqrt{n}(g(X_{n})-g(\mu))}{|g'(\mu)|\sigma}\to^{d}\mathcal N(0,1)$.
+In other terms, if $X_{n}\dot\sim\mathcal N(\mu,\frac{\sigma^{2}}{n})\to g(X_{n})\dot\sim\mathcal N(g(\mu),g'(\mu)^{2} \frac{\sigma^{2}}{n})$
+
+There's also a multivariate version of the delta method
+
 # L2 - Descriptive statistic, statistical models
 ## Samples
 We call $x_{1},\dots,x_{n}$ the observations of an experiment _observed sample_, with $n$ being the sample size.
@@ -37,7 +67,7 @@ The edf is defined as:
 $F_{n}(x)=\sum\limits_{i=1}^{n}{I_{X_{i}}(x)}$ for all $x\in\mathbb R$
 where $I_{X_{i}}$ is a Bernoulli rv with success probability $P(X_{i}\le x)$, which means $F_{n}$ is a rv.
 
-The corresponding observed version is $\hat F_{n}(x)=\frac{1}{n}\sum\limits_{i=1}^{n}(x)$ for all $x\in\mathbb R$
+The corresponding observed version is $\hat F_{n}(x)=\frac{1}{n}\sum\limits_{i=1}^{n}\mathbb 1_{x_{i}}(x)$ for all $x\in\mathbb R$
 the edf targets the population df.
 
 ## Multivariate data summaries
@@ -59,7 +89,7 @@ Let $X_{1},\dots,X_{n}$ be an iid sample with $X_i$ having pdf $f(x;\theta)$, th
 $L(\theta)=\prod\limits_{i=1}^{n}{f(X_{i};\theta)}$
 for an observed sample it's defined as:
  $L(\theta)=\prod\limits_{i=1}^{n}{f(x_{i};\theta)}$
- Be careful it's not a joint pdf because we are holding $X_{i}$ fixed while in a pdf $\theta$ is fixed.
+Be careful it's not a joint pdf because we are holding $X_{i}$ fixed while in a pdf $\theta$ is fixed.
 For discrete rvs it's a probability: the probability of observing that sample when the parameter is $\theta$ (under the chosen model).
 For continous rvs it's not a probability, but the higher the likelihood the higher the probability of observing that sample.
 
@@ -318,3 +348,10 @@ For two-tailed confidence intervals, the method for constructing a $1-\alpha$ le
 2. get the acceptance region $R^{\mathsf c}$
 3. invert the acceptance region
 Examples in the PDF.
+
+### Inverting a Wald test
+Let $R=\{ \pmb X: \frac{|\hat\theta-\theta_{0}|}{\widehat{se}}>z_{1- \frac{\alpha}{2}} \}$ be the rejection region of a Wald test of (approx. because asymptotic) size $\alpha$ for $H_{0}$ against $H_{1}$ as usual. Then the corresponding confidence interval of (approx) confidence level $1-\alpha$ is $[\hat\theta-z_{\frac{1-\alpha}{2}}\widehat{se},\hat\theta+z_{\frac{1-\alpha}{2}}\widehat{se}]$, the Wald test always gives symmetrical confidence intervals.
+
+### Inverting a LRT 
+Let $R_{\alpha}(\theta_{0})=\{ \pmb X: -2\log{\frac{L(\theta_{0})}{L(\hat\theta)} }>\chi_{1,1-\alpha}^{2} \}$ be the rejection region of size $\alpha$, (using theorem 5 $-2\log{\lambda(\pmb y)}\dot\sim \chi_{r-q}^{2}$).
+The confidence set of level $1-\alpha$ is $\{\theta:\theta\in R_{\alpha}(\theta)^{\mathsf c}\}$, holding the data $\pmb X$ fixed.

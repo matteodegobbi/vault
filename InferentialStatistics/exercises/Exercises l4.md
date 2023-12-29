@@ -1,6 +1,5 @@
 # Example 4.1
 (a) is there a sufficient statistic for $\theta$?
-I use the normalization property of the pdf:
 $1=\sum\limits_{x=1}^{\infty}c_{\theta} \theta^x=c_{\theta}(\frac{1}{1-\theta}-1)$ 
 and solving the equation we get $f(x;\theta)=(1-\theta)\theta^{x-1}$ a geometric rv with parameter $1-\theta$ .
 
