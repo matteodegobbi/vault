@@ -29,6 +29,10 @@ In other terms, if $X_{n}\dot\sim\mathcal N(\mu,\frac{\sigma^{2}}{n})\to g(X_{n}
 
 There's also a multivariate version of the delta method
 
+# Symmetrical quantile for $\mathcal N(0,\sigma^{2})$
+For distribution which are symmetrical around the origin we have that $x_{1-\alpha}=-x_{alpha}$. 
+
+
 # L2 - Descriptive statistic, statistical models
 ## Samples
 We call $x_{1},\dots,x_{n}$ the observations of an experiment _observed sample_, with $n$ being the sample size.
@@ -94,8 +98,7 @@ For discrete rvs it's a probability: the probability of observing that sample wh
 For continous rvs it's not a probability, but the higher the likelihood the higher the probability of observing that sample.
 
 We can look for the $\theta$ with the largest likelihood, this is called the maximum likelihood estimate: $\hat\theta = \arg\sup\limits_{\theta\in\Theta}L(\theta)$.
-Often we will work with $\ell(\theta)\triangleq\log{L(\theta)}$
-when it can be defined ($L(\theta)\ne0, \forall \theta\in\Theta$).
+Often we will work with the log-likelihood: $\ell(\theta)\triangleq\log{L(\theta)}$ when it can be defined ($L(\theta)\ne0, \forall \theta\in\Theta$).
 ## Observed information
 We can quantify the informativeness of a likelihood function:
 $J(\theta)=-\frac{\partial^{2}\ell(\theta)}{\partial\theta^{2}}$
@@ -194,7 +197,7 @@ and $h(y)$ such that, for all sample points $y$ and all parameter points $\theta
 
 Given $\hat\theta$ an estimator of $\theta$, based on a random sample $Y_1 , \dots  , Y_n$ from some distribution $F_{\theta}$ , the bias is defined as: $b(\theta;\hat\theta) = \mathbb E_{\theta}(\hat\theta) - \theta$
 We say $\hat\theta$ is an unbiased estimator if $b(\theta;\hat\theta)=0$ for all $\theta$.
-Many estimator are not unbiased but are instead asymptotically unbiased, ($n\to\infty$).
+Many estimators are not unbiased but are instead asymptotically unbiased, ($n\to\infty$).
 
 ## MSE
 Mean Squared Error is a measure of performance of an estimator that takes into account both the location and the variability.
@@ -221,7 +224,7 @@ In general directly deriving the distribution of $\hat\theta$ can be difficult, 
 For an iid random sample with pdf $f$ satisfying certain regularity conditions (not in this course):
 1. If there is a sufficient statistic for $\theta$ then the MLE is a function of a sufficient statistic (and MLE will also be suffcient).
 2. The MLE is equivariant, if $\tau=g(\theta)$ for any function $g$ then $\tau = g(\hat\theta)$ 
-3. MLE is consistent ($\hat\theta \to^P\theta$)
+3. MLE is consistent ($\hat\theta \to^P\theta$) (and mse goes to 0 equivalent definition)
 4. MLE is asymptotically efficient (explanation in pdf)
 5. MLE is asymptotically normal, $\frac{\hat\theta-\theta}{\sqrt{\text{var}(\hat\theta)}}\to^{d}\mathcal N(0,1)$ for $n\to\infty$
 
@@ -355,3 +358,4 @@ Let $R=\{ \pmb X: \frac{|\hat\theta-\theta_{0}|}{\widehat{se}}>z_{1- \frac{\alph
 ### Inverting a LRT 
 Let $R_{\alpha}(\theta_{0})=\{ \pmb X: -2\log{\frac{L(\theta_{0})}{L(\hat\theta)} }>\chi_{1,1-\alpha}^{2} \}$ be the rejection region of size $\alpha$, (using theorem 5 $-2\log{\lambda(\pmb y)}\dot\sim \chi_{r-q}^{2}$).
 The confidence set of level $1-\alpha$ is $\{\theta:\theta\in R_{\alpha}(\theta)^{\mathsf c}\}$, holding the data $\pmb X$ fixed.
+
