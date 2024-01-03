@@ -1,3 +1,4 @@
+#statistics 
 # Example 5.1
 
 $1=\sum\limits_{x=1}^{\infty}c_{\theta} \theta^x=c_{\theta}(\frac{1}{1-\theta}-1)$ 
@@ -24,7 +25,7 @@ TODO CONTROLLA
 
 (c) The likelihood ratio test statistic is $\lambda(\pmb x)=\frac{L(\theta_{0})}{L(\hat\theta)}=\frac{L(\theta_{0})}{4.42\cdot 10^{-43}}$
 $R_{\alpha}(\theta_{0})=\{\pmb x: -2\log(\lambda(\pmb x))>\chi_{1,1-\alpha}^{2} \}$
-
+We can use this region because the shipment is made of a very large number of items (asymptotic approximation)
 We can compute $-2\log(\lambda(\pmb x))$ and $\chi_{1,1-\alpha}^{2}$ and plot them, then we take the values of $\theta$ for which the sample is in the acceptance region, this is done with the following R script:
 
 ```
@@ -68,13 +69,29 @@ TODO controlla
 
 Let $X_{i} \sim Poi(\theta_{1}), i = 1,\dots, m$ and $Y_{j}∼ Poi(\theta_{2}), j = 1,\dots, n$ , with $X_{i}, Y_{j}$being independent for all $i, j$.
 
+
 (a) Log-likelihood ratio test for $H_{0}:\theta_{1}=\theta_{2}$ against $H_{1}:\theta_{1}\ne\theta_{2}$ at the level $\alpha$. $\overline y = 6, \overline x = 2,m = 15, n = 10$, compute the test and get the p-value.
+The joint pdf is $f_{joint}(x_{1},\dots,x_{m},y_{1},\dots,y_{n})=\frac{e^{-m\theta_{1}}\theta_{1}^{\sum\limits_{i=1}^{m}x_{i}}}{\prod\limits_{i=1}^{m}x_{i}!} \frac{e^{-n\theta_{2}}\theta_{2}^{\sum\limits_{i=1}^{n}y_{i}}}{\prod\limits_{i=1}^{n}y_{i}!}$ 
+if $\theta_{1}=\theta_{2}$ (null hypothesis) the likelihood is $\frac{e^{-\theta(m+n)}\theta^{\sum\limits_{i=1}^{m}x_{i}+\sum\limits_{i=1}^{n}y_{i}}}{\prod\limits_{i=1}^{m}x_{i}!\prod\limits_{i=1}^{n}y_{i}!}$
+and the log likelihood is $\ell(\theta)=-\theta(m+n)+(\log\theta)(\sum\limits_{i=1}^{m}x_{i}+\sum\limits_{i=1}^{n}y_{i})-\log(\prod\limits_{i=1}^{m}x_{i}!\prod\limits_{i=1}^{n}y_{i}!)$ 
+we solve the likelihood equation ($\frac{\partial\ell(\theta)}{\partial\theta}=0$) and get $\hat\theta=\frac{\sum\limits_{i=1}^{m}x_{i}+\sum\limits_{i=1}^{n}y_{i}}{m+n}$ under $H_{0}$ 
 
-$T_{n}=\frac{\overline X -\overline Y}{\sqrt{\frac{S_{x}^{2}}{m}+ \frac{S_{y}^{2}}{n}}}$
-And we reject $H_{0}$ if $|T_{n}|>t_{\nu,1- \frac{\alpha}{2}}$, with:
-$\nu=\frac{{(\frac{S_{x}^{2}}{m}+ \frac{S_{y}^{2}}{n})}^{2}}{\frac{S_{x}^{4}}{m^{2}(m-1)}+\frac{S_{y}^{4}}{n^{2}(n-1)}}$
+to find the denominator of $\lambda(\pmb \cdot)$ we can use the equivariance principle of the MLE and $\hat\theta_{1}=\overline x$  and $\hat\theta_{2}=\overline y$.
 
-TODO come si fa senza sample variance?????
+We have that $\log(\lambda(\pmb \cdot))=-(\sum\limits_{i=1}^{m}x_{i}+\sum\limits_{i=1}^{n}y_{i})+\log(\frac{\sum\limits_{i=1}^{m}x_{i}+\sum\limits_{i=1}^{n}y_{i}}{m+n})(\sum\limits_{i=1}^{m}x_{i}+\sum\limits_{i=1}^{n}y_{i})-\log(\prod\limits_{i=1}^{m}x_{i}!\prod\limits_{i=1}^{n}y_{i}!)-(-m\overline x-n\overline y + (\sum\limits_{i=1}^{m}x_{i})\log(\overline x)+(\sum\limits_{i=1}^{n}y_{i})\log(\overline y)-\log(\prod\limits_{i=1}^{m}x_{i}!\prod\limits_{i=1}^{n}y_{i}!)$
+$=\log(\frac{\sum\limits_{i=1}^{m}x_{i}+\sum\limits_{i=1}^{n}y_{i}}{m+n})(\sum\limits_{i=1}^{m}x_{i}+\sum\limits_{i=1}^{n}y_{i})-(\sum\limits_{i=1}^{m}x_{i})\log(\overline x)-(\sum\limits_{i=1}^{n}y_{i})\log(\overline y)=$
+$=\log(\frac{m\overline x + n\overline y}{m+n})(m\overline x + n\overline y)-m\overline x\log(\overline x)-n\overline y \log(\overline y)$ we call this $\log(\lambda(\pmb{x,y}))$ 
+
+And we have that the rejection region is $\{ \pmb{x,y}:-2\log(\lambda(\pmb{x,y})) > \chi_{1,1-\alpha}^{2}\}$.
+
+using the observed samples we get
+TODO FORSE VA r-q =1 e non 2
+( e se df =1 verrebbe ```> 1-pchisq(26.034,df=1)
+[1] 3.354574e-07```)
+
+$\{ \pmb{x,y}: 26.03 > \chi_{2,1-\alpha}^{2}\}$.
+and we get that $p-value \approx 2.222\cdot 10^{-6}$
+
 
 ---
 

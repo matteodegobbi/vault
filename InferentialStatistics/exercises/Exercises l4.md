@@ -1,3 +1,4 @@
+#statistics 
 # Example 4.1
 (a) is there a sufficient statistic for $\theta$?
 $1=\sum\limits_{x=1}^{\infty}c_{\theta} \theta^x=c_{\theta}(\frac{1}{1-\theta}-1)$ 
