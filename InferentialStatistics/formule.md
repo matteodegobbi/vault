@@ -339,7 +339,7 @@ Point estimates are a good guess for population moments but for example in the W
 
 An interval estimate of scalar parameter $\theta$ is a pair of functions $L(\pmb x),U(\pmb x)$ of sample $\pmb x = (x_{1},\dots,x_{n})$ s.t. $L(\pmb x)\le U(\pmb x),\ \forall \pmb x \in \mathcal X$ , in the observed sample we infer that $L(\pmb x)\le \theta \le U(\pmb x)$.
 
-The random interval  $[L(\pmb x),U(\pmb x)]$ base on the random sample $\pmb X = (X_{1},\dots,X_{n})$ is called an interval estimator. (It can also be upper or lower intervals with $\infty$ or $-\infty$ ).
+The random interval  $[L(\pmb x),U(\pmb x)]$ based on the random sample $\pmb X = (X_{1},\dots,X_{n})$ is called an interval estimator. (It can also be upper or lower intervals with $\infty$ or $-\infty$ ).
 
 The _coverage probability_ for an interval estimator of $\theta$ is: $P_{\theta}(\theta\in[L(\pmb X),U(\pmb X)])$ (the probability that the interval contains $\theta$).
 The _confidence level_ is the smallest coverage probability among all $\theta$: $\inf\limits_{\theta\in\Theta}{P_{\theta}(\theta\in[L(\pmb X),U(\pmb X)])}$ 

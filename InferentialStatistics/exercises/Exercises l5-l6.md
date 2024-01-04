@@ -92,6 +92,33 @@ TODO FORSE VA r-q =1 e non 2
 $\{ \pmb{x,y}: 26.03 > \chi_{2,1-\alpha}^{2}\}$.
 and we get that $p-value \approx 2.222\cdot 10^{-6}$
 
+(b) If we define $\delta\triangleq\theta_{1}-\theta_{2}$ we have that $\hat\delta = \hat\theta_{1}-\hat\theta_{2}$ for the principle of equivariance.
+$\hat\delta = \overline x - \overline y=-4$
+and the confidence interval of approximately confidence level $1-\alpha$ is 
+$[\hat\delta - z_{1- \frac{\alpha}{2}}\widehat{se}, \hat\delta + z_{1- \frac{\alpha}{2}}\widehat{se}]$
+we just need to compute $\widehat{se}$ , we have that asymptotically MLE is normal, $\hat\theta_{1}\dot\sim\mathcal N(\theta_{1},\text{var}(\hat\theta_{1}))$, $\hat\theta_{2}\dot\sim\mathcal N(\theta_{2},\text{var}(\hat\theta_{2}))$ 
+and since $\hat\theta_{1}=\overline X$ and $\hat\theta_{2}=\overline Y$ they are independent because they are functions of independent rvs. This means that:
+$\hat\delta\dot\sim\mathcal N(\overline X-\overline Y,\text{var}(\overline X)+\text{var}(\overline Y))$
+and using the formula for the variance of the sample average and the variance of Poisson rvs we get:
+$\hat\delta\dot\sim\mathcal N(\overline X-\overline Y,\frac{\theta_{1}}{m}+\frac{\theta_{2}}{n})$
+${se}=\sqrt{\frac{\theta_{1}}{m}+\frac{\theta_{2}}{n}}$
+$\widehat{se}=\sqrt{\frac{\overline X}{m}+\frac{\overline Y}{n}}$
+using the observed values we get:
+$\widehat{se}=0.8563$
+$\text{CI}_{1-\alpha} = [-4-z_{1- \frac{\alpha}{2}}0.8563,-4+z_{1- \frac{\alpha}{2}}0.8563]$
+and for example for $1-\alpha=99\%$ we can compute with R:
+
+```
+> alpha = 1 - 0.99
+> z = qnorm(1-alpha/2)
+> c(-4-z*0.8563,-4+z*0.8536)
+[1] -6.205683 -1.801272
+```
+which means that $\hat\delta = 0$ is outside of our confidence interval of confidence $99\%$
+
+if we take $\alpha=10^{-6}$ we get the confidence interval $[ -8.1887100,0.1755026]$ which includes $0$.
+
+(c) TODO come si fa paired test con WALD????
 
 ---
 
@@ -102,11 +129,11 @@ $X_{i}\sim\mathcal N(\mu,\sigma^{2}),i=1,\dots,n$  both parameters are unknown
 $\beta(2)=P_{\mu=2}(\pmb x \notin R)$ 
 if $R$ is defined with a LRT we are in the case of a t-test,
 $R=\{\pmb x:|\frac{\sqrt n(\overline x -\mu_{0})}{s}|\ge t_{n-1,1- \frac{\alpha}{2}}\}$
-$\beta(2)=1-P_{\mu=2}(\text{reject }H_{0})=P_{\mu=2}(\pmb x \in R)=0.01$  
+$\beta(2)=1-P_{\mu=2}(\text{reject }H_{0})=P_{\mu=2}(\pmb x \notin R)=0.01$  
 $\overline x \sim \mathcal N(\mu,\frac{\sigma^{2}}{n})$
 $T_{n}\sim\mathcal N(\frac{\sqrt n}{s},\frac{\sigma^{2}}{s^{2}})$
 $\beta(2)=1-2\Phi\left(\left(t_{n-1,1- \frac{\alpha}{2}}- \frac{\sqrt n}{s}\right) \frac{s}{\sigma}\right)$
-TODO come lo calcolo senza sapere sigma?????
+TODO come lo calcolo senza sapere sigma e alpha?????
  
 
 ---
@@ -117,6 +144,47 @@ $X_{1},\dots,X_{n}$ iid random sample from $\text{Unif}(0,\theta)$, $\theta>0$. 
 We use a LRT, we have that $L(\theta)=\frac{1}{\theta^{n}}$ if $x_{(n)}\le\theta$ and $0$ otherwise.
 $R_{\alpha}(\theta_{0})=\{\pmb x: -2\log(\lambda(\pmb x))>\chi_{1,1-\alpha}^{2} \}$
 $\hat\theta=x_{(n)}$ 
-$\lambda(\pmb x)=x_{(n)}^{n}\cdot \frac{1}{\theta^{n}}$
+$\lambda(\pmb x)=x_{(n)}^{n}\cdot \frac{1}{\theta^{n}}$ for $\theta\ge x_{(n)}$ 
+$\lambda(\pmb x)=0$ for $\theta<x_{(n)}$ (this means that we always reject independently of the sample)
+$R_{\alpha}(\theta_{0})=\{\pmb x: e^{-2\log(\lambda(\pmb x))}>e^{\chi_{1,1-\alpha}^{2}} \}$
 
-$R_{\alpha}(\theta_{0})=\{\pmb x: e^{-2\log(\lambda(\pmb x))}<e^{\chi_{1,1-\alpha}^{2}} \}$
+$R_{\alpha}^{\mathsf C}(\theta_{0})=\{\pmb x: e^{-2\log(\lambda(\pmb x))}\le e^{\chi_{1,1-\alpha}^{2}} \}$
+$R_{\alpha}^{\mathsf C}(\theta_{0})=\{\pmb x: (\lambda(\pmb x))^{-2}\le e^{\chi_{1,1-\alpha}^{2}} \}$
+$R_{\alpha}^{\mathsf C}(\theta_{0})=\{\pmb x: \frac{\theta_{0}^{2n}}{x_{(n)}^{2n}}\le e^{\chi_{1,1-\alpha}^{2}} \}$
+$R_{\alpha}^{\mathsf C}(\theta_{0})=\{\pmb x: \frac{\theta_{0}}{x_{(n)}}\le e^{\frac{\chi_{1,1-\alpha}^{2}}{2n}} \}$
+$R_{\alpha}^{\mathsf C}(\theta_{0})=\{\pmb x: \theta_{0}\le x_{(n)}e^{\frac{\chi_{1,1-\alpha}^{2}}{2n}} \}$
+also we need to remember that $\theta_{0}\ge x_{(n)}$.
+this means that the $\text{CI}_{1-\alpha}=[x_{(n)}, x_{(n)}e^{\frac{\chi_{1,1-\alpha}^{2}}{2n}}]$
+
+an example in R is:
+```
+likelihood_f <- function(theta, sample_max, n) {
+  if (theta < sample_max) {
+    return(0)
+  } else{
+    return(1 / theta ^ n)
+  }
+}
+true_theta <- 10
+n <- 9
+alpha <- 0.01
+obs <- runif(n = n, min = 0, max = true_theta)
+sample_max <- max(obs)
+thetas <- seq(4, 20, 0.01)
+computed_likelihood <-
+  sapply(thetas, likelihood_f, sample_max = sample_max, n = n)
+plot(thetas,
+     computed_likelihood,
+     type = 'l',
+     col = 'blue')
+abline(v = sample_max, col = 'red')
+right_CI = sample_max * exp(qchisq(p = 1 - alpha, df = 1) / (2 * n))
+abline(v = right_CI, col = 'red')
+sprintf("[%f,%f]", sample_max, right_CI)
+```
+and the CI is `[8.941970,12.927558]` using $\alpha=0.01$,
+![[CIunifrom.png]]
+
+---
+# Example 5.5
+
