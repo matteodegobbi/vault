@@ -188,3 +188,8 @@ and the CI is `[8.941970,12.927558]` using $\alpha=0.01$,
 ---
 # Example 5.5
 
+For the Wald CI we hjasdfhjkasdfhjkhjaklsdf
+
+
+For the LRT with quantiles kJASDfjkladfjklkjf
+

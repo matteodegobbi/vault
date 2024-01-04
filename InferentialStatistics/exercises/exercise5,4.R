@@ -18,6 +18,6 @@ plot(thetas,
      type = 'l',
      col = 'blue')
 abline(v = sample_max, col = 'red')
-right_CI = sample_max * exp(qchisq(p = 1 - alpha, df = 1) / (2 * n))
+# right_CI = sample_max * exp(qchisq(p = 1 - alpha, df = 1) / (2 * n))
 abline(v = right_CI, col = 'red')
 sprintf("[%f,%f]", sample_max, right_CI)
