@@ -53,7 +53,7 @@ z = outer(
 )
 contour(alphas, betas, z, nlevels = 35)
 
-######################3
+######################
 llikeF<-function(v) {
   return(sum(log(dweibull(observed_samples,v[1],v[2]))))
 }
