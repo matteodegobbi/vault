@@ -193,3 +193,74 @@ For the Wald CI we hjasdfhjkasdfhjkhjaklsdf
 
 For the LRT with quantiles kJASDfjkladfjklkjf
 
+
+---
+# Example 5.6
+
+
+---
+# Example 5.6
+
+(a) point estimate for $\mu$ 
+We can either use the sample average directly which is the MLE for the true mean or use that the MLE is equivariant and the mean of the gamma rv is $\frac{\alpha}{\beta}$.
+If we use the first method we get: $\hat\mu=10.233$ with the second method we get $\hat\mu = \frac{\hat\alpha}{\hat\beta} =10.23299$, to compute MLE of $\alpha,\beta$ we can use the following R script:
+```
+boot_time <-
+  c(14.87, 7.13, 6.46, 6.45, 9.41, 8.21, 11.18, 14.28, 6.36, 17.98)
+ll_function <- function(x, alpha, beta) {
+  return(sum(dgamma(
+    x,
+    shape = alpha,
+    rate = beta,
+    log = TRUE
+  )))
+}
+result <- optim(
+  par = c(0.15, 0.1),
+  method = 'BFGS',
+  fn = function(params) {
+    -ll_function(x = boot_time,
+                 alpha = params[1],
+                 beta = params[2])
+  }
+)
+
+
+mu_hat <- result$par[1] / result$par[2]
+```
+
+or using `MASS::fitdistr`:
+```
+result_MASS <- MASS::fitdistr(x = boot_time, densfun = 'gamma')
+print(result$par)
+```
+and we get the same result in both ways.
+
+(b) To compute the confidence interval for the mean we can use a Wald test.
+$\hat\mu \dot\sim \mathcal N(\mu,\frac{\sigma^{2}}{n})$, $se=\sqrt{\frac{\sigma^{2}}{n}}$ , $\widehat{se}=\sqrt{\frac{\widehat\sigma^{2}}{n}}$  
+and $W=|\frac{\hat\mu-\mu}{\widehat{se}}|$ and the $CI_{W,1-\alpha}=[\hat\mu - z_{1 \frac{-\alpha}{2}}\widehat{se},\hat\mu + z_{1 \frac{-\alpha}{2}}\widehat{se}]$   
+and we get $CI_{W,0.95}=[7.779215,12.686771]$, with the following snippet: 
+```
+confidence <- 0.95
+n <- length(boot_time)
+se_hat <- sqrt(sigma_hat_sq/n)
+z_quantile <- qnorm(1-(1-confidence)/2)
+left_CI <- mu_hat - z_quantile*se_hat
+right_CI <- mu_hat + z_quantile*se_hat
+print(sprintf("wald CI for mu_hat=%f ,[%f,%f]",mu_hat,left_CI,right_CI))
+```
+
+(c) 
+$B\sim \text{Gamma}(\alpha,\beta)$
+$P(\text{ boot time greater than 30s})=P(B>30)=1-P(B\le30)=1-F_{B}(30)$
+so after we estimated $\alpha,\beta$ in point (a) we can compute this probability:
+```
+print(1 - pgamma(
+  q = 30,
+  shape = result$par[1],
+  rate = result$par[2]
+))
+```
+and get $0.0001367082$.
+
+
