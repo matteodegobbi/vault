@@ -19,6 +19,7 @@ $R=\{\pmb X: |W|\ge z_{1- \frac{\alpha}{2}}\}=\{\pmb X:   \theta_{0}\le \hat\the
 $R^{\mathsf c}=\{\pmb X: \hat\theta - z_{1- \frac{\alpha}{2}}\widehat{se} \le \theta_{0}\le \hat\theta + z_{1- \frac{\alpha}{2}}\widehat{se} \}$ 
 
 $z_{1- \frac{0.9}{2}}=0.1256613$
+
 confidence interval of level $1-\alpha=0.1$: $CI=[0.8978,0.9022]$
 (b) I would reject $H_{0}$ since $\theta_{0}=0.5$ is outside the confidence interval.
 
@@ -54,7 +55,7 @@ that outputs:
 which is the confidence interval for $\alpha=0.9$.
 ![[confidenceIntervals.png]]
 ![[confidenceIntervals2.png]]
-(d) p-value: probably this point is wrong.
+(d) p-value:
 $\text{p-value}=P_{\theta}(-2\log(\lambda)\ge-2\log(\lambda_{obs}))$
 $\lambda_{obs}= 1$
 Take the log on both sides and multiply by $-2$.
