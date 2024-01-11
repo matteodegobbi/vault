@@ -32,4 +32,5 @@ abline(h=threshold,col='green')
 
 confidence_interval = theta_seq[tlambda<threshold]
 sprintf('[ %f , %f ]',confidence_interval[1],confidence_interval[length(confidence_interval)])
+sprintf('[ %f , %f ]',min(confidence_interval),max(confidence_interval))
 
