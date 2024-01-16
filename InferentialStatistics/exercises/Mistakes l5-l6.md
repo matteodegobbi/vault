@@ -13,6 +13,11 @@ and then we invert the acceptance region to find the CI.
 $[0.872,0.928]$ is bigger than the one found with J instead of I
 
 # Exercise 2
+
+Errore nel testo dell'esercizio va $\theta_{1} \ne \theta_{2}$ e anche $\bar y$ e $\bar x$ sono invertiti forse
+
+Il CI va derivato.
+
 # Exercise 3
 # Exercise 4
 # Exercise 5
