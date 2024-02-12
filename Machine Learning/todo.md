@@ -1,5 +1,5 @@
 # TODO per ML
-* NN
+* NN AAAAAAAAAAAAAAAAAAAAAAAAAAAA
 * Ripeti parte feature selection 
 * Clustering
 *
