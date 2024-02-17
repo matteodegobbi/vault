@@ -154,6 +154,33 @@ Note that in all outer joins the `outer` keyword can be omitted.
 
 Outer joins are ***not*** associative!
 # Aggregation
+## Count
+We can use the count aggregation function to count the number of tuples in a relation, if we use `count(column_name)` it returns the number of non null values in the column. If we use `count(*)` then we get the number of tuples in the relation. If we use `count(distinct column_name)` then we get the number of distinct values in the column.
+## Avg, Sum, Max, Min
+all compute the function on the column of data we pass as an argument.
+
+# Group by
+The `group by` statements groups rows which have the same values (on some specified attributes) into summary rows (on which it often makes sense to use things like `count`, `avg`, etc), e.g.
+	
+```
+select cName, major, min(GPA), max(GPA)
+from Student, Apply
+where Student.sID = Apply.sID
+group by cName, major;
+```
+in this example we look for the max and min GPA in all combinations of colleges and majors.
+
+We have to be careful that when we group by an attribute we should make sure that the selected attributes are unique after the grouping, otherwise we don't get an error we just get one of the values.
+
+The `having` clause can be added after the `group by` to have a condition that applies to the group formed by the group by e.g.
+
+```
+select cName
+from Apply
+group by cName
+having count(*) < 5;
+```
+
 
 ---
 `in`, `like`,`exists`,`all`,`any`,`abs`,`max`,`min`, `avg`,`count`,`sum`
