@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/fogliodicarta/test",
+  "command": "/usr/bin/c++  -isystem /usr/local/include/opencv4",
+  "file": "main.cpp"
+}
+]

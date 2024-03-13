@@ -1,7 +1,7 @@
 #ai
 # Agent and its components
 
-An agent is something that acts in an environment.
+An [[Agents and environments|agent]] is something that acts in an environment.
 Agents receive stimuli from their environment.
 Agents carry out actions that can affect the environment.
 An agent is made up of a body and a controller. Agents interact with the environment with a body. The controller receives percepts from the body and sends commands to the body.
