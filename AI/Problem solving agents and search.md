@@ -61,3 +61,68 @@ The path cost is a numeric value associated to each path reflecting the desired 
 [[AI3-search-uninf-2023.pdf|vacuum example page 21]].
 
 # Search tree
+
+Search algorithms consider possible sequences of actions.
+Possible sequences of actions from initial state form a search tree:
+* Root -> initial state 
+* Nodes -> states 
+* Branches -> actions 
+* The same state can appear multiple time 
+* Outgoing edges from a node -> all possible actions available in the state represented by the node
+
+Leaf node: a node with no children in the tree
+Frontier: The set of all leaf nodes available for expansion at any given point
+
+![[Pasted image 20240314153834.png]]
+
+• Redundant paths: exist whenever there is more than one way to get from one state to another
+• Loopy paths: special case of redundant paths
+
+ Example: Consider the path
+• Arad–Sibiu (140)
+• Arad–Zerind–Oradea–Sibiu (297) 
+the second path is redundant, it’s just a worse way to get to the same state
+
+
+To avoid exploring redundant paths TREE-SEARCH algorithm is augmented with explored set that remembers every expanded node.
+(GRAPH-SEARCH)
+
+# Graph Search
+![[Pasted image 20240314154108.png]]
+
+
+# Data structures for search algorithms
+
+Search algorithms require a data structure to keep track of the search tree 
+
+For each node n of the tree, we have a structure with: 
+* n.STATE: the state in the state space to which the node corresponds 
+* n.PARENT: the node in the search tree that generated this node 
+* n.ACTION: the action that was applied to the parent to generate the node 
+* n.PATH-COST: the cost, traditionally denoted by g(n), of the path from the initial state to the node, as indicated by the parent pointers
+
+![[Pasted image 20240314154325.png]]
+* A state corresponds to a configuration of the world 
+* A node is a data structure used to represent the search tree
+* 
+Frontier needs to be stored in such a way that the search algorithm can easily choose the next node to expand (queue, FIFO, LIFO or priority queue).
+
+# Search strategies
+A search strategy is defined by picking the order of node expansion.
+Strategies are evaluated along the following dimensions:
+* completeness: does it always find a solution if one exists?
+* time complexity: number of nodes generated
+* space complexity: maximum number of nodes in memory
+* optimality: does it always find a least-cost solution?
+
+Time and space complexity are measured in terms of
+* b: branching factor of the search tree (i.e., maximum number of successors of any node)
+* d: depth of the least-cost solution
+* m: the maximum depth of the state space
+
+# Uninformed search
+Uninformed strategies use only the information available
+in the problem definition:
+* generate successors
+* distinguish goal
+(e.g Breadth-first search, Uniform-cost search, Depth-first search, Depth-limited search, Iterative deepening search)
