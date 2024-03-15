@@ -7,10 +7,12 @@ Search: process of looking for such a sequence
 Search algorithm:
 * input: problem
 * output: an action sequence
+
 The sequence in output can then be executed.
+
 ---
 # Pseudocode problem solving agent
-(pseudocode problem solving agent in pdf [[AI3-search-uninf-2023.pdf]] pag 8)
+(pseudocode problem solving agent in pdf [[4_AI3-search-uninf-2023.pdf]] pag 8)
 This simple problem-solving agent:
 1. Formulates a goal and a problem
 2. Searches for a sequence of actions that would solve the problem
@@ -58,7 +60,7 @@ The path cost is a numeric value associated to each path reflecting the desired 
 * `c(x,a,y)` is the step cost, for going from state x to state y by performing action a.
 * assumed to be ≥ 0
 * We assume path costs to be additive: sum of step costs
-[[AI3-search-uninf-2023.pdf|vacuum example page 21]].
+[[4_AI3-search-uninf-2023.pdf|vacuum example page 21]].
 
 # Search tree
 
@@ -104,7 +106,7 @@ For each node n of the tree, we have a structure with:
 ![[Pasted image 20240314154325.png]]
 * A state corresponds to a configuration of the world 
 * A node is a data structure used to represent the search tree
-* 
+
 Frontier needs to be stored in such a way that the search algorithm can easily choose the next node to expand (queue, FIFO, LIFO or priority queue).
 
 # Search strategies
