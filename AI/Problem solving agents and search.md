@@ -189,5 +189,26 @@ Theorem: If h is consistent A* using GRAPH-SEARCH is optimal
 [[5_AI3-search-inf-2024.pdf|Example in the pdf pag 31]]
 
 ## Dominance
+If $h_2(n)\ge h_1(n)$ for all node n (both admissible) then $h_2$ dominates $h_1$ then h2 is better than h1 for search: h1 will expand all the nodes h2 expands and possibly more.
 
-
+## Generating admissible heuristics from relaxed problems
+A problem with fewer restrictions on the actions is called a relaxed problem:
+* A superset of actions is available from each state
+* The graph of the relaxed problem is a supergraph of the original
+* Any optimal solution of the original problem is also a solution of the relaxed problem
+* The cost of an optimal solution of the relaxed problem may be the same or lower than the cost of an optimal solution of the original problem
+From these properties we get that:
+The cost of an optimal solution to a relaxed problem
+is an admissible heuristic for the original problem.
+### Example
+Admissible heuristics can be derived from
+the exact solution cost of a relaxed version of the problem
+Admissible heuristics for the 8-puzzle:
+h1 number of misplaced tiles
+h2 Manhattan distance
+¨ If the rules of the 8-puzzle are relaxed so that
+a tile can move anywhere (instead of just to the adjacent empty square)
+then h1(n) gives the exact number of steps of the optimal solution
+¨ If the rules of the 8-puzzle are relaxed so that
+a tile can move one square in any direction, even onto an occupied square,
+then h2(n) gives the exact number of steps of the optimal solution
