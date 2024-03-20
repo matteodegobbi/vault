@@ -1,7 +1,7 @@
 [
 {
   "directory": "/home/fogliodicarta/test",
-  "command": "/usr/bin/c++  -isystem /usr/local/include/opencv4  -o CMakeFiles/DisplayImage.dir/DisplayImage.cpp.o -c /home/fogliodicarta/test/DisplayImage.cpp",
+  "command": "/usr/bin/c++  -isystem /usr/local/include/opencv4 -IC:\opencv\install\include  -o CMakeFiles/DisplayImage.dir/DisplayImage.cpp.o -c /home/fogliodicarta/test/DisplayImage.cpp",
   "file": "/home/fogliodicarta/test/DisplayImage.cpp"
 }
 ]
