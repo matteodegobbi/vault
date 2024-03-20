@@ -4,7 +4,6 @@
 int main(int argc, char** argv)
 {
     cv::Mat img = cv::imread("Garden.jpg");
-    
     if (img.empty())
     {
         std::cout<<"Image not found" << std::endl;
