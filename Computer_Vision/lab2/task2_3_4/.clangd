@@ -1,0 +1,8 @@
+CompileFlags:
+  Compiler: C:\mingw64\bin\g++.exe
+  Add:
+    - -isystemC:/mingw64/include/c++/12.1.0/
+    - "-IC:/opencv/install/include"
+    - '-isystem"C:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"'
+Diagnostics:
+  Suppress: 'builtin_definition'
