@@ -7,7 +7,7 @@ void maxFilter(cv::Mat &img, cv::Mat &out, int kernel_size) {
   }
 
   for (int i = kernel_size / 2; i < img.rows - kernel_size / 2; i++) {
-    for (int j = kernel_size; j < img.cols - kernel_size / 2; j++) {
+    for (int j = kernel_size / 2; j < img.cols - kernel_size / 2; j++) {
       uchar temp_max = img.at<uchar>(i, j);
       for (int k = -kernel_size / 2; k <= kernel_size / 2; k++) {
         for (int h = -kernel_size / 2; h <= kernel_size / 2; h++) {
