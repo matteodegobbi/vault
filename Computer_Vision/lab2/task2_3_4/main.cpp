@@ -22,13 +22,14 @@ int main(int argc, char **argv) {
   cv::Mat out_min = gray.clone();
   cv::Mat out_max = gray.clone();
   cv::Mat out_median = gray.clone();
-  cv::Mat outblur = gray.clone();
+  cv::Mat out_blur = gray.clone();
   // cv::resize(gray, out, cv::Size(), 0.75, 0.75);
 
-  minFilter(gray, out_min, 3);
-  maxFilter(gray, out_max, 3);
+  int kernel_size = 5;
+  minFilter(gray, out_min, kernel_size);
+  maxFilter(gray, out_max, kernel_size);
   auto start = std::chrono::high_resolution_clock::now();
-  medianFilter(gray, out_median, 3);
+  medianFilter(gray, out_median, kernel_size);
   auto end = std::chrono::high_resolution_clock::now();
   auto duration =
       std::chrono::duration_cast<std::chrono::microseconds>(end - start);
@@ -36,15 +37,15 @@ int main(int argc, char **argv) {
   cv::imshow("min", out_min);
   cv::imshow("max", out_max);
   cv::imshow("median", out_median);
-  // FIX:metti a posto questa roba che serve per la task 3
-  // FIX:metti a posto questa roba che serve per la task 3
-  // FIX:metti a posto questa roba che serve per la task 3
-  // FIX:metti a posto questa roba che serve per la task 3
-  // FIX:metti a posto questa roba che serve per la task 3
-  // cv::GaussianBlur(gray, outblur, cv::Size(3, 9), 10);
+
+  cv::GaussianBlur(gray, out_blur, cv::Size(1, 9), 7);
+  cv::imshow("gaussianblur", out_blur);
   // cv::imshow("window1", out);
-  cv::imshow("gaussianblur", outblur);
   // cv::imwrite("task2/outmin.png", out);
+  cv::imwrite("outmin.png", out_min);
+  cv::imwrite("outmax.png", out_max);
+  cv::imwrite("outmedian.png", out_median);
+  cv::imwrite("outblur.png", out_blur);
   cv::waitKey(0);
   return 0;
 }
