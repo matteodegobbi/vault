@@ -55,7 +55,7 @@ In a known environment for each action there is:
 * a probability distribution over the possible outcomes (if stochastic)
 
 # Table driven agents
-in the pdf [[AI2-agents2024.pdf]] pag 24.
+in the pdf [[2_AI2-agents2024.pdf]] pag 24.
 # Agent types
 
 * Simple reflex agents choice of the action depends only on the current percept
