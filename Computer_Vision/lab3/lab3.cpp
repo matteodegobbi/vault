@@ -1,5 +1,6 @@
 #include "opencv2/core/mat.hpp"
 #include "opencv2/core/matx.hpp"
+#include <cmath>
 #include <cstdlib>
 #include <iostream>
 #include <opencv2/highgui.hpp>
@@ -8,7 +9,7 @@
 struct userdata_type {
   cv::Mat *in;
   cv::Mat *out;
-  const int *threshold;
+  int threshold;
   cv::Vec3b *reference_color;
   bool task6 = false;
 };
@@ -34,7 +35,7 @@ void neighborhood_callback(int event, int x, int y, int flags, void *userdata) {
   userdata_type u = *static_cast<userdata_type *>(userdata);
   const Mat in_img = *u.in;
   Mat out_img = *u.out;
-  int threshold = *u.threshold;
+  int threshold = u.threshold;
   Vec3b *ref_color = u.reference_color;
   if (event == EVENT_LBUTTONDOWN) {
     int counter = 0;
@@ -56,20 +57,20 @@ void neighborhood_callback(int event, int x, int y, int flags, void *userdata) {
     }
     *ref_color = (Vec3b){(uchar)(b_sum / counter), (uchar)(g_sum / counter),
                          (uchar)(r_sum / counter)};
+    cout << *ref_color << endl; // task 3
+
     segment_shirt(in_img, out_img, *ref_color, threshold);
     if (!u.task6) {
       cv::imshow("segmneted", out_img);
       cv::waitKey(1);
     } else {
-      const Vec3b select_color = {92, 37, 201};
       cv::imshow("segmneted", out_img);
       cv::waitKey(1);
-
+      const Vec3b select_color = {92, 37, 201};
       for (int r = 0; r < out_img.rows; r++) {
         for (int c = 0; c < out_img.cols; c++) {
           Vec3b curr_color = out_img.at<Vec3b>(r, c);
           if (curr_color[0] == 0 && curr_color[1] == 0 && curr_color[2] == 0) {
-            cout << curr_color << endl;
             out_img.at<Vec3b>(r, c) = in_img.at<Vec3b>(r, c);
           } else {
             out_img.at<Vec3b>(r, c) = select_color;
@@ -92,6 +93,7 @@ void segment_shirt(const cv::Mat &in_img, cv::Mat &out_img, cv::Vec3b ref_color,
       int distance = abs(curr_color[0] - ref_color[0]) +
                      abs(curr_color[1] - ref_color[1]) +
                      abs(curr_color[2] - ref_color[2]);
+      // float distance = cv::norm(curr_color, ref_color);
       if (distance > threshold) {
         out_img.at<Vec3b>(r, c) = {0, 0, 0};
       } else {
@@ -119,27 +121,28 @@ int main() {
   const int dist_threshold = 100;
   userdata_type userdata = {.in = &in_img,
                             .out = &mask_img,
-                            .threshold = &dist_threshold,
+                            .threshold = dist_threshold,
                             .reference_color = &reference_color,
                             .task6 = false};
   cv::imshow("T-shirt", in_img);
   cv::setMouseCallback("T-shirt", &neighborhood_callback, &userdata);
   // NOTE: task 5
   cv::Vec3b reference_color_hsv = {0, 0, 0};
+  const int dist_threshold_hsv = 100;
   userdata_type userdata_hsv = {
       .in = &in_img_hsv,
       .out = &mask_img_hsv,
-      .threshold = &dist_threshold,
+      .threshold = dist_threshold_hsv,
       .reference_color = &reference_color_hsv,
       .task6 = false}; // reference color gets set by address
-  cv::imshow("T-shirt HSV", in_img);
+  cv::imshow("T-shirt HSV", in_img_hsv);
   cv::setMouseCallback("T-shirt HSV", &neighborhood_callback, &userdata_hsv);
   // NOTE: task 6
   cv::Vec3b reference_color_task6 = {0, 0, 0};
   const int dist_threshold_task6 = 120;
   userdata_type userdata_task6 = {.in = &in_img,
                                   .out = &mask_img_task6,
-                                  .threshold = &dist_threshold_task6,
+                                  .threshold = dist_threshold_task6,
                                   .reference_color = &reference_color_task6,
                                   .task6 = true};
   cv::imshow("task6", in_img);
