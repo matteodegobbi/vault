@@ -1,0 +1,3 @@
+* Gaussian/Median to remove noise
+* Derivative/Absolute value(to eliminate double line effect) of Laplacian
+* Threshold
