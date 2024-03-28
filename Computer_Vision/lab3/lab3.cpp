@@ -37,7 +37,7 @@ void neighborhood_callback(int event, int x, int y, int flags, void *userdata) {
   Mat out_img = *u.out;
   int threshold = u.threshold;
   Vec3b *ref_color = u.reference_color;
-  if (event == EVENT_LBUTTONDOWN) {
+  if (true || event == EVENT_LBUTTONDOWN) {
     int counter = 0;
     int b_sum = 0;
     int g_sum = 0;
