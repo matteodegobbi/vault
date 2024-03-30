@@ -37,7 +37,7 @@ void neighborhood_callback(int event, int x, int y, int flags, void *userdata) {
   Mat out_img = *u.out;
   int threshold = u.threshold;
   Vec3b *ref_color = u.reference_color;
-  if (true || event == EVENT_LBUTTONDOWN) {
+  if (event == EVENT_LBUTTONDOWN) {
     int counter = 0;
     int b_sum = 0;
     int g_sum = 0;
@@ -61,10 +61,10 @@ void neighborhood_callback(int event, int x, int y, int flags, void *userdata) {
 
     segment_shirt(in_img, out_img, *ref_color, threshold);
     if (!u.task6) {
-      cv::imshow("segmneted", out_img);
+      cv::imshow("segmented", out_img);
       cv::waitKey(1);
     } else {
-      cv::imshow("segmneted", out_img);
+      cv::imshow("segmented", out_img);
       cv::waitKey(1);
       const Vec3b select_color = {92, 37, 201};
       for (int r = 0; r < out_img.rows; r++) {
