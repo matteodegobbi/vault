@@ -1,3 +1,5 @@
+#cv
+Edge detection is a [[Low, Mid and High level image processing|mid level image processing]].
 Canny edge detector is a filter addressing the following targets: 
 * Low error rate
 * Edge points well localized 
@@ -9,7 +11,7 @@ Steps:
 4. Non-maxima suppression 
 5. Hysteresis thresholding
 # 1. Smoothing
-With a Gaussian filter before evaluating edges, with the purpose of noise reduction.
+With a Gaussian filter before evaluating edges, with the purpose of noise reduction. We do this noise reduction before computing the gradient because derivatives amplify noise
 # 2. Gradient computation
 Edges are calculated using vertical, horizontal and diagonal masks. Edge direction is also calculated.
 ![[Pasted image 20240401193443.png]]
