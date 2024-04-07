@@ -1,5 +1,6 @@
 #cv
-Edge detection is a [[Low, Mid and High level image processing|mid level image processing]].
+#midlevelprocessing
+Edge detection is a [[Low, Mid and High level image processing (9)|mid level image processing]].
 Canny edge detector is a filter addressing the following targets: 
 * Low error rate
 * Edge points well localized 

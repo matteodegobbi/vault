@@ -1,5 +1,6 @@
 #cv 
-These operations are [[Low, Mid and High level image processing|low-level]], but operate on the shapes found in an image
+#lowlevelprocessing 
+These operations are [[Low, Mid and High level image processing (9)|low-level]], but operate on the shapes found in an image
 They generally work on binary images, are based on set theory.
 
 We use a Set-based description of an image:
