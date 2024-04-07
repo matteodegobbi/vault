@@ -1,5 +1,5 @@
-#cv
-[[Low, Mid and High level image processing|Low level image processing]].
+#cv #lowlevelprocessing
+[[Low, Mid and High level image processing (9)|Low level image processing]].
 Local operations:
 * Linear and non-linear filters
 * The output value depends on the initial values of the pixel + its neighbors

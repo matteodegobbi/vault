@@ -1,6 +1,7 @@
 #cv
-The classical Hough transform was concerned with the identification of [lines](https://en.wikipedia.org/wiki/Line_(mathematics) "Line (mathematics)") in the image, but later the Hough transform has been extended to identifying positions of arbitrary shapes, most commonly [circles](https://en.wikipedia.org/wiki/Circle "Circle") or [ellipses](https://en.wikipedia.org/wiki/Ellipse "Ellipse"). It's a [[Low, Mid and High level image processing|mid level image processing]] algorithm.
-Before using the Hough transform we process the image with an edge detector algorithm like [[Canny Algorithm]].
+#midlevelprocessing 
+The classical Hough transform was concerned with the identification of [lines](https://en.wikipedia.org/wiki/Line_(mathematics) "Line (mathematics)") in the image, but later the Hough transform has been extended to identifying positions of arbitrary shapes, most commonly [circles](https://en.wikipedia.org/wiki/Circle "Circle") or [ellipses](https://en.wikipedia.org/wiki/Ellipse "Ellipse"). It's a [[Low, Mid and High level image processing (9)|mid level image processing]] algorithm.
+Before using the Hough transform we process the image with an edge detector algorithm like [[Canny Algorithm (9)]].
 # Using the Hough transform
 A line passing through $x_{i},y_{i}$: $y_{i}= ax_{i}+b$ 
 Now consider the ab-plane and rewrite the equation as $b=-x_{i}a+y_{i}$
