@@ -1,100 +1,101 @@
+#include "opencv2/core.hpp"
 #include "opencv2/core/hal/interface.h"
-#include "opencv2/core/matx.hpp"
+#include "opencv2/core/types.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/imgproc.hpp"
+#include <cassert>
 #include <cmath>
+#include <cstdlib>
 #include <iostream>
 #include <ostream>
+#include <vector>
 
 using namespace cv;
 using std::cout;
 
-struct userdata_t {
-  Mat &in;
-  Mat &out;
-  int *threshold1;
-  int *threshold2;
+struct line_params {
+  double m;
+  double b;
 };
-constexpr int canny_max_threshold = 500;
-static void on_trackbar(int _, void *userdata) {
-  userdata_t data = *static_cast<userdata_t *>(userdata);
-  double thres1 = (double)*data.threshold1;
-  double thres2 = (double)*data.threshold2;
-  Mat temp1;
-  Mat temp2;
+constexpr int line_valid_count = 200;
+constexpr double distance_valid = 1.0;
 
-  Mat in_gray;
-  in_gray = data.in.clone();
-  // cvtColor(data.in, in_gray, COLOR_BGR2GRAY);
-  int dilation_size = 8;
-  Mat element = getStructuringElement(
-      MORPH_RECT, Size(2 * dilation_size + 1, 2 * dilation_size + 1),
-      Point(dilation_size, dilation_size));
-  // dilate(in_gray, temp1, element);
-  erode(in_gray, temp1, element);
-  dilate(temp1, temp1, element);
-  temp1 = in_gray - temp1;
-  imshow("sottrazione", temp1);
-  for (int i = 0; i < temp1.rows; i++) {
-    for (int j = 0; j < temp1.cols; j++) {
-      if (norm(temp1.at<Vec3b>(i, j)) < 250) {
-        temp1.at<Vec3b>(i, j) = 0;
+// PERF: these constants are used to improve performance
+constexpr double ignore_radius = 150;
+constexpr int lines_vec_reserve = 202000;
+constexpr int coords_vec_reserve = 2000;
+
+void find_road_lines(const Mat &in, Mat &out) {
+  Mat gray_in;
+  cvtColor(in, gray_in, COLOR_BGR2GRAY);
+  Mat threshold_in;
+  threshold(gray_in, threshold_in, 250, 255, THRESH_TOZERO);
+  // imshow("thresholded in", threshold_in);
+  constexpr int morph_size = 7;
+  Mat stucturing_el =
+      getStructuringElement(MORPH_RECT, Size(morph_size, morph_size));
+  Mat morphed;
+  erode(threshold_in, morphed, stucturing_el);
+  stucturing_el = getStructuringElement(MORPH_RECT, Size(11, 11));
+  dilate(morphed, morphed, stucturing_el);
+  Mat temp = threshold_in - morphed;
+  Mat sobel_out;
+  Sobel(temp, sobel_out, CV_8U, 1, 0);
+  // imshow("Sobel", sobel_out);
+  std::vector<Vec2i> coords;
+  coords.reserve(coords_vec_reserve);
+  for (int i = 0; i < sobel_out.rows; i++) {
+    for (int j = 0; j < sobel_out.cols; j++) {
+      if (sobel_out.at<uchar>(i, j) != 0) {
+        coords.push_back(Vec2i(i, j));
       }
     }
   }
-  imshow("azzero", temp1);
-  Canny(temp1, temp2, thres1, thres2);
-  imshow("Canny output", temp2);
-  std::vector<std::vector<Point>> contours;
-  std::vector<Vec4i> hierarchy;
-  findContours(temp2, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
-  Mat drawing = Mat::zeros(temp2.size(), CV_8UC3);
-  RNG rng(12445);
-  for (size_t i = 0; i < contours.size(); i++) {
-    Scalar color =
-        Scalar(rng.uniform(0, 256), rng.uniform(0, 256), rng.uniform(0, 256));
-    drawContours(drawing, contours, (int)i, color, 2, LINE_8, hierarchy, 0);
-  }
-  imshow("Contours", drawing);
-  /*
-  for (int i = 0; i < temp1.rows; i++) {
-    for (int j = 0; j < temp1.cols; j++) {
-      if (norm(data.in.at<Vec3b>(i, j) - Vec3b(255, 255, 255)) > 1000) {
-        temp1.at<Vec3b>(i, j) = 0;
+  // cout << coords.size() << std::endl;
+  std::vector<line_params> lines;
+  lines.reserve(lines_vec_reserve);
+  for (int i = 0; i < coords.size(); i++) {
+    Vec2i p1 = coords[i];
+    // NOTE: we only check from i+1 becuase we dont want to check the same
+    // couple twice
+    for (int j = i + 1; j < coords.size(); j++) {
+      Vec2i p2 = coords[j];
+      if (norm(p1 - p2) > ignore_radius) {
+        double m = ((double)(p2[1] - p1[1])) / (p2[0] - p1[0]);
+        double b = (double)p2[1] - (double)m * p2[0];
+        int count = 0;
+        for (Vec2i p3 : coords) {
+          assert(sqrtf(1 + m * m) != 0);
+          double distance = fabs(p3[1] - m * p3[0] - b) / sqrtf(1 + m * m);
+          if (distance < distance_valid) {
+            count++;
+          }
+        }
+        if (count > line_valid_count) {
+          lines.push_back({.m = m, .b = b});
+        }
       }
     }
   }
-salta:;
-  GaussianBlur(temp1, temp1, Size(3, 3), 1);
-  Canny(temp1, temp2, thres1, thres2);
-  //  data.out = in_gray.clone();
-  /*
-   */
-  // imshow("Canny output", temp2);
+  out = in.clone();
+  // cout << lines.size() << std::endl;
+  for (line_params pars : lines) {
+    // NOTE: order is y coord, x coord
+    Point p = Point(pars.b, 0);
+    Point q = Point((pars.m * (in.cols - 1) + pars.b), in.cols - 1);
+    line(out, p, q, Scalar(0, 0, 255));
+  }
+  imshow("fine", out);
+  waitKey(0);
 }
 int main(void) {
-  Mat src1 = imread("street_scene.png");
+  Mat src = imread("street_scene.png");
   Mat dst;
-  if (src1.empty()) {
+  if (src.empty()) {
     cout << "Error loading src1 \n";
     return -1;
   }
-  namedWindow("Canny output", WINDOW_AUTOSIZE); // Create Window
-  char TrackbarName[50];
-  snprintf(TrackbarName, sizeof(TrackbarName), "Alpha x %d",
-           canny_max_threshold);
-  int threshold1 = 490;
-  int threshold2 = 500;
-  userdata_t data = {.in = src1,
-                     .out = dst,
-                     .threshold1 = &threshold1,
-                     .threshold2 = &threshold2};
-  createTrackbar("track1", "Canny output", &threshold1, canny_max_threshold,
-                 on_trackbar, &data);
-  createTrackbar("track2", "Canny output", &threshold2, canny_max_threshold,
-                 on_trackbar, &data);
-  // on_trackbar(threshold1, &data);
-  waitKey(0);
+  find_road_lines(src, dst);
   return 0;
 }
