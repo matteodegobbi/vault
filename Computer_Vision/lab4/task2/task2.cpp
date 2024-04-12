@@ -6,7 +6,6 @@
 #include "opencv2/imgproc.hpp"
 #include <cassert>
 #include <cmath>
-#include <cstdlib>
 #include <iostream>
 #include <ostream>
 #include <vector>
@@ -40,6 +39,8 @@ void find_road_lines(const Mat &in, Mat &out) {
   stucturing_el = getStructuringElement(MORPH_RECT, Size(11, 11));
   dilate(morphed, morphed, stucturing_el);
   Mat temp = threshold_in - morphed;
+  // imshow("morphed", morphed);
+  // imshow("white box removed", temp);
   Mat sobel_out;
   Sobel(temp, sobel_out, CV_8U, 1, 0);
   // imshow("Sobel", sobel_out);
@@ -86,7 +87,7 @@ void find_road_lines(const Mat &in, Mat &out) {
     Point q = Point((pars.m * (in.cols - 1) + pars.b), in.cols - 1);
     line(out, p, q, Scalar(0, 0, 255));
   }
-  imshow("fine", out);
+  imshow("final image with lines", out);
   waitKey(0);
 }
 int main(void) {

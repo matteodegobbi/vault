@@ -1,10 +1,8 @@
 #include "opencv2/core.hpp"
-#include "opencv2/core/hal/interface.h"
 #include "opencv2/core/types.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/imgproc.hpp"
-#include <cassert>
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
@@ -27,23 +25,25 @@ void find_road_lines_hough(const Mat &in, Mat &out) {
       getStructuringElement(MORPH_RECT, Size(morph_size, morph_size));
   Mat morphed;
   dilate(canny_out, morphed, stucturing_el);
-  imshow("aa", morphed);
+  imshow("after dilation", morphed);
+  imshow("canny output", canny_out);
   out = morphed.clone();
-  std::vector<Vec2f> lines; // will hold the results of the detection
-  HoughLines(out, lines, 1, CV_PI / 180, 150, 0, 0);
-  for (size_t i = 0; i < lines.size(); i++) {
+  std::vector<Vec2f> lines;
+  HoughLines(out, lines, 1, CV_PI / 180, 150);
+  // draw lines as in opencv docs
+  for (int i = 0; i < lines.size(); i++) {
     float rho = lines[i][0], theta = lines[i][1];
     Point pt1, pt2;
-    double a = cos(theta), b = sin(theta);
-    double x0 = a * rho, y0 = b * rho;
+    double m = cos(theta), b = sin(theta);
+    double x0 = m * rho, y0 = b * rho;
     pt1.x = cvRound(x0 + 1000 * (-b));
-    pt1.y = cvRound(y0 + 1000 * (a));
+    pt1.y = cvRound(y0 + 1000 * (m));
     pt2.x = cvRound(x0 - 1000 * (-b));
-    pt2.y = cvRound(y0 - 1000 * (a));
+    pt2.y = cvRound(y0 - 1000 * (m));
     line(final, pt1, pt2, Scalar(0, 0, 255), 3, LINE_AA);
   }
 
-  imshow("in", final);
+  imshow("detected lines", final);
   waitKey(0);
 }
 int main(void) {
