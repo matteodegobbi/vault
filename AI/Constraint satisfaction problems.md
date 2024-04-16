@@ -13,7 +13,7 @@ Allows useful general-purpose algorithms to solve complex problems
 The main idea of algorithms for solving CSPs is to eliminate large portions of the search space all at once by identifying variable/value combinations that violate the constraints.
 
 # Problem
-* Set of variables $X = {X_1,X_2,\dots,X_n}$ 
+* Set of variables $X = \{X_1,X_2,\dots,X_n\}$ 
 * Set of domains $D = {D_1,D_2,\dots,D_n}$ 
 	* Each domain $D_i$ consists of a set of allowable values for variable $X_i$.
 	* In many cases the domain is assumed to be the same for all variables
@@ -38,3 +38,14 @@ CSP solvers are faster than state-space searchers because the CSP solver can qui
 [[7_AI6-csp-2024-01.pdf|Example why they are faster pag 11]].
 
 # Varieties of CSPs
+We consider only CSPs with discrete variables and finite domains: 
+* n variables, domain size d
+* e.g., variables WA, NT, Q, NSW, V, SA, T in the map coloring problem and each variable has the domain Di = {red, blue, green}
+# Varieties of constraints 
+* Unary constraints involve a single variable, e.g., SA ≠ green
+* Binary constraints involve pairs of variables e.g., SA ≠ WA
+* Higher-order constraints involve 3 or more variables
+* Global constraints involve an arbitrary number of variables e.g., `Alldiff`, which says that all of the variables involved in the constraint must have different values
+
+Binary CSP: CSP where each constraint relates two variables. 
+Important: Any CSP can be converted into a CSP with only binary constraints
