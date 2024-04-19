@@ -22,16 +22,16 @@ int main(int argc, char **argv) {
   in.convertTo(temp, CV_32F);
   constexpr int n_clusters = 2;
   TermCriteria criteria(TermCriteria::EPS + TermCriteria::COUNT, 10, 0.01);
-  kmeans(temp, n_clusters, labels, criteria, 7, KMEANS_PP_CENTERS, centers);
-
+  kmeans(temp, n_clusters, labels, criteria, 5, KMEANS_PP_CENTERS, centers);
   Mat out;
   Mat superimposed = in.clone();
   temp.convertTo(out, CV_8UC3);
   cvtColor(out, out, COLOR_BGR2GRAY);
   threshold(out, out, 15, 255, THRESH_BINARY);
+  imshow("thresholded", out);
   Mat kernel = getStructuringElement(MORPH_RECT, Size(9, 9));
   morphologyEx(out, out, MORPH_OPEN, kernel);
-  imshow("out", out);
+  imshow("thresholed and morphed", out);
 
   for (int i = 0; i < out.rows; i++) {
     for (int j = 0; j < out.cols; j++) {

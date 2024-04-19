@@ -21,7 +21,9 @@ int main(int argc, char **argv) {
   cvtColor(temp, temp, COLOR_BGR2GRAY);
   threshold(temp, temp, 0, 255, THRESH_OTSU + THRESH_BINARY);
 
-  imshow("trhrsh", temp);
+  imshow("tresholded", temp);
+  imwrite("otsu.jpg", temp);
+
   waitKey(0);
   return 0;
 }
