@@ -12,7 +12,7 @@ Allows useful general-purpose algorithms to solve complex problems
 * general-purpose heuristics rather than problem-specific heuristics
 The main idea of algorithms for solving CSPs is to eliminate large portions of the search space all at once by identifying variable/value combinations that violate the constraints.
 
-# Problem
+# Definition of a constraint satisfaction problem
 * Set of variables $X = \{X_1,X_2,\dots,X_n\}$ 
 * Set of domains $D = {D_1,D_2,\dots,D_n}$ 
 	* Each domain $D_i$ consists of a set of allowable values for variable $X_i$.
