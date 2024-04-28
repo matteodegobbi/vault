@@ -49,3 +49,8 @@ We consider only CSPs with discrete variables and finite domains:
 
 Binary CSP: CSP where each constraint relates two variables. 
 Important: Any CSP can be converted into a CSP with only binary constraints
+
+
+
+TODO: 
+DA AGGIUNGERE IL RESTO DI ROBA SUI CSP
