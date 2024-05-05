@@ -70,3 +70,84 @@ With this heuristic we choose first the variable that is involved in the most co
 ### Least constraining value
 After having chosen a variable we need to choose an ordering of the domain values: we can choose first the least constraining values -> the ones that rule out the fewest values in the remaining unassigned variables, this leads to succeeding first when it's possible.
 This value ordering doesn't matter if we want all the solutions or if there is no solution because we have to consider all values.
+
+## Improving backtracking
+### Backjumping
+Until now we only saw a version of backtracking called chronological backtracking which backtracks to the previous variable to try another value. Sometimes this leads to useless steps, for example if the conflict isn't between the current and previous variable all the values we try for the previous variable will not lead to a consistent assignment.
+
+If we use backjumping we backtrack to a variable that might fix the problem, the set of these variables is called the conflict set.
+This fixes the problem where we kept trying values for a variable that is not in conflict with the assignment.
+
+### No-good
+This technique is used to avoid running into the same problem multiple times and avoiding redundant work.
+Whenever we encounter a conflict we learn a new constraint by finding the minimum set of variables that cause the problem, this set of variables and their corresponding assignment is called no-good.
+We record the no-good by adding the new constraint to the CSP.
+
+### Forward checking 
+It's a technique (of constraint propagation) to provide early detection for some failures.
+We keep track of remaining legal values for unassigned variables and terminate the search when any variable has no legal values.
+
+Forward checking propagates information from assigned to unassigned variables, but doesn't provide early detection for all failures. Example in the pdf [[10_AI6-csp-2024-04.pdf]].
+
+Constraint propagation is: using constraints to reduce the number of legal values for a variable -> this can reduce the legal values for another variable.
+It may be interleaved with search or may be done as a preprocessing step, before search starts. Sometimes it can solve the whole problem, so no search is required.
+The key idea is local consistency. By enforcing local consistency in each part of the constraint graph inconsistent values are eliminated.
+There are different types of local consistency.
+
+### Node consistency
+A variable (node in the constraint graph) is node -consistency if all the values in its domain satisfy the variable unary constraints.
+To make a variable node consistent we remove from its domain all the values incompatible with its unary constraint.
+
+A CSP network is node-consistent if every variable in the network is node-consistent
+
+Since all unary constraint can be satisfied by applying node-consistency and all n-ary constraint can be turned into binary constraints we will focus on only the CSPs with binary constraints.
+
+### Arc consistency
+Used to make each arc consistent -> variables are arc consistent if its domain satisfies its binary constraints.
+
+If there's is a binary constraint between Xi and Xj, Xi is arc consistent wrt Xj iff for every value in Xi's domain there exists a value in Xj's domain s.t. the binary constraint is satisfied.
+(This definition is not symmetric be careful)
+
+Arc consistency detects failure earlier than forward checking. [[10_AI6-csp-2024-04.pdf]]
+Can be run as a preprocessor on the CSP or after each assignment.
+
+We can use the AC-3 algorithm to mantain arc consitency:
+![[Pasted image 20240503145455.png]]
+Complexity of AC-3:
+For binary CSPs
+* n: number of variables
+* c: number of binary constraints (arcs)
+* d: domain size
+
+Time: $O(cd^{3})$:
+* Each arc (Xk,Xi) inserted in the queue only d times because Xi has at most d values to delete
+* Checking consistency of an arc can be done in $O(d^{2})$ time
+Thus, $O(cd^{3})$ total worst-case time
+
+Is arc consistency enough?
+By using AC we can remove many incompatible values
+* Do we get a solution?
+* Do we know if there exists a solution?
+Unfortunately, the answer to both above questions is NO:
+![[Pasted image 20240503145712.png]]
+
+Sometimes we have a solution/failure after AC
+* A domain is empty -> no solution exists
+* All the domains are singleton -> we have a solution
+
+### Path consistency
+Stronger consistency than arc consistency, requires it on more than one constraint.
+A two-variable set {Xi, Xj} is path-consistent with respect to
+a third variable Xm if ∀ assignment {Xi = a, Xj = b} consistent with the constraints on {Xi , Xj} ∃ assignment to Xm that satisfies:
+* the constraints on {Xi , Xm}
+* the constraints on{Xm , Xj }
+
+This is called path consistency since it is like considering a path from Xi to Xj with Xm in the middle.
+
+Path consistency does not guarantee that all the constraints among  the variables on the path are satisfied only the constraints between the neighbouring variables must be.
+PC is still not a complete technique, but it's stronger than arc consistency.
+
+If forward checking (or a stronger consistency check like AC) is applied then backjumping is not neeeded.
+
+
+
