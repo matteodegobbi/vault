@@ -13,9 +13,7 @@
 using namespace cv;
 using std::cout;
 using std::endl;
-constexpr double rotation_threshold = 150C
-    :\Users\matteo\Desktop\vault\Computer_Vision\lab6\outimages\all_souls_000002
-        .jpgall_souls_000006.jpg.jpg .0;
+constexpr double rotation_threshold = 150.0;
 constexpr double percent_of_matches_threshold = 0.02;
 
 int main(int argc, char **argv) {

@@ -57,3 +57,17 @@ There exists some theorems that state how some of these properties are incompati
 	* non-dictatorial
 	* non-manipulable
 These impossibility results hold also when we allow partially ordered preferences.
+
+### Incomparability
+Sometimes preferences don't induce a total order over the options.
+Preference may induce a partial order where some options are incomparable.
+Some options are naturally incomparable: house vs apartment.
+An agent may have several possibly conflicting preference criteria he wants to follow: cheap and slow vs expensive and fast.
+
+(Some models like soft constraints allow for partial order)
+
+### Uncertainty, vagueness
+
+TODO
+---------
+
