@@ -62,6 +62,7 @@ int main(int argc, char **argv) {
   Mat out;
   remap(imgs[0], out, map1, map2, INTER_LINEAR);
   imshow("o", out);
+  imwrite("o.png", out);
 
   waitKey(0);
   return 0;
