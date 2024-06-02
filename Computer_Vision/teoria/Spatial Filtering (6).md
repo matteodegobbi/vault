@@ -2,7 +2,6 @@
 [[Low, Mid and High level image processing (9)|Low level image processing]].
 Local operations:
 * Linear and non-linear filters
-* The output value depends on the initial values of the pixel + its neighbors
 Local operations are defined based on a filter/kernel. The kernel defines a neighborhood and a weight associated with each pixel involved in the computation.
 ![[Pasted image 20240402143039.png]]
 Local operations are performed in the spatial domain of the image. 
@@ -21,7 +20,8 @@ Suppose the filter dimensions are 𝑚 × 𝑛
 * 𝑛 = 2𝑏 + 1
 Correlation is defined as:
 ![[Pasted image 20240402143750.png]]
-In the CV context, convolution and correlation are often used as synonims but usually, correlation is evaluated.
+In the CV context, convolution and correlation are often used as synonyms but usually, correlation is evaluated.
+
 The filter weights can change the image brightness. Brightness is unchanged if: $\sum\limits_{i}w_{i}=1$, this is obtained by a normalization factor.
 # Averaging filter
 They evaluate the average over a neighborhood of a pixel. They can be used for smoothing, blurring and restoration.
@@ -59,6 +59,7 @@ Left: Laplacian, Right: version of Laplacian that includes diagonal terms
 ![[Pasted image 20240402145235.png]]
 The Laplacian can be used to enhance the transitions in the image. Combination of the image and the Laplacian for sharpening:
 ![[Pasted image 20240402145529.png]]
+![[Pasted image 20240531162345.png]]
 # Noise and image restoration
  We can model the acquired image as Ideal image + noise:
  ![[Pasted image 20240402150811.png]]
