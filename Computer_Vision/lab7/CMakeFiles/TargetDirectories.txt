@@ -1,0 +1,3 @@
+/home/fogliodicarta/Desktop/vault/Computer_Vision/lab7/CMakeFiles/panoramic.dir
+/home/fogliodicarta/Desktop/vault/Computer_Vision/lab7/CMakeFiles/edit_cache.dir
+/home/fogliodicarta/Desktop/vault/Computer_Vision/lab7/CMakeFiles/rebuild_cache.dir
