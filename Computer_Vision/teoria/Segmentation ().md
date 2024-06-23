@@ -1,5 +1,4 @@
 #cv 
-#unfinished
 Subdivide an image into n regions:
 ![[Pasted image 20240407112858.png]]
 
@@ -74,7 +73,7 @@ $=m_{G}^{2}-2m_{G}(P_{1}m_{1}+P_{2}m_{2})+P_{1}m_{1}^{2}+P_{2}m_{2}^{2}=$
 $=-m_{G}^{2}+P_{1}m_{1}^{2}+P_{2}m_{2}^{2}=$
 $=-P_{1}^{2}m_{1}^{2}-P_{2}^{2}m_{2}^{2}-2P_{1}P_{2}m_{1}m_{2}+P_{1}m_{1}^{2}+P_{2}m_{2}^{2}=$
 $=m_{1}^{2}(P_{1}-P_{1}^{2})+m_{2}^{2}(P_{2}-P_{2}^{2})-2P_{1}P_{2}m_{1}m_{2}=$
-$=P_{1}P_{2}(m_{1}^{2}-m_{2}^{2}-2m_{1}m_{2})=$
+$=P_{1}P_{2}(m_{1}^{2}+m_{2}^{2}-2m_{1}m_{2})=$
 $=P_{1}P_{2}(m_{1}-m_{2})^{2} \ \  \square$
 
 And then we can find a better formulation for efficiency:
@@ -95,3 +94,6 @@ $=\frac{(m-P_{1}m_{G})^{2}}{P_{1}P_{2}}\ \ \square$
 For multiple categories we find multiple tresholds:
 ![[Pasted image 20240407152309.png]]
 ![[Pasted image 20240407152322.png]]
+
+The rest is on onenote.
+
