@@ -1,13 +1,13 @@
 #ai
 An agent is anything that can be viewed as
-* perceiving its environment through sensors 
-* acting upon that environment through actuators
+* <mark style="background: #BBFABBA6;">perceiving</mark> its environment through sensors 
+* <mark style="background: #BBFABBA6;">acting</mark> upon that environment through actuators
 
 The agent function maps percept histories to actions $f:\mathcal P^{\star}\to\mathcal A$
 The agent program runs on the physical architecture to produce f
 
 # Rational agent
-A rational agent, for each possible percept sequence, should select an action that is expected to maximize its performance measure:
+A rational agent, for each possible percept sequence, should select an action that is <mark style="background: #BBFABBA6;">expected to maximize its performance measure</mark>:
 * given the evidence provided by the percept sequence
 * given whatever built-in knowledge the agent has
 Rationality is distinct from omniscience (all-knowing with infinite knowledge)

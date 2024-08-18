@@ -135,6 +135,15 @@ Sometimes we have a solution/failure after AC
 * A domain is empty -> no solution exists
 * All the domains are singleton -> we have a solution
 
+<mark style="background: #FFB86CA6;">If i use MAC I dont need forward checking because MAC checks a stronger form of consistency.</mark>
+
+"The eagle-eyed reader may have noticed something odd: backjumping occurs when ev-
+ery value in a domain is in conﬂict with the current assignment; but forward checking detects
+this event and prevents the search from ever reaching such a node! In fact, it can be shown
+that every branch pruned by backjumping is also pruned by forward checking. Hence, sim-
+ple backjumping is redundant in a forward-checking search or, indeed, in a search that uses
+stronger consistency checking, such as MAC—you need only do one or the other." 
+Libro Artificial Intelligence, Peter Norvig
 ### Path consistency
 Stronger consistency than arc consistency, requires it on more than one constraint.
 A two-variable set {Xi, Xj} is path-consistent with respect to
