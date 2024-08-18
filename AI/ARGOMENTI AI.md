@@ -1,0 +1,23 @@
+- [x] Introduction Teoria 1 
+- [x] Intelligent agents Teoria 2
+- [x] Agents and hierarchical control Lab 2
+- [x] Stable matching Teoria 3
+- [x] Search uninformed Teoria 4
+- [x] Search informed Teoria 5
+- [ ] Hierarchical control + graph theory Lab 3 
+- [ ] Graph Lab 4
+- [ ] A* Lab 4 parte 2
+- [x] Local Search Teoria 6
+- [ ] Metaheuristic Lab 5
+- [x] CSP Teoria 7
+- [x] CSP Teoria 8
+- [x] CSP Teoria 9
+- [x] CSP Teoria 10
+- [ ] CSP Teoria 11
+- [ ] CSP Lab 6 e Lab 7 
+- [ ] SoftCSP Teoria 12
+- [ ] MultiAgent and voting Teoria 13
+- [ ] Bayesian nets Teoria 14
+- [ ] Lab Voting 
+- [ ] Lab Bayesian
+- [ ] Esercizi in classe + fine pdf 
