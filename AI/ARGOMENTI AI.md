@@ -13,7 +13,7 @@
 - [x] CSP Teoria 8
 - [x] CSP Teoria 9
 - [x] CSP Teoria 10
-- [ ] CSP Teoria 11
+- [x] CSP Teoria 11
 - [ ] CSP Lab 6 e Lab 7 
 - [ ] SoftCSP Teoria 12
 - [ ] MultiAgent and voting Teoria 13
