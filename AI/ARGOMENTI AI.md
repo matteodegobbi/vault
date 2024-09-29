@@ -15,9 +15,9 @@
 - [x] CSP Teoria 10
 - [x] CSP Teoria 11
 - [ ] CSP Lab 6 e Lab 7 
-- [ ] SoftCSP Teoria 12
-- [ ] MultiAgent and voting Teoria 13
-- [ ] Bayesian nets Teoria 14
+- [x] SoftCSP Teoria 12
+- [x] MultiAgent and voting Teoria 13
+- [x] Bayesian nets Teoria 14
 - [ ] Lab Voting 
 - [ ] Lab Bayesian
 - [ ] Esercizi in classe + fine pdf 
