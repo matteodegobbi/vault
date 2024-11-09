@@ -8,9 +8,9 @@ A snapshot of the associated information must be saved by the OS when the progra
 - The OS resources currently used by the process (e.g. open files)
  Process context must not be confused with the interrupt context: [[Context Switch VS Hardware Interrupt]].
 
- The OS has a list of PCBs (Process Control Block) to store this necessary info for all the processes, it would be necessary to copy all of the processes memory content when the process is switched but this is impossible, this is another reason for using [[Virtual Memory|virtual memory]], this way the actual content of the physical memory doesn't move and we just store the page table entries used by the process in the PCB.
+ The OS has a list of PCBs (Process Control Block) to store this necessary info for all the processes, it would be necessary to copy all of the processes memory content when the process is switched but this is impossible, this is another reason for using [[Virtual Memory|virtual memory]], this way the actual content of the physical memory doesn't move and we just store the [[Virtual Memory|page table entries]] used by the process in the PCB.
  The PCB holds:
- - Program code
+ - Program code (actually the PC and PID)
  - Program stack for local variables 
  - Static memory for global and static variables 
  - Heap memory
