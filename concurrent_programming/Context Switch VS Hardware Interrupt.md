@@ -36,7 +36,8 @@ A **hardware interrupt** is an external event (usually triggered by hardware) th
   - After the interrupt is handled, the CPU restores the saved state and resumes the interrupted task.
   
 - **Time overhead:**
-  Hardware interrupts are generally faster to handle than context switches, but still involve some overhead in saving/restoring state and jumping to an ISR.
+  Hardware interrupts are generally faster to handle than context switches, but still involve some overhead in saving/restoring state and jumping to an ISR. They are faster because:
+	  - risposta gpt #################################   
 
 - **Goal:**
   The purpose of hardware interrupts is to deal with time-sensitive events that need immediate attention from the CPU (like responding to user input or managing I/O).
