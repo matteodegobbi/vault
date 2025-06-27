@@ -16,7 +16,7 @@ A snapshot of the associated information must be saved by the OS when the progra
  - Heap memory
 If the memory used by the process is large the context switch can take a long time.
 
-The [[TLB]] must be flushed on context switch, this can be a problem for performance.
+The [[Cache, TLB, Pipelining]] must be flushed on context switch, this can be a problem for performance.
 
 ---
 

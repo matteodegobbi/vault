@@ -63,6 +63,6 @@ In summary, **context switches** are controlled by the OS to manage multitasking
 
 ---
 
-Furthermore the [[TLB]] is only impacted by context switches and not by hardware interrupts.
+Furthermore the [[Cache, TLB, Pipelining]] is only impacted by context switches and not by hardware interrupts.
 When issuing interrupts the OS will run the ISR in kernel mode, the kernel address space is shared across all processes this means that these records in the TLB are still valid even when running ISRs.
 This is different from context switches where the TLB is often flushed because the records become invalid (unless ASIDs are used).
