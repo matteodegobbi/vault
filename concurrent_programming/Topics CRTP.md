@@ -1,7 +1,8 @@
-# 
-[[Hardware, PCIe, Bus, Interrupts]]
+#  PDF1
+[[Hardware, PCIe, Bus, Interrupts, DMA]]
 [[Virtual Memory]]
-[[TLB]]
+[[Cache, TLB, Pipelining]]
+# PDF2
 [[Processes]]
 [[Context Switch VS Hardware Interrupt]]
 [[Threads]]
