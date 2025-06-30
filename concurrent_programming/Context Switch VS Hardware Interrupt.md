@@ -16,7 +16,7 @@ A **context switch** occurs when the operating system (OS) scheduler decides to 
   - The OS loads the state of the next process from its PCB and resumes execution.
   
 - **Time overhead:** 
-  Context switches are relatively costly in terms of performance because they involve saving/restoring state and possibly invalidating caches.
+  Context switches are relatively costly in terms of performance because they involve saving/restoring state and possibly invalidating caches and flushing the TLB.
 
 - **Goal:** 
   The primary goal of a context switch is to ensure fair sharing of CPU resources and handle multitasking efficiently.
@@ -63,6 +63,6 @@ In summary, **context switches** are controlled by the OS to manage multitasking
 
 ---
 
-Furthermore the [[Cache, TLB, Pipelining]] is only impacted by context switches and not by hardware interrupts.
+Furthermore the [[Cache, TLB, Pipelining|TLB]] is only impacted by context switches and not by hardware interrupts.
 When issuing interrupts the OS will run the ISR in kernel mode, the kernel address space is shared across all processes this means that these records in the TLB are still valid even when running ISRs.
 This is different from context switches where the TLB is often flushed because the records become invalid (unless ASIDs are used).

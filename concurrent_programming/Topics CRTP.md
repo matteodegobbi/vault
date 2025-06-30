@@ -6,8 +6,8 @@
 [[Processes]]
 [[Context Switch VS Hardware Interrupt]]
 [[Threads]]
-[[OS scheduler]]
 [[Scheduler]]
+# PDF3
 [[Race conditions - Mutual exclusion]]
 [[Semaphores]]
 [[Producer Consumer]]

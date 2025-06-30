@@ -1,4 +1,5 @@
 #crtp 
+![[pages.excalidraw|800]]
 Virtual memory is a concept used by most OSes that makes is so the addresses used by programs do not correspond with physical addresses.
 
 To be able to do this we need something to perform an address translation when accessing the physical memory
@@ -12,6 +13,8 @@ A virtual address of N bits is split like this:
 The Page Table is an array of numbers each L bits long, it contains physical addresses of pages corresponding to the virtual pages.
 
 OS and MMU [share](https://stackoverflow.com/questions/58995151/why-does-the-os-need-a-page-table-if-the-mmu-already-has-one) the page tables
+
+Each process has its page table, independent from other processes, this is important for when we will talk about [[Processes]] context switch.
 ## Reasons for virtual memory
 One simple reason is that if we have two processes running the same program in one computer we want the two processes to not interfere with each other by using the same memory. Virtual memory allows this since the virtual addresses in different processes will be mapped to different physical addresses by the MMU.
 
@@ -20,7 +23,6 @@ Another reason is that virtual memory makes it so a process with a memory error 
 (Also have a program with more memory than available physical RAM, and make some pages only accessible in Kernel mode)
 
 In any case memory access bugs that are still inside the page of the process will NOT be detected and stopped by the OS.
-
 # Shared memory
 We can still share memory across processes when using virtual memory. 
 To do this we can use the OS (always OS, it cannot be done in user space) to make the address translation for two addresses in two processes point to the same physical memory.
@@ -42,3 +44,7 @@ If a process tries to access a page not in memory the MMU will issue a Page Faul
 
  TODO Physical < virtual
 #todo
+
+
+Pages are contiguos both in physical and in virtual memory:
+A page is the smallest unit of memory that the hardware page mapping function of the CPU deals with. If for example, pages are 4096 bytes in size, then each page begins and ends on a boundary aligned to 4096 bytes in both physical and virtual memory and all 4096 bytes in the page are mapped linearly and contiguously from virtual address to physical address within the page. Only at page boundaries can eb mapping "jump around".
