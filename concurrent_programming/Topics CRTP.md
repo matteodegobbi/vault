@@ -1,13 +1,16 @@
-#  PDF1
+#  PDF 2
 [[Hardware, PCIe, Bus, Interrupts, DMA]]
 [[Virtual Memory]]
 [[Cache, TLB, Pipelining]]
-# PDF2
+# PDF 3
 [[Processes]]
 [[Context Switch VS Hardware Interrupt]]
 [[Threads]]
 [[Scheduler]]
-# PDF3
+# PDF 4
 [[Race conditions - Mutual exclusion]]
-[[Semaphores]]
+[[Semaphores and passive wait]]
 [[Producer Consumer]]
+[[Monitors]]
+[[TCP]]
+# PDF 5
