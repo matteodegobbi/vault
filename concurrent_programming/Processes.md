@@ -21,6 +21,8 @@ If the memory used by the process is large the context switch can take a long ti
 
 The [[Cache, TLB, Pipelining|TLB]] must be flushed on context switch, this can be a problem for performance, as for the next process the TLB will be cold and all the first accesses will be misses.
 
+Also the fact that we have virtual memory ensures us that an incorrect access in a process does not modify pages used by other processes, if this happens an exception occurs, stopping the process. If an incorrect access is done inside the correct page no exception occurs and we may not notice the bug.
+
 ---
 
 # Process states

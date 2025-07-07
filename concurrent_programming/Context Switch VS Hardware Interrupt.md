@@ -36,8 +36,7 @@ A **hardware interrupt** is an external event (usually triggered by hardware) th
   - After the interrupt is handled, the CPU restores the saved state and resumes the interrupted task.
   
 - **Time overhead:**
-  Hardware interrupts are generally faster to handle than context switches, but still involve some overhead in saving/restoring state and jumping to an ISR. They are faster because:
-	  - risposta gpt #################################   
+  Hardware interrupts are generally faster to handle than context switches, but still involve some overhead in saving/restoring state and jumping to an ISR.
 
 - **Goal:**
   The purpose of hardware interrupts is to deal with time-sensitive events that need immediate attention from the CPU (like responding to user input or managing I/O).
@@ -64,5 +63,5 @@ In summary, **context switches** are controlled by the OS to manage multitasking
 ---
 
 Furthermore the [[Cache, TLB, Pipelining|TLB]] is only impacted by context switches and not by hardware interrupts.
-When issuing interrupts the OS will run the ISR in kernel mode, the kernel address space is shared across all processes this means that these records in the TLB are still valid even when running ISRs.
+When issuing interrupts the OS will run the ISR in kernel mode, the kernel address space is shared across all processes, this means that these records in the TLB are still valid even when running ISRs.
 This is different from context switches where the TLB is often flushed because the records become invalid (unless ASIDs are used).

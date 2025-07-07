@@ -29,7 +29,7 @@ Selection of the highest priority queue is performed in O(1) time using a bitmap
 
 Summarizing the scheduler works like this:
 - start from the highest priority queue in the active queue and go through all the processes in that queue running them for their time-slice
-- for each of them when they ends their time-slice, move them to the expired queue
+- for each of them when they end their time-slice, move them to the expired queue
 - go to a lower priority (the new highest one) and repeat the same process
 - when all the queue is empty swap it with the expired queue.
 
