@@ -28,4 +28,4 @@ NOT shared:
 Using threads instead of processes makes it easy to communicate across tasks using shared memory.
 The shared memory though is not enough to ensure correct communication and synchronization among threads (we need some kind of locking or synchronizing mechanism).
 
-Both [[Threads|threads]] and [[Processes|processes]] are managed by the OS scheduler.
+Both [[Threads|threads]] and [[Processes|processes]] are managed by the OS [[Scheduler|scheduler]]. 
