@@ -12,5 +12,5 @@
 [[Semaphores and passive wait]]
 [[Producer Consumer]]
 [[Monitors]]
-[[TCP]]
+[[Message passing]]
 # PDF 5
