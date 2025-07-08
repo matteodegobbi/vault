@@ -15,7 +15,7 @@ The informal reasoning behind the primitives is that, if a process starts execut
 When one of those processes, usually by inspecting the monitor’s shared data, detects that the first process can eventually continue, it calls signal on the same condition variable.
 
 Though we have to be careful with this to avoid ruining the mutual exclusion property by waking up a waiting process from inside the monitor, because this way we will have two tasks running inside the monitor at the same time.
-1. One solution can be seen in the figure below and it that if `signal` is ever called from within a monitor method it must be the last instruction:
+1. One solution can be seen in the figure below and it enforces that if `signal` is ever called from within a monitor method it must be the last instruction:
 	![[Pasted image 20250703223044.png]]
 2. A second solution is the one used in pthreads (POSIX) and consists in making the task awakened by a `signal` after it was in `wait` state get the lock before proceeding. This means that if task A calls `wait` on the condition variable, B sends `signal` to wake up A, B will proceed anyway but A will try to get the monitor lock before proceeding, this way if the lock is already taken by task B no race condition happens.
 	 ![[Pasted image 20250703223733.png]]
