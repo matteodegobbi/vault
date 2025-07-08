@@ -1,4 +1,4 @@
-#todo #crtp 
+#crtp 
 Monitors provide a higher level abstraction to guarantee synchronization between tasks.
 A monitor is a composite object and contains:
 - a set of shared data

@@ -6,6 +6,8 @@ The solutions for mutual exclusion explored in [[Race conditions - Mutual exclus
 
 We want to have a method to have a passive wait, meaning that when a process tries to enter a critical section but another process is already in it instead of busy waiting the process gets blocked. The process will be woken up by the OS when the critical section is available again.
 
+For this we will use the OS as an intermediary for mutual exclusion.
+
 ---
 
 ## Semaphores
@@ -33,6 +35,24 @@ int main(){
 
 ```
 
+```cpp
+// Implementation of P and V in cpp-like pseudocode
+void P(s){
+	if(s.val > 0){
+		s.val--;
+	}else{
+		add_curr_process(s.queue);
+		preempt_curr_proc();
+	}
+}
+void V(s){
+	if(s.queue.is_empty()){
+		s.val++;
+	}else{
+		wake_up(q.pop());
+	}
+}
+```
 ---
 ## Condition synchronization with semaphores
 
