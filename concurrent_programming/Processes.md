@@ -1,7 +1,7 @@
 #crtp 
 
 A process is a running instance of a computer program
-A running program brings a set of information that change over time
+A running program brings a set of information that changes over time
    
 A snapshot of the associated information must be saved by the OS when the program loses processor ownership. Process context include:
 - The program and the other memory contents managed by the program, in particular the program stack and the global variables
@@ -19,7 +19,12 @@ The pages that are referenced in the page table in the PCB contain:
  - Heap memory
 If the memory used by the process is large the context switch can take a long time.
 
-The [[Cache, TLB, Pipelining|TLB]] must be flushed on context switch, this can be a problem for performance, as for the next process the TLB will be cold and all the first accesses will be misses.
+(So in total 3 possible solutions:
+1. copy all memory in PCB, very expensive
+2. copy only PTEs expensive if process has a lot of pages
+3. pointer to page table, each process has own page table
+)
+The [[Cache, TLB, Pipelining|TLB]] must be flushed on context switch, this can be a problem for performance, as for the next process the TLB will be cold and all the first accesses will be misses. 3 main performance hits of conetxt switches, TLB misses, cache invalidation, swapping pages to disk.
 
 Also the fact that we have virtual memory ensures us that an incorrect access in a process does not modify pages used by other processes, if this happens an exception occurs, stopping the process. If an incorrect access is done inside the correct page no exception occurs and we may not notice the bug.
 
