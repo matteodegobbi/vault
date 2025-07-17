@@ -19,7 +19,7 @@ At init the semaphore starts with an integer number specified by the programmer 
 
 After init the value and queue will be modified only through the functions `P(s)` and `V(s)`.
 
-1. `P(s)` checks whether the semaphores has a number greater than 0. If the condition is true than the semaphore doesn't block and the process can continue freely. If the semaphore has a number equal to 0 the process gets blocked (goes into Wait state) and gets added to the queue of the semaphore.
+1. `P(s)` checks whether the semaphores has a number greater than 0. If the condition is true than the semaphore doesn't block and the process can continue freely. If the semaphore has its number equal to 0 the process gets blocked (goes into Wait state) and gets added to the queue of the semaphore.
 2. `V(s)` if the queue of the semaphore is empty it increases the number by 1, otherwise if the queue is not empty it takes one of the blocked processes waiting in the queue and makes it ready, meaning it can now run when it gets scheduled by the OS.
 
 To use semaphores for mutual exclusion we can just do the following:

@@ -14,3 +14,6 @@
 [[Monitors]]
 [[Message passing]]
 # PDF 5
+[[Deadlocks]]
+# PDF 6
+
