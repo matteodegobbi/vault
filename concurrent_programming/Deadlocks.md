@@ -1,4 +1,4 @@
-#crtp #todo 
+#crtp 
 
 Deadlock happens when a set of processes is waiting on an event that can be triggered only by a process in the same set.
 The system hangs forever and no progress can happen, also any resource already locked by a process cannot be used by the system anymore.
