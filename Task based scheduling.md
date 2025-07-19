@@ -40,3 +40,16 @@ Assumptions:
 RM is the optimal priority assignment policy, i.e. every system that is schedulable using fixed priorities is schedulable using RM policy.
 In other words, if a system is not schedulable under RM policy, then it will remain not schedulable under any other fixed priority assignment
 Proof in the pdf [[Lecture 7-Task Based Scheduling.pdf]] for 2 tasks, can be generalized to n tasks.
+
+# Earliest Deadline First
+Selects tasks to run based on their absolute deadlines. The idea is that urgent tasks for which the deadline is approaching should be finished earlier.
+For task $\tau_i$  the absolute deadline is $d_{i,j}=\phi_i+j\cdot T_i +D_i$, computed as the phase (time from beginning of period to release of task i) plus the j past periods of task i plus the relative deadline
+
+With EDF tasks with earlier deadlines will receive higher priorities. The priority of each task is assigned dynamically, because it depends on the current deadlines of the active task instances. 
+
+Task priorities need to be updated only when a new task instance is released since the relative order remains unchanged.
+
+EDF is optimal, meaning that if a set of tasks is schedulable by any algorithm then it's also schedulable by EDF. 
+The assumption is that tasks can be preempted and there's only one processor, this is more general than RM since it's a dynamic scheduling, not a static one.
+
+More difficult to implement than RM since it also requires additional information about the task deadlines.
