@@ -39,9 +39,10 @@ We loop through a table of procedure calls, one major cycle is a full traversal 
 
 We define the minor cycle length to be the Greatest Common Divisor of the periods of the task to be scheduled, this is because we want the task periods to be an integer multiple of the minor cycle in order to be able to execute at their proper rate, but we also want the minor cycle to be as long as possible for reducing synchronizations and accomodate tasks with long execution time.
 
-For the major cycle we want it to be as small as possible (to avoid unnecessary table length) but we also need it to be big enough to be a integer multiple of all task periods so we can choose the Least Common Multiple of the task lengths.
+For the major cycle we want it to be as small as possible (to avoid unnecessary table length) but we also need it to be big enough to be a integer multiple of all task periods so we can choose the Least Common Multiple of the task periods.
 
 We may have to split some tasks in different minor cycles in order to fit.
 With cyclic executive unless there are splitting tasks we dont have to worry about race conditions since all task instances in this case will terminate before another one begins. This is not true if there is splitting as there will be context switches while a task instance has not terminated yet.
+
 
 
