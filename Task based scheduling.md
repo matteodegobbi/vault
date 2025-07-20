@@ -55,6 +55,7 @@ Proving this means that RM is optimal for fixed priority assignments for a gener
 ---
 # Earliest Deadline First
 Selects tasks to run based on their absolute deadlines. The idea is that urgent tasks for which the deadline is approaching should be finished earlier.
+
 For task $\tau_i$  the absolute deadline is $d_{i,j}=\phi_i+j\cdot T_i +D_i$, computed as the phase (time from beginning of period to release of task i) plus the j past periods of task i plus the relative deadline
 
 With EDF tasks with earlier deadlines will receive higher priorities. The priority of each task is assigned dynamically, because it depends on the current deadlines of the active task instances. 
@@ -65,3 +66,19 @@ EDF is optimal, meaning that if a set of tasks is schedulable by any algorithm t
 The assumption is that tasks can be preempted and there's only one processor, this is more general than RM since it's a dynamic scheduling, not a static one.
 
 More difficult to implement than RM since it also requires additional information about the task deadlines.
+
+---
+
+# Comparison RM and EDF
+
+#todo
+DA CONTROLLARE SE E'  GIUSTO
+- Both assume uniprocessor systems.
+- Both assume preemptive schedulers.
+- RM is optimal only for fixed priority while EDF also for dynamic assignments.
+- RM assumes independent tasks ([[Real-Time and Cyclic Executive#Basic process model]]) as we see in [[]] EDF can have shared resources if care is taken with priority inversion problems.
+- EDF needs to know worst case execution times, RM in principle only needs periods
+- Both assume relative deadline=period
+- Both assume negligible overhead for system ops like context switch
+- Both assume periodic tasks
+
