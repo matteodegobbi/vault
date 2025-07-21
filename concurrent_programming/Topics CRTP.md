@@ -20,6 +20,22 @@
 # PDF 7
 [[Task based scheduling]]
 # PDF 8
-Schedulability conditions and RTA 
-
+Schedulability conditions and RTA, only on pdf
 # PDF 9
+...
+# PDF 10
+...
+
+---
+
+# Lab topics
+1. Spectre
+2. I/O, OS, drivers
+3. V4L
+4. Compilers, optimization
+5. Processes, fork, threads, pthreads
+6. Semaphores, deadlocks, synchronization, condition variables
+7. TCP sockets
+8. UDP sockets
+9. Synchronization, producer consumer, buffer size
+10. Real time Linux
