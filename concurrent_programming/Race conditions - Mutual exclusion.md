@@ -38,7 +38,7 @@ This instruction ensures atomicity also in multicore environments because it loc
 Still the task busy-waits for the lock even with this method. Also this method does not guarantee fairness, a faster task can always steal the lock.
 
 ## Software lock: Peterson
-In the slides in PDF. Forse errore che dice condition = false dovrebbe essere true/Forse va bene e' al contrario di wikipedia
+In the slides in PDF
 ```cpp
 //Global Variables
 int flag[2] = {0, 0};
