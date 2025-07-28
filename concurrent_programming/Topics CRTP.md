@@ -24,7 +24,15 @@
 - RTA
 only on PDF
 # PDF 9
-...
+* Aperiodic and sporadic tasks, minimum interarrival time
+* Deadline shorter than period, RTA
+* DMPO
+* Task interaction and independence hypothesis of basic process model
+* Priority inversion and priority inheritance
+* Bounded wait time with inheritance
+* Priority ceiling and its properties
+* RTA with blocking
+
 # PDF 10
 ...
 

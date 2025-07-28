@@ -1,12 +1,3 @@
 {
-  "vimMode": true,
-  "readableLineLength": false,
-  "alwaysUpdateLinks": true,
-  "pdfExportSettings": {
-    "includeName": true,
-    "pageSize": "Letter",
-    "landscape": false,
-    "margin": "0",
-    "downscalePercent": 64
-  }
+  "vimMode": true
 }
