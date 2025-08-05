@@ -9,7 +9,7 @@ The monitor also guarantees mutual exclusion between its methods, only one task 
 Other than mutual exclusion we can achieve task synchronization like in [[Semaphores and passive wait|semaphores]] with monitors, for this we can use condition variables.
 
 Condition variables are variables that are hidden like the shared data and can only be modified by the monitor's methods, we define two primitives on condition variable `c`:
-1. `wait(c)`: blocks the invoking process and releases the monitor in a single, atomic action
+1. `wait(c)`: blocks the invoking process and releases the monitor (the lock is released) in a single, atomic action
 2. `signal(c)`: wakes up one of the processes blocked on `c`; it has no effect if no processes are blocked on `c`
 The informal reasoning behind the primitives is that, if a process starts executing a monitor method and then discovers that it cannot finish its work immediately, it invokes wait on a certain condition variable. In this way, it blocks and allows other processes to enter the monitor and perform their job.
 When one of those processes, usually by inspecting the monitor’s shared data, detects that the first process can eventually continue, it calls signal on the same condition variable.
@@ -20,3 +20,10 @@ Though we have to be careful with this to avoid ruining the mutual exclusion pro
 2. A second solution is the one used in pthreads (POSIX) and consists in making the task awakened by a `signal` after it was in `wait` state get the lock before proceeding. This means that if task A calls `wait` on the condition variable, B sends `signal` to wake up A, B will proceed anyway but A will try to get the monitor lock before proceeding, this way if the lock is already taken by task B no race condition happens.
 	 ![[Pasted image 20250703223733.png]]
 There exist a 3rd approach (defined by Hoare) that consists of making `signal` block the calling process if it wakes up a waiting process. This is similar to solution 2 but it block the caller of signal instead of the woken process. 
+
+---
+
+Another difference between Hoare's and Posix (Mesa) condition variables is that since Hoare's signal makes the signaling thread yield in case it wakes up another process, the process that was waiting does not need to recheck that the condition is still true since the signaling thread is yielded and cannot have modified the condition.
+In Mesa condition variables we need to recheck the condition as the process that has called signal might have kept running, possibly changing the condition again, making the signaled process have to call wait again. 
+
+---

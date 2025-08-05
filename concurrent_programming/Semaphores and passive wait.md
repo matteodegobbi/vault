@@ -2,7 +2,7 @@
 ## Active vs Passive wait
 The solutions for mutual exclusion explored in [[Race conditions - Mutual exclusion]] imply some active wait strategy, similar to the polling used in I/O. In both `test_and_set` and in Peterson's the second task that tries to enter the critical section needs to keep checking if it can enter. This can be wasteful in terms of CPU usage but it has the advantage of having low latency since no context switch happens.
 
-(Also a detail is that if two processes share only 1 processor busy wait will cause deadlock when a context switch happens inside the critical section)
+(Also a detail is that if two processes share only 1 processor busy wait will cause deadlock when a context switch happens inside the critical section to another )
 
 We want to have a method to have a passive wait, meaning that when a process tries to enter a critical section but another process is already in it instead of busy waiting the process gets blocked. The process will be woken up by the OS when the critical section is available again.
 
