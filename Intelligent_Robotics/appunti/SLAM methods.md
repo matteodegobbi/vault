@@ -21,9 +21,6 @@ Lavora in 2 Step:
 - Prediction step exploits the controls (actions carried out by the agent)
 - Correction step exploits the observations (sensory data)
 
-Continuare dal video di Stachniss
-#todo
-
 ---
 
 # Particle Filters 
@@ -45,8 +42,8 @@ It moves all the particle in the same way as the robot's commands.
 e.g. move all particles north by 7 meters 
 
 In the correction step we use the observations from sensors to obtain a likelihood for each of the particles
-that were moved in the previous step. it computes the likelihood that the real robot is in a specific location given that
-the particle was in a location. This basically gives us which particles are more likely to represent the actual robot's location.
+that were moved in the previous step. it computes the likelihood that the particle is in the observed location given that the real robot is in a specific location
+. This basically gives us which particles are more likely to represent the actual robot's location.
 
 Different particles will get different importance weights based on their likelihood. 
 Then we can resample based on these importance weights. We repeat this process, the "good" particles are likely so 
