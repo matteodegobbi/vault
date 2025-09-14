@@ -46,5 +46,5 @@ If a process tries to access a page not in memory the MMU will issue a Page Faul
 #todo
 
 
-Pages are contiguos both in physical and in virtual memory:
-A page is the smallest unit of memory that the hardware page mapping function of the CPU deals with. If for example, pages are 4096 bytes in size, then each page begins and ends on a boundary aligned to 4096 bytes in both physical and virtual memory and all 4096 bytes in the page are mapped linearly and contiguously from virtual address to physical address within the page. Only at page boundaries can eb mapping "jump around".
+Pages are contiguous both in physical and in virtual memory:
+A page is the smallest unit of memory that the hardware page mapping function of the CPU deals with. If for example, pages are 4096 bytes in size, then each page begins and ends on a boundary aligned to 4096 bytes in both physical and virtual memory and all 4096 bytes in the page are mapped linearly and contiguously from virtual address to physical address within the page. Only at page boundaries can the mapping "jump around".

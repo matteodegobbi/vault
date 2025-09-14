@@ -4,7 +4,7 @@
 Memory that is accessed often is stored in memory that is faster than RAM, called cache.
 If the processor tries to access some memory that is not in cache (cache miss) the process loads a chunk of memory around the accessed address into a cache line (cache line could be e.g. 64 bytes). The idea is that recently used memory and the memory near it will be used again in the near future (e.g. updating a variable in a loop accesses the same memory, looping over an array uses sequential memory).
 As with Pages there are multiple replacement strategies, not in this course.
-e.g. in this code inverting `i` with `j` even though the results is the same is can change the performance by a lot depending if the matrix is stored row or column major.
+e.g. in this code inverting `i` with `j` even though the result is the same is can change the performance by a lot depending if the matrix is stored row or column major.
 ```cpp
 #define MATRIX_SIZE 10000
 
@@ -41,7 +41,7 @@ The execution of a machine instruction is composed of several stages:
 * Execution
 * Output write
  When a given stage has finished execution, it is ready to process the next instruction, while the former one is being processed
- For N stages, the ideal speedup is N, if always the pipeline receives all the necessary data from the previous step.
+ For N stages, the ideal speedup is N, if the pipeline always  receives all the necessary data from the previous step.
 
 ## Pipeline Hazards: 
 There are conditions preventing the ideal pipeline execution

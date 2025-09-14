@@ -12,6 +12,7 @@ For this we will use the OS as an intermediary for mutual exclusion.
 
 ## Semaphores
 
+![[Pasted image 20250913213446.png]]
 A semaphore is an object with:
 -  a non negative integer number
 - a queue of processes waiting on the semaphores

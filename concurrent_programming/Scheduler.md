@@ -3,7 +3,7 @@ It's the component of the OS that takes care of deciding when and for how much t
 
 The ready task with the highest priority will be selected.
 
-The scheduler has to make an action when:
+The scheduler has to take an action when:
 1.  An interrupt occurs (e.g. I/O operation has ended, a task goes wait->ready)
 2. A task makes an OS call going from running->wait (e.g. task initiates an I/O) 
 

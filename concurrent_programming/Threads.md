@@ -29,3 +29,5 @@ Using threads instead of processes makes it easy to communicate across tasks usi
 The shared memory though is not enough to ensure correct communication and synchronization among threads (we need some kind of locking or synchronizing mechanism).
 
 Both [[Threads|threads]] and [[Processes|processes]] are managed by the OS [[Scheduler|scheduler]]. 
+
+With context switches between threads the page table will stay the same so the TLB does not need to be flushed, making the switch lighter.
