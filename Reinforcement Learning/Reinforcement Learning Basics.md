@@ -1,12 +1,12 @@
 #rl
-Reinforcement Learning is a machine learning paradigm based on using reward signals to train agent to achieve a certain goal.
+Reinforcement Learning is a machine learning paradigm based on using reward signals to train agents to achieve a certain goal.
 The differences with regular ML are:
 - No supervisors, only a scalar reward signal
 - Feedback is delayed from when the action is taken, not instantaneous
 - Time is important, in the sense that we cannot assume iid data, the data is inherently sequential
 - The agent's action affect the subsequent data it will receive. e.g. if a robot moves left it will receive different data than if it moves forward
 
-We define the reward $R_t$ as a scalar feedback signal that tells us how good did the agent at time $t$.
+We define the reward $R_t$ as a scalar feedback signal that tells us how good the agent did at time $t$.
 The `reward hypothesis` in RL is that all goals can be expressed as the maximization of the expected cumulative reward.
 
 Some important caveats are that action may have long term consequences and may sacrifice immediate reward in order to obtain a large reward in the future. Also rewards may be delayed from when the action is taken anyway.
