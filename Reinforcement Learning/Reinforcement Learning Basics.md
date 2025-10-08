@@ -13,7 +13,7 @@ Some important caveats are that action may have long term consequences and may s
 
 ---
 
-At each time step $t$ an agent executes action $A_t$ , receives observation $O_t$ and receives a scalar reward $R_t$.
+At each time step $t$ an agent executes action $A_t$, receives observation $O_t$ and receives a scalar reward $R_t$.
 
 The environment at time $t$ receives action $A_t$ and emits the observation $O_{t+1}$ and the reward $R_{t+1}$.
 
@@ -43,6 +43,7 @@ These are the most common parts of an agent, these are not necessarily present i
 ### Policy
 It's the agent's function that determines behaviour.
 It's a map from state to action and can be either deterministic, e.g. $\pi(s)=a$ or stochastic e.g. $\pi(a|s)=\mathbb P[A_t=a|S_t=s]$
+It's always present in an agent even though some time it may not be explicit and just implied by some other component. (e.g. policy that chooses highest next reward, you dont need to specify the policy directly if the reward is defined)
 ![[Pasted image 20250815125218.png]]
 ### Value function
 The value function is a prediction of the future reward, that depends on the policy we are using.
