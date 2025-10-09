@@ -1,8 +1,7 @@
 #rl #todo 
 From [[Reinforcement Learning Basics]]:
->
-A state $S_t$ is Markov iff  $\mathbb P[S_{t+1}|S_t]=P[S_{t+1}|S_1,\dots,S_t]$
-In words "the future state is independent from the past states given the present state". You can only keep $S_t$ and you can "throw away" the past history as it's not needed.
+>A state $S_t$ is Markov iff  $\mathbb P[S_{t+1}|S_t]=P[S_{t+1}|S_1,\dots,S_t]$
+>In words "the future state is independent from the past states given the present state". You can only keep $S_t$ and you can "throw away" the past history as it's not needed.
 
 Given this, we can define the **state transition matrix** $P$ for a Markov process with $n$ states:
 
@@ -43,6 +42,18 @@ P_{21} & P_{22} & \dots & P_{2n} \\
 \vdots & \vdots & \ddots & \vdots \\
 P_{n1} & P_{n2} & \dots & P_{nn}
 \end{bmatrix}, \quad
-P_{ij} = \mathbb{P}[S_{t+1} = S_j \mid S_t = S_i],
+P_{ij} = \mathbb{P}[S_{t+1} = S_j \mid S_t = S_i]
 $$
+
+In RL the state transition matrix is not known but we don't care about estimating it.
+
+Markov processes just provide the transitions but the agent is not involved and cannot affect the transitions with it's actions, also this formalization does not include rewards so we need to extend this formalism to be better suited for RL.
+
+In the case transition probabilities change over time (non-stationarity) there's a non stationary extension to MPs.
+
+---
+# Markov Reward Processes
+---reward processes
+# Markov Decision Processes
+----decision processes
 

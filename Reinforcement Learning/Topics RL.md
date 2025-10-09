@@ -1,4 +1,5 @@
 #rl 
 
 [[Reinforcement Learning Basics]]
-[[Multi]]
+[[Multi Armed Bandits]]
+[[Markov Decision Processes]]
