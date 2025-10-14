@@ -72,6 +72,55 @@ We can define a state value function to determine the long-term value of a state
 
 ![[Pasted image 20251010170943.png]]
 
-# Markov Decision Processes
-----decision processes
+We can estimate the value function for state $s$ with the sample average of returns from that state. Of course different values of $\gamma$ will yield different value functions, weighing future rewards more or less.
+## Bellman equation for Markov reward processes
+To compute the state value function $v(s)$ we can:
+![[Pasted image 20251014225101.png]]
+Where the law of iterated expectation is applied as $$ \mathbb E[G_t|S_t=s]=\mathbb E[R_{t+1}+\gamma G_{t+1}|S_t=s]=\mathbb E[R_{t+1}+\gamma\mathbb E[G_{t+1}|S_{t+1},S_t=s]|S_t=s]=
+$$
+and by applying the Markov property we get:
+$$\mathbb E[R_{t+1}+\gamma\mathbb E[G_{t+1}|S_{t+1}]|S_t=s]$$
+and finally by definition of $v(s)$ 
+$$\mathbb E[R_{t+1}+\gamma v(S_{t+1})|S_t=s]$$
 
+![[Pasted image 20251014225122.png]]
+The last equation in the previous slide is just the application of the expectation, of course in RL we won't have access to the transition matrix as it's unknown and we are not interested in estimating it.
+
+The Bellman equation can also be expressed in matrix form:
+![[Pasted image 20251014231611.png]]
+And in theory we can solve it as follows:
+![[Pasted image 20251014231632.png]]
+
+In practice we will never solve it this way as: 
+1. For large number of states it's too slow 
+2. We don't actually know $P$ and $R$
+Actually we will use other efficient techniques to evaluate the Bellman equation (Dynamic programming, TD learning, Monte Carlo evaluation)
+
+IMPORTANT: we can notice how for MRPs, Bellman Equation is linear this is not the case when we try to choose the action with highest return in MDPs as the max is not a linear operation.
+
+
+# Markov Decision Processes
+
+Markov Decision processes are an extended version of MRPs where agents can take decisions (they have agency) it is defined as follows:![[Pasted image 20251014232225.png]]
+Now both the state transition and reward are conditioned on the action taken.
+
+Since the agent can take action we define what's the policy of an agent:
+![[Pasted image 20251014232447.png]]
+
+* A policy fully defines the behaviour of an agent
+* MDP policies depend on the current state only (Markov property)
+* In MDP policies are stationary (do not depend on t), however we can change our policy in future episodes 
+* We consider stochastic policies: this allow us for example to deal with  exploration
+The policy does not deal directly with rewards, it may be learned or given
+![[Pasted image 20251014233938.png]]
+
+Now that the agent can act we can define an action value function and we need to update the state value function to depend on the policy as the actions taken will influence the future return:
+![[Pasted image 20251014234002.png]]
+Now we also consider how the reward is a MRP where the transition probability between states and the reward expectation $R_s$ are influenced  by the policy:
+![[Pasted image 20251014235009.png]]
+Similarly to what we did with MRPs we can define a Bellman equation, in this case since we have agency we will define 2 Bellman equations:
+1. Bellman expectation equation, to evaluate a policy
+2. Bellman optimality equation, to determine the value of the optimal policy
+
+## Bellman expectation equation
+## Bellman optimality equation
