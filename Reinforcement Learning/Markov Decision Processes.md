@@ -45,15 +45,33 @@ P_{n1} & P_{n2} & \dots & P_{nn}
 P_{ij} = \mathbb{P}[S_{t+1} = S_j \mid S_t = S_i]
 $$
 
-In RL the state transition matrix is not known but we don't care about estimating it.
+In RL the state transition matrix is not known but we don't care about estimating it (even if we could).
 
-Markov processes just provide the transitions but the agent is not involved and cannot affect the transitions with it's actions, also this formalization does not include rewards so we need to extend this formalism to be better suited for RL.
+Markov processes just provide the transitions but no agent is involved and we cannot affect the transitions with actions (it has no agency), also this formalization does not include rewards so we need to extend this formalism to describe RL.
 
 In the case transition probabilities change over time (non-stationarity) there's a non stationary extension to MPs.
 
 ---
 # Markov Reward Processes
----reward processes
+Markov reward process
+It's a tuple $\langle S,P,R,\gamma\rangle$, where
+- $S$ is a finite set of states like in MPs.
+- $P$ is the state transition probability matrix like in MPs.
+- $R$ is a reward function $R_s=\mathbb E[R_{t+1}|S_t=s]$ TODO capire cosa significa che (it is just the immediate reward, in that specific state)
+- $\gamma$ is a discount factor, $\gamma\in[0,1]$
+
+![[Pasted image 20251010170336.png]]
+In RL we are not interested in maximizing the value of a single step, but we want to maximize the return (return = goal of RL), this might entail choosing a temporarily bad reward action in order to obtain a future high reward, yielding a higher total return.
+
+The discount factor is used for multiple reasons:
+* near rewards are less uncertain than future rewards
+* financial concepts like interest earning
+* makes the infinite sum of the return converge
+In MRPs rewards are consequences of states not of actions, since this model does not include agency. 
+We can define a state value function to determine the long-term value of a state $s$.
+
+![[Pasted image 20251010170943.png]]
+
 # Markov Decision Processes
 ----decision processes
 
