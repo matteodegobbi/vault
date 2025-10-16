@@ -71,7 +71,6 @@ More difficult to implement than RM since it also requires additional informatio
 
 # Comparison RM and EDF
 
-#todo
 DA CONTROLLARE SE E'  GIUSTO
 - Both assume uniprocessor systems.
 - Both assume preemptive schedulers.

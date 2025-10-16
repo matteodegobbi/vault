@@ -25,10 +25,12 @@ $$
 The state probability distribution $\mathbf{s}_t$ evolves over time according to
 
 $$
-\mathbf{s}_{t+1} = \mathbf{s}_t P,
+\mathbf{s}_{t+1} = P^T \mathbf{s}_t,
 $$
 
 where $\mathbf{s}_t$ is a row vector representing the distribution over states at time $t$.
+
+(This is because $\sum\limits_{i=1}^{n}{P_{ij}s_i}$ gives the $j$-th component at time t+1 )
 
 ---
 
@@ -53,11 +55,10 @@ In the case transition probabilities change over time (non-stationarity) there's
 
 ---
 # Markov Reward Processes
-Markov reward process
-It's a tuple $\langle S,P,R,\gamma\rangle$, where
+A Markov reward process is a tuple $\langle S,P,R,\gamma\rangle$, where
 - $S$ is a finite set of states like in MPs.
 - $P$ is the state transition probability matrix like in MPs.
-- $R$ is a reward function $R_s=\mathbb E[R_{t+1}|S_t=s]$ TODO capire cosa significa che (it is just the immediate reward, in that specific state)
+- $R$ is a reward function $R_s=\mathbb E[R_{t+1}|S_t=s]$ (it is just the immediate reward, in that specific state since in this case no agency is involved the reward is associated with the state itself)
 - $\gamma$ is a discount factor, $\gamma\in[0,1]$
 
 ![[Pasted image 20251010170336.png]]
@@ -123,4 +124,43 @@ Similarly to what we did with MRPs we can define a Bellman equation, in this cas
 2. Bellman optimality equation, to determine the value of the optimal policy
 
 ## Bellman expectation equation
+Using the definitions of state value function and action value function we can relate $v_\pi(s)$ and $q_\pi(s,a)$.
+We can express the 2 functions in terms of the other, then plugging in one of the two original equations for the state or action value functions we can obtain  recursive definitions for state or action value functions.
+
+![[Pasted image 20251015081001.png]]
+![[Pasted image 20251015081024.png]]
+
+Again as we did for MRPs we can use the induced MRP by the MDP to write the Bellman expectation equation in matrix form (the only change is that both $P$ and $R$ depend on $\pi$)
 ## Bellman optimality equation
+
+To be able to take action we want to determine the optimal policy: an MDP can be considered ‘solved’ on a RL perspective when the optimal action-value function is known: we always know the optimal action to take from a certain state, we could just take the action that maximizes $q_*$ for the current state.
+![[Pasted image 20251016091554.png]]
+
+To decide what the optimal policy should be we define an order over policies:
+$$\pi\ge\pi' \text{ if } v_\pi(s)\ge v_{\pi'}(s) \ \forall s$$
+We have a theorem about the existence of optimal policies:
+![[Pasted image 20251016091831.png]]
+
+Also there is always a deterministic optimal policy, one can be determined easily if we have $q_*(s,a)$ for all states and actions, we can just choose $\pi$ to choose the action maximizing $q_*(s,a)$:
+$$\pi_*(a|s)=\begin{cases} 
+1 \text{ if } a=\arg\max\limits_{a\in A}{q_*{(s,a)}}\\
+0 \text{ otherwise }
+\end{cases}$$
+An intuitive explanation on why there is always an optimal policy is that if we had 2 policies, one that is better on certain states and one that is better on other states we could create a third new policy that mixes the 2 by choosing the best one if the two for the states they are the best and this new policy would be better than either of them.
+
+We can use the Bellman optimality equation to express $v*(s)$ and $q_*(s,a)$ in terms of themselves recursively likely we did for the Bellman expectation equation.
+
+![[Pasted image 20251016093046.png]]
+```
+difference between Bellman optimality and expectation equations
+```
+
+For $v_*(s)$ we have :
+![[Pasted image 20251016093134.png]]
+
+While for $q_*(s,a)$ we have:
+![[Pasted image 20251016093205.png]]
+
+Since in the Bellman optimality equation a max operation is involved it's not linear, this means we cannot obtain a closed form solution even if we know $P$ and $R$. We need to use iterative methods like value iteration, policy iteration, q-learning, SARSA. 
+
+---

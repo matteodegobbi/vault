@@ -19,5 +19,11 @@ Extension of transition function for eps-NFAs
 Language recognized by eps-NFA
 Conversion?????????
 Equivalence forse no proof??????
+## regex
+Operations on languages
+Regex inductive definition
+DFA to regex with state elimination, exercises and proof
+Regex to eps-NFA
+Properties of regex
 
 

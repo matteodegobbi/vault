@@ -43,7 +43,6 @@ If a process tries to access a page not in memory the MMU will issue a Page Faul
  When the number of free memory pages goes under a given threshold, a swapping action begins in order to copy one or more memory page into the corresponding disk blocks. (Not in the course, but there are multiple page replacement algorithms that employ similar ideas to cache replacement)
 
  TODO Physical < virtual
-#todo
 
 
 Pages are contiguous both in physical and in virtual memory:
