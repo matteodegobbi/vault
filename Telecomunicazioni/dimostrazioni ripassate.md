@@ -1,3 +1,4 @@
+
 #telecomunicazioni 
  [ ] banda pratica segnali deterministici ampiezza e energia
 - [x] non distorsione Heaviside tempo e frequenza

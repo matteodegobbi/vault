@@ -1,3 +1,4 @@
+#automata 
 # LISTA
 ## DFAs
 Def of DFA
@@ -23,7 +24,7 @@ Equivalence forse no proof??????
 Operations on languages
 Regex inductive definition
 DFA to regex with state elimination, exercises and proof
-Regex to eps-NFA
+Regex to eps-NFA with proof 
 Properties of regex
 
 

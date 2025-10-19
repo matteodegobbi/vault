@@ -1,4 +1,4 @@
-#rl #todo 
+#rl #todo
 From [[Reinforcement Learning Basics]]:
 >A state $S_t$ is Markov iff  $\mathbb P[S_{t+1}|S_t]=P[S_{t+1}|S_1,\dots,S_t]$
 >In words "the future state is independent from the past states given the present state". You can only keep $S_t$ and you can "throw away" the past history as it's not needed.
@@ -30,7 +30,7 @@ $$
 
 where $\mathbf{s}_t$ is a row vector representing the distribution over states at time $t$.
 
-(This is because $\sum\limits_{i=1}^{n}{P_{ij}s_i}$ gives the $j$-th component at time t+1 )
+(Since $\sum\limits_{i=1}^{n}{P_{ij}s_i}$ gives the $j$-th component at time t+1 so we must transpose )
 
 ---
 
@@ -58,7 +58,7 @@ In the case transition probabilities change over time (non-stationarity) there's
 A Markov reward process is a tuple $\langle S,P,R,\gamma\rangle$, where
 - $S$ is a finite set of states like in MPs.
 - $P$ is the state transition probability matrix like in MPs.
-- $R$ is a reward function $R_s=\mathbb E[R_{t+1}|S_t=s]$ (it is just the immediate reward, in that specific state since in this case no agency is involved the reward is associated with the state itself)
+- $R$ is a reward function $R_s=\mathbb E[R_{t+1}|S_t=s]$ (it is just the immediate reward, in that specific state. Since in this case no agency is involved the reward is associated with the state itself)
 - $\gamma$ is a discount factor, $\gamma\in[0,1]$
 
 ![[Pasted image 20251010170336.png]]
@@ -113,12 +113,12 @@ Since the agent can take action we define what's the policy of an agent:
 * In MDP policies are stationary (do not depend on t), however we can change our policy in future episodes 
 * We consider stochastic policies: this allow us for example to deal with  exploration
 The policy does not deal directly with rewards, it may be learned or given
-![[Pasted image 20251014233938.png]]
+
+Now we also consider how the reward is a MRP where the transition probability between states and the reward expectation $R_s$ are influenced  by the policy:
+![[Pasted image 20251014235009.png]]
 
 Now that the agent can act we can define an action value function and we need to update the state value function to depend on the policy as the actions taken will influence the future return:
 ![[Pasted image 20251014234002.png]]
-Now we also consider how the reward is a MRP where the transition probability between states and the reward expectation $R_s$ are influenced  by the policy:
-![[Pasted image 20251014235009.png]]
 Similarly to what we did with MRPs we can define a Bellman equation, in this case since we have agency we will define 2 Bellman equations:
 1. Bellman expectation equation, to evaluate a policy
 2. Bellman optimality equation, to determine the value of the optimal policy
@@ -130,6 +130,8 @@ We can express the 2 functions in terms of the other, then plugging in one of th
 ![[Pasted image 20251015081001.png]]
 ![[Pasted image 20251015081024.png]]
 
+These steps can be achieved with the Law of Total Expectation to express $v(s)$ in terms of $q(s,a)$ and linearity of expectation to obtain the expression for $q(s,a)$
+
 Again as we did for MRPs we can use the induced MRP by the MDP to write the Bellman expectation equation in matrix form (the only change is that both $P$ and $R$ depend on $\pi$)
 ## Bellman optimality equation
 
@@ -138,6 +140,8 @@ To be able to take action we want to determine the optimal policy: an MDP can be
 
 To decide what the optimal policy should be we define an order over policies:
 $$\pi\ge\pi' \text{ if } v_\pi(s)\ge v_{\pi'}(s) \ \forall s$$
+(specifically a partial order since if we take 2 policies it could happen than one is better than the other only in specific cases, still we can define the optimal policy as one that is better in all states)
+
 We have a theorem about the existence of optimal policies:
 ![[Pasted image 20251016091831.png]]
 
@@ -148,7 +152,9 @@ $$\pi_*(a|s)=\begin{cases}
 \end{cases}$$
 An intuitive explanation on why there is always an optimal policy is that if we had 2 policies, one that is better on certain states and one that is better on other states we could create a third new policy that mixes the 2 by choosing the best one if the two for the states they are the best and this new policy would be better than either of them.
 
-We can use the Bellman optimality equation to express $v*(s)$ and $q_*(s,a)$ in terms of themselves recursively likely we did for the Bellman expectation equation.
+There might be more than one optimal policy, but all of them share the same optimal state value function and the same action value function.
+
+We can use the Bellman optimality equation to express $v*(s)$ and $q_*(s,a)$ in terms of themselves recursively like we did for the Bellman expectation equation.
 
 ![[Pasted image 20251016093046.png]]
 ```

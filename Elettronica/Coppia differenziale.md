@@ -1,5 +1,6 @@
 ---
-tags: elettronica integrati
+tags:
+  - elettronica
 ---
 Serve a amplificare un [[Segnale differenziale]].
 

@@ -1,5 +1,6 @@
 ---
-tags: elettronica discreti
+tags:
+  - elettronica
 ---
 # Tabelle riassuntive parametri
 |BJT | $R_i$|$R_o$|$A_{V_0}$|
