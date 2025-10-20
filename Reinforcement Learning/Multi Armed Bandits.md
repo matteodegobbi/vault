@@ -3,7 +3,7 @@ In the multi armed bandits setting we only have 1 state.
 The episodes are structured like this:
 Fixed state, Action 1 --> Reward 1
 Fixed state, Action 2 --> Reward 2
-and continues like this, meaning an episode is only made up of an action out of K possible ones (K-armed) followed by a reward then the episode finishes and a new independent episode starts, the state never changes.
+and continues like this, meaning an episode is only made up of an action out of K possible ones (K-armed) followed by a reward, then the episode finishes and a new independent episode starts, the state never changes.
 
 This problem allows us to see the exploitation-exploration dilemma and the decision making under uncertainty problem.
 
@@ -89,8 +89,7 @@ Since we derive this using Hoeffding's it's distribution free.
 In this method we define a preference vector $H_t(a)$ which tells us how preferred a specific action is.
 With this preference vector we can obtain a distribution by taking the softmax.
 
-The preference vector is updated with gradient ascent, we maximize $\mathbb E_\pi[R]$
-, we compute the gradient using the log-derivative trick. Actually we don't just use gradient ascent but we include a baseline term to reduce variance.
+The preference vector is updated with gradient ascent, we maximize $\mathbb E_\pi[R]$, we compute the gradient using the log-derivative trick. Actually we don't just use gradient ascent but we include a baseline term to reduce variance.
 
 So the final update rule is:
 ![[Pasted image 20251009165317.png]]
