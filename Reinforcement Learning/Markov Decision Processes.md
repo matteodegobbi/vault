@@ -1,4 +1,4 @@
-#rl #todo
+#rl 
 From [[Reinforcement Learning Basics]]:
 >A state $S_t$ is Markov iff  $\mathbb P[S_{t+1}|S_t]=P[S_{t+1}|S_1,\dots,S_t]$
 >In words "the future state is independent from the past states given the present state". You can only keep $S_t$ and you can "throw away" the past history as it's not needed.
@@ -154,7 +154,7 @@ An intuitive explanation on why there is always an optimal policy is that if we 
 
 There might be more than one optimal policy, but all of them share the same optimal state value function and the same action value function.
 
-We can use the Bellman optimality equation to express $v*(s)$ and $q_*(s,a)$ in terms of themselves recursively like we did for the Bellman expectation equation.
+We can use the Bellman optimality equation to express $v_*(s)$ and $q_*(s,a)$ in terms of themselves recursively like we did for the Bellman expectation equation.
 
 ![[Pasted image 20251016093046.png]]
 ```

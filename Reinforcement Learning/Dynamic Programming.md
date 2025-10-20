@@ -1,4 +1,4 @@
-#rl #todo 
+#rl
 The goals of dynamic programming are the following:
 1. Policy evaluation (also called prediction): to evaluate how good a policy $\pi$ is. This is done by computing the value functions $v_\pi(s)$ and/or $q_\pi(s,a)$ given as input the [[Markov Decision Processes|MDP]] and the policy $\pi$.
 2. Policy improvement (also called control): to improve the current policy to reach optimality. We want to obtain $\pi^*$ (and optionally $v_*(s)$ and/or $q_*(s,a)$) given as input the MDP.
@@ -32,14 +32,14 @@ Also since we use already updated values of states that have already been iterat
 This algorithms takes care of the control part, where we improve the policy in order to make it closer to the optimal policy.
 Input: MDP
 Output: $\pi^*$, possibly also $v_*(s)$ and/or $q_*(s,a)$
-Policy iteration consists in repeated evaluation of the policy followed by using the greedy choice (based on the last evaluation) to improve the current policy bringing it closer to the optimal policy $\pi^*(a|s)$
+Policy iteration consists in repeated evaluation of the policy followed by using the greedy choice (based on the last evaluation) to improve the current policy by bringing it closer to the optimal policy $\pi^*(a|s)$
 ![[Pasted image 20251019143441.png]]
 
-The algorithm will converge to the optimal policy this can be proven by the Policy improvement theorem:
+The algorithm will converge to the optimal policy, this can be proven by the Policy improvement theorem.
 
 ### Policy Improvement theorem:
 We define the greedy policy $\pi'(s)=\arg\max\limits_{a\in \cal A}{q_\pi(s,a)}$, which tells us the action with highest action-value.
-Since we take the max the evaluation will be $\ge$ than. the value function when following the policy $\pi$.
+Since we take the maximum, the evaluation of $\pi'(s)$ will be $\ge$ than the value function when following the policy $\pi$.
 Then we can repeat the same argument iteratively to show how $v_\pi(s)\ge v_{\pi'}(s)$
 This is shown here:
 ![[Pasted image 20251019145335.png]]
@@ -49,7 +49,7 @@ The main idea is "if instead of following policy $\pi$ we choose the greedy acti
 This just shows how by following the greedy policy we can never do worse but we still haven't shown if it leads to the optimal policy:
 
 ![[Pasted image 20251019150144.png]]
-This means that if the improvement stops we have reached the optimal policy, this is just the case where after an iteration the inequality in the previous slide are just equalities.
+This means that if the improvement stops we have reached the optimal policy since the policy satisfies Bellman optimality equation, this is just the case where after an iteration the inequality in the previous slide are just equalities.
 
 Pseudocode for policy iteration (the first part is the same as the previous with different notation):
 ![[Pasted image 20251019150259.png]]
@@ -72,7 +72,7 @@ In this formulation both the prediction and improvement over a state are combine
 From this formulation we can notice how the update rule coincides with Bellman optimality equation, while the policy iteration updated rule coincided with the Bellman expectation equation:
 ![[Pasted image 20251019173922.png]]
 
-The only difference between the two is that in policy iteration we average over all possible action while in value iteration we only consider the best one (instead of first computing the average over the actions and taking the max in the improvement step we directly take the max).
+The only difference between the two is that in policy iteration we average over all possible actions while in value iteration we only consider the best one (instead of first computing the average over the actions and taking the max in the improvement step we directly take the max).
 
 ![[Pasted image 20251019174152.png]]
 
