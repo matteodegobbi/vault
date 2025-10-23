@@ -119,6 +119,8 @@ Now we also consider how the reward is a MRP where the transition probability be
 
 Now that the agent can act we can define an action value function and we need to update the state value function to depend on the policy as the actions taken will influence the future return:
 ![[Pasted image 20251014234002.png]]
+Now the state value function $v_\pi(s)$ will depend on the policy $\pi$ since it influences which action is taken, in turn changing the next state distribution.
+
 Similarly to what we did with MRPs we can define a Bellman equation, in this case since we have agency we will define 2 Bellman equations:
 1. Bellman expectation equation, to evaluate a policy
 2. Bellman optimality equation, to determine the value of the optimal policy
