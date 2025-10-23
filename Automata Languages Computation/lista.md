@@ -9,6 +9,7 @@ Def of NFA
 Extension of transition function for NFAs
 Language recognized by NFA
 Subset construction definition
+Lazy eval explanation
 Subset construction to transform NFA into DFA with proof of correctness
 Equivalence DFAs and NFAs with proof 
 Exponential growth of state set with subset construction NO PROOF, only statement
