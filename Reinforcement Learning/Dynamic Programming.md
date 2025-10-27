@@ -58,9 +58,11 @@ Pseudocode for policy iteration (the first part is the same as the previous with
 
 # Value iteration
 
+## Generalized policy iteration
 Policy iteration can be slow due the fact that we need to wait for the convergence of the policy evaluation step. This means that we need to loop over all the states multiple times until they have all converged to the true value of $v_\pi$.
 A possibility to improve the efficiency of the process is to truncate the policy evaluation before convergence, mixing some steps of policy evaluation followed by some steps of policy improvement, this approach still leads to convergence and is called **Generalized Policy Iteration**.
 
+## Value iteration
 If we only do one step of evaluation at a time followed by policy improvement through greedy policy we obtain an algorithm called value iteration.
 Value iteration consist of just updating the value function for all states once, followed by one sweep of policy improvement through greedy policy, the process is repeated until convergence.
 

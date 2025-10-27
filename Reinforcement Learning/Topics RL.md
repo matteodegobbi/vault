@@ -4,5 +4,7 @@
 [[Multi Armed Bandits]]
 [[Markov Decision Processes]]
 [[Dynamic Programming]]
-[[Monte Carlo]]
+[[On-Policy vs Off-Policy and importance sampling]]
+[[Monte Carlo - On-Policy methods]]
+[[Monte Carlo - Off-Policy methods]]
 
