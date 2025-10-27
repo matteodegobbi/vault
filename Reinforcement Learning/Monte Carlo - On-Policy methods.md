@@ -36,7 +36,6 @@ Both the first-visit and every-visit versions can be seen as a model free versio
 
 ---
 # Control
-
 Estimating state value functions is not enough in order to compute a greedy policy, this is because unlike [[Dynamic Programming|DP]] we don't have access to $P,R$ so we cannot use equation:
 
 ![[Pasted image 20251024184220.png]]
@@ -61,12 +60,12 @@ In ES the exploration is only limited to the first (state,action) pair of each e
 
 Where the Policy Evaluation step is the same as MC prediction but with $Q$ instead of $V$, and the Policy Improvement step is done by updating the policy to maximize the current estimate of $Q$.
 
-As in MC prediction instead of the average we could implement with incremental updates.
+As in MC prediction instead of the average we could implement it with incremental updates.
 
 The convergence of this method is guaranteed by a policy improvement theorem similar to the one we discussed in [[Dynamic Programming|DP]]:
 ![[Pasted image 20251026162916.png]]
 
-ES has an important drawback sometimes is may not be possible to start an episode with all possible (state,action) pairs, for this reason we can look for other methods that guarantee exploration that are not based on ES.
+ES has an important drawback: sometimes is may not be possible to start an episode with all possible (state,action) pairs, for this reason we can look for other methods that guarantee exploration that are not based on ES.
 
 ---
 
