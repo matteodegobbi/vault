@@ -30,6 +30,7 @@ Unlike MC we break down the episode in time-steps and the value function is upda
 Some advantages over MC are:
 ![[Pasted image 20251028002925.png]]
 
+TODO add graph with RMS error
 ## Control
 
 
