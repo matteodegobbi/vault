@@ -30,7 +30,7 @@ Also since we use already updated values of states that have already been iterat
 ![[Pasted image 20251030101339.png]]
 
 # Policy iteration
-These algorithms takes care of the control part, where we improve the policy in order to make it closer to the optimal policy.
+This algorithm takes care of the control part, where we improve the policy in order to make it closer to the optimal policy.
 Input: MDP
 Output: $\pi^*$, possibly also $v_*(s)$ and/or $q_*(s,a)$
 Policy iteration consists in repeated evaluation of the policy followed by using the greedy choice (based on the last evaluation) to improve the current policy by bringing it closer to the optimal policy $\pi^*(a|s)$
