@@ -59,7 +59,10 @@ TODO limited amount of data...
 
 TODO TAXONOMY OF RL METHODS SO FAR
 ## Control
+
+### SARSA
 TODO SARSA
+### Q-Learning
 
 
 

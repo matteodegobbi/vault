@@ -27,9 +27,10 @@ Meaning that the order in which we update the states doesn't affect the update.
 This implementation of policy evaluation is called synchronous as we update all the state evaluations together.
 We can contrast this  with the implementation shown in the pseudocode above in which we store only one copy of $V(s)$ and update it in-place, this allows us to save memory and avoid having to copy the whole $V(s)$ at the end of the iteration.
 Also since we use already updated values of states that have already been iterated over this makes the convergence faster so in practice we'll always use the in-place version.
+![[Pasted image 20251030101339.png]]
 
 # Policy iteration
-This algorithms takes care of the control part, where we improve the policy in order to make it closer to the optimal policy.
+These algorithms takes care of the control part, where we improve the policy in order to make it closer to the optimal policy.
 Input: MDP
 Output: $\pi^*$, possibly also $v_*(s)$ and/or $q_*(s,a)$
 Policy iteration consists in repeated evaluation of the policy followed by using the greedy choice (based on the last evaluation) to improve the current policy by bringing it closer to the optimal policy $\pi^*(a|s)$
