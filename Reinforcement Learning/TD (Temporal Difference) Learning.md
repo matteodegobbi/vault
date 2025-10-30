@@ -30,8 +30,37 @@ Unlike MC we break down the episode in time-steps and the value function is upda
 Some advantages over MC are:
 ![[Pasted image 20251028002925.png]]
 
-TODO add graph with RMS error
+We can study the different performance in terms of prediction by considering a case where we know the actual state values of a policy and compare the error that TD makes vs Monte Carlo:
+![[Pasted image 20251029091042.png]]
+Comparing TD and Monte Carlo in the prediction step is only useful to understand the difference, but the performance of the algorithm can be seen only by control not just prediction by itself as in control we're not interested in perfect estimates if the policy is optimal.
+
+### Bias-Variance trade-off RL vs Monte Carlo
+Monte Carlo provides an unbiased estimation as it uses the complete returns to approximate $v_\pi(s)$, this is true also in practice when we use the sample averages of returns as the expectation of the sample average of an r.v. is the same as the expectation of the r.v. itself as per weak LLN.
+
+The true TD-Target $R_{t+1}+\gamma v_\pi(S_{t+1})$ would also be unbiased, but in practice we don't know the actual value function so we cannot use it, we only have the previous approximation $V(s)\sim v_\pi(s)$.
+This means that the actual TD target $R_{t+1}+\gamma V(S_{t+1})$ is actually a biased estimate of $v_\pi(S_t)$ .
+
+At the same time the TD target has much lower variance than the return, this is because the returns depends on many random actions, transition and rewards while the TD target depends on one random action, transition and reward.
+This can be proven but we didn't.
+
+These considerations imply that:
+* MC has high variance and low bias
+* TD has low variance and higher bias
+* TD(0) is more sensitive to initial values of $V(s)$ while Monte Carlo is less so
+* TD(0) converges faster
+* MC has good convergence properties even with function approximation, while TD(0) converges to $v_\pi(s)$ but not always if function approximation is used
+
+---
+
+
+TODO esempio Con 8 episodi soluzione MC vs soluzione TD(0)
+### Batch MC and TD
+TODO limited amount of data...
+
+TODO TAXONOMY OF RL METHODS SO FAR
 ## Control
+TODO SARSA
+
 
 
 
