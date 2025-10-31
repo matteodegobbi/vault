@@ -15,8 +15,8 @@ We already saw this idea in [[Multi Armed Bandits|bandits]] but in that case we 
 ---
 
 # Prediction
-For Monte Carlo prediction we can follow policy $\pi$ to generate the full data of an episode (a full trajectory of the MDP: $S_0,A_0,R_1,\dots,S_{T-1},A_{T-1},R_T$)
-Then we can compute the total discounted return of the episode, we can compute this backwards starting from $G_T=0$ in the terminal state, this is because we can compute it steps by step instead of doing the full forward sum.
+For Monte Carlo prediction we can first follow policy $\pi$ to generate the full data of an episode (a full trajectory of the MDP: $S_0,A_0,R_1,\dots,S_{T-1},A_{T-1},R_T$)
+Then we can compute the total discounted return of the episode efficiently: we can compute it backwards starting from $G_T=0$ in the terminal state, this allows us to compute it step by step instead of doing the full forward sum.
 At the end of the episode we can have two options to update the value function:
 1. First visit MC prediction: for state $S_t$ the return is used to update $V(s)$ only for first time that state is encountered in that trajectory. So for example at time-step $t=2$ we encounter state $S_6$ and then we encounter it again at $t=18$, meaning $S_6=S_{18}$ we will only update $V(S_6)$ at time-step $t=6$ and not anymore at time $t=18$, this can lead to slower convergence but less variance in the estimates.
 2. Every visit MC prediction: Instead of updating a state value function estimate at most once per episode we update it every time the state is encountered, this can lead to faster convergence at the expense of a larger variance in the estimates.
