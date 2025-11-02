@@ -1,4 +1,5 @@
 #rl 
+
 [[Reinforcement Learning Basics]]
 [[Multi Armed Bandits]]
 [[Markov Decision Processes]]
@@ -33,6 +34,9 @@
 [[TD (Temporal Difference) Learning#TD(0)#Prediction]]
 ### Control
 [[TD (Temporal Difference) Learning#Control#SARSA]]
+[[TD (Temporal Difference) Learning#Control#Q-Learning]]
+[[TD (Temporal Difference) Learning#Control#Expected SARSA]]
+
 
 
 

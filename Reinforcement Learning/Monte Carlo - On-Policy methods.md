@@ -40,7 +40,7 @@ Estimating state value functions is not enough in order to compute a greedy poli
 
 ![[Pasted image 20251024184220.png]]
 
-For this reason we actually need to estimate action value functions instead of state value function $q_\pi(s,a)$
+For this reason we actually need to estimate action value functions $q_\pi(s,a)$ instead of state value functions $v_\pi(s)$
 
 ![[Pasted image 20251024184628.png]]
 

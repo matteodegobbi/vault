@@ -1,4 +1,4 @@
-#rl
+	#rl
 The goals of dynamic programming are the following:
 1. Policy evaluation (also called prediction): to evaluate how good a policy $\pi$ is. This is done by computing the value functions $v_\pi(s)$ and/or $q_\pi(s,a)$ given as input the [[Markov Decision Processes|MDP]] and the policy $\pi$.
 2. Policy improvement (also called control): to improve the current policy to reach optimality. We want to obtain $\pi^*$ (and optionally $v_*(s)$ and/or $q_*(s,a)$) given as input the MDP.
