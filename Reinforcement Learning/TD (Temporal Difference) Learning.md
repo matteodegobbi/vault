@@ -17,11 +17,11 @@ The main idea to understand TD learning is that instead of waiting the end of th
 ![[Pasted image 20251028000647.png]]
 
 We call $R_{t+1}+\gamma V(S_{t+1})-V(S_t)$ the TD error.
-We consider the constant step size case and not the sample average case.
+We consider the constant step size case and not the sample average case, this is because unlike the return in MC the TD Target is not stationary as it includes $V$ which we are actually changing (also if we don't use this step size we keep the bias from the beginning initialization).
 
 We are considering an estimation of $G_t\sim R_{t+1}+\gamma V(S_{t+1})$, this process is called bootstrapping: meaning we use previous estimates to obtain newer estimates as soon as the reward is obtained.
 
-Basically we take an action at time t and obtain the corresponding reward $R_{t+1}$ and the new state $S_{t+1}$, we can then improve out estimate of the previous state by updating it to be closer to the TD Target which uses the current estimate of the value of state $S_{t+1}$ and the reward to estimate $G_t$. 
+Basically we take an action at time t and obtain the corresponding reward $R_{t+1}$ and the new state $S_{t+1}$, we can then improve our estimate of the previous state by updating it to be closer to the TD Target which uses the current estimate of the value of state $S_{t+1}$ and the reward to estimate $G_t$. 
 ## Prediction
 The algorithm for prediction for TD(0) is:
 ![[Pasted image 20251028002610.png]]
@@ -34,8 +34,8 @@ We can study the different performance in terms of prediction by considering a c
 ![[Pasted image 20251029091042.png]]
 Comparing TD and Monte Carlo in the prediction step is only useful to understand the difference, but the performance of the algorithm can be seen only by control not just prediction by itself as in control we're not interested in perfect estimates if the policy is optimal.
 
-### Bias-Variance trade-off RL vs Monte Carlo
-Monte Carlo provides an unbiased estimation as it uses the complete returns to approximate $v_\pi(s)$, this is true also in practice when we use the sample averages of returns as the expectation of the sample average of an r.v. is the same as the expectation of the r.v. itself as per weak LLN.
+### Bias-Variance trade-off TD vs Monte Carlo
+Monte Carlo provides an unbiased estimation as it uses the complete returns to approximate $v_\pi(s)$, this is true also in practice when we use the sample averages of returns: the expectation of the sample average of an r.v. is the same as the expectation of the r.v. itself as per weak LLN.
 
 The true TD-Target $R_{t+1}+\gamma v_\pi(S_{t+1})$ would also be unbiased, but in practice we don't know the actual value function so we cannot use it, we only have the previous approximation $V(s)\sim v_\pi(s)$.
 This means that the actual TD target $R_{t+1}+\gamma V(S_{t+1})$ is actually a biased estimate of $v_\pi(S_t)$ .
@@ -51,22 +51,19 @@ These considerations imply that:
 * MC has good convergence properties even with function approximation, while TD(0) converges to $v_\pi(s)$ but not always if function approximation is used
 
 ---
-
-TODO esempio con 8 episodi soluzione MC vs soluzione TD(0)
-
 ### Comparison of TD learning with previous methods
 #### Convergence
 TD converges to the maximum likelihood Markov model, meaning it converges to the MDP that best fits the data.
 
 MC converges the solution with minimum mean squared error, meaning the best fit for observed returns.
 
-TD exploits Markov property and it is usually more efficient in Markov environments. More details in Lecture 9.
+TD exploits Markov property and it is usually more efficient in Markov environments. More details in Lecture 9 pdf.
 
 #### Batch MC and TD
 If the number of episodes grows both MC and TD converge to $v_\pi$.
 
 In many cases we however have limited amount of experience: a common approach is to present the experience repeatedly until the method converges upon an answer
-We repeatedly sample episode $k\in[0,K]$ and we apply MC or TD(0) to that episode. Under this batch training, MC and TD(0) converge to an ‘optimal’ solution, but with different definition of optimality
+We repeatedly sample episode $k\in[0,K]$ and we apply MC or TD(0) to that episode. Under this batch training, MC and TD(0) converge to an ‘optimal’ solution, but with different definitions of optimality
 
 ![[Pasted image 20251102151903.png]]
 In this example we can see the two different solutions obtained by TD and MC with the same data.
@@ -82,11 +79,12 @@ Sampling means we use samples to estimate expectations.
 MC and TD sample, DP does not.
 TD and DP use bootstraps, MC does not.
 ![[Pasted image 20251102101720.png]]
-## Control
 
+---
+## Control
 As in MC when dealing with control problems we need to use $q$ instead of $v$ since we don't have access to the transition probabilities and the reward distribution of the MDP. (As in MC, GPI over $q$ is model free, over $v$ it's not)
 
-We only have partial evaluations of $q_\pi$ because we are working with TD(0) for the evaluation which just gives us the newest estimate, this means that our approach for control will be similar to value iteration and not policy iteration.
+We only have partial evaluations of $q_\pi$ because we are working with TD(0) for the evaluation which just gives us the newest estimate, this means that our approach for control will be more similar to value iteration and not policy iteration.
 
 We also need to consider exploration as we did in MC.
 
@@ -101,7 +99,7 @@ The exploration is carried out through an $\varepsilon$-greedy policy.
 This is an off-policy TD method, the two main differences with SARSA are:
 1. In the TD Target SARSA uses the next action that will be taken by the agent while following the current policy. Instead Q Learning in the target always considers the greedy action, being optimistic as if the epsilon exploratory action will never be taken
 2. Point 1. has a consequence on the pseudocode of the algorithms, in SARSA we store: $S_t$, $A_t$, $R_{t+1}$,$S_{t+1},A_{t+1}$. The current state, action and reward and the next state are also used in Q Learning but $A_{t+1}$ is not computed in Q Learning as we don't consider the actual next action taken in the TD target so we don't need to compute until the next iteration, this rearranges the order of operations.
-From these 2 points above we can understand why Q Learning is off-policy, we have a behavior policy (often $\varepsilon$-greedy) and a target policy namely the greedy policy (which appears in the TD target in Q learning).
+From these 2 points above we can understand why Q Learning is off-policy, we have a behavior policy (often $\varepsilon$-greedy) and a target policy: the greedy policy (which appears in the TD target in Q learning instead of the eps greedy choice like in SARSA).
 
 Even though Q-Learning is off-policy we don't need to use importance sampling like in MC. This is because we can compute the expected return from any state by considering that the target policy is the greedy policy wrt the action values Q, all non-maximum actions have probability 0, this means that the expected return from a state is equal to the max action value function in that state.
 
@@ -131,7 +129,7 @@ size can help SARSA to avoid overweighting exploratory actions that 'ruin' the e
 
 Sometimes acting off-policy can be detrimental, see cliff world example in Lecture 10.
 
-Expected SARSA moves deterministically in the same direction as SARSA moves in expectation. Thanks to its more stable updates, Expected SARSA can handle higher values of $\alpha$
+Expected SARSA moves deterministically in the same direction as SARSA moves in expectation. Thanks to its more stable updates, Expected SARSA can handle higher values of $\alpha$.
 
 
 
