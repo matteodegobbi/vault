@@ -8,7 +8,7 @@ We'll also see how TD learning is a general framework that also includes [[Monte
 
 We can understand why TD learning is useful by examining some disadvantages of MC:
 1. MC needs to assume we are in the episodic case.
-2. MC doesn't exploit new info (rewards) as soon as it's available, we have to wait until the episode is over since we need to compute the complete returns. 
+2. MC doesn't exploit new information (rewards) as soon as it's available, we have to wait until the episode is over since we need to compute the complete returns. 
 
 ---
 # TD(0)
@@ -52,7 +52,7 @@ These considerations imply that:
 
 ---
 
-TODO esempio Con 8 episodi soluzione MC vs soluzione TD(0)
+TODO esempio con 8 episodi soluzione MC vs soluzione TD(0)
 
 ### Comparison of TD learning with previous methods
 #### Convergence
@@ -67,6 +67,9 @@ If the number of episodes grows both MC and TD converge to $v_\pi$.
 
 In many cases we however have limited amount of experience: a common approach is to present the experience repeatedly until the method converges upon an answer
 We repeatedly sample episode $k\in[0,K]$ and we apply MC or TD(0) to that episode. Under this batch training, MC and TD(0) converge to an ‘optimal’ solution, but with different definition of optimality
+
+![[Pasted image 20251102151903.png]]
+In this example we can see the two different solutions obtained by TD and MC with the same data.
 
 #### Taxonomy of RL methods
 ![[Pasted image 20251101232915.png]]
@@ -88,11 +91,48 @@ We only have partial evaluations of $q_\pi$ because we are working with TD(0) fo
 We also need to consider exploration as we did in MC.
 
 ### SARSA
-
-This control method using TD, is based on GPI it loops over all the episodes and over all the time steps in an episode updating the estimate of $Q(s,a)$ like we did in TD(0) for $V(s)$. It's important to consider that in SARSA the action at next time step is already chosen at the previous time-step following the current policy, this makes it an on-policy method (unlike Q-Learning as we'll see later which always chooses the next action after the improvement).FORSE NON GIUSTO CONTROLLA
+This control method using TD, is based on GPI. It loops over all the episodes and over all the time steps in an episode updating the estimate of $Q(s,a)$ like we did in TD(0) for $V(s)$. 
+It's important to consider that in SARSA the action at next time step is already chosen at the previous time-step following the current policy, this makes it an on-policy method (unlike Q-Learning as we'll see later which always chooses the greedy next eps action after the improvement).FORSE NON GIUSTO CONTROLLA
 
 The exploration is carried out through an $\varepsilon$-greedy policy.
 ![[Pasted image 20251102102657.png]]
-
 ### Q-Learning
+![[Pasted image 20251102192838.png]]
+This is an off-policy TD method, the two main differences with SARSA are:
+1. In the TD Target SARSA uses the next action that will be taken by the agent while following the current policy. Instead Q Learning in the target always considers the greedy action, being optimistic as if the epsilon exploratory action will never be taken
+2. Point 1. has a consequence on the pseudocode of the algorithms, in SARSA we store: $S_t$, $A_t$, $R_{t+1}$,$S_{t+1},A_{t+1}$. The current state, action and reward and the next state are also used in Q Learning but $A_{t+1}$ is not computed in Q Learning as we don't consider the actual next action taken in the TD target so we don't need to compute until the next iteration, this rearranges the order of operations.
+From these 2 points above we can understand why Q Learning is off-policy, we have a behavior policy (often $\varepsilon$-greedy) and a target policy namely the greedy policy (which appears in the TD target in Q learning).
+
+Even though Q-Learning is off-policy we don't need to use importance sampling like in MC. This is because we can compute the expected return from any state by considering that the target policy is the greedy policy wrt the action values Q, all non-maximum actions have probability 0, this means that the expected return from a state is equal to the max action value function in that state.
+
+#### Comparison with SARSA
+![[Pasted image 20251102223521.png]]
+
+We can say that since both SARSA and Q-Learning use incomplete estimates of Q they act similarly to value iteration in DP, but SARSA update is similar to the Bellman Expectation equation while in Q-Learning the update resembles the Bellman Optimality equation.
+An example of the application of the two update rules can be seen below:
+![[Pasted image 20251102223846.png]]
+
 ### Expected SARSA 
+![[Pasted image 20251102224939.png]]
+This algorithm is another off-policy modification of SARSA where we consider all the next possible actions weighted by their probability under the current policy instead of sampling the next action like SARSA does or taking the maximum like in Q-Learning.
+
+Basically as the target we consider the reward + the expected value of the Q of the next state when the next action is sampled according to the policy. Equivalently we can say we take the expectation of the Q over policy $\pi$.
+
+Expected SARSA has slower updates, but it is more stable (lower variance than SARSA).
+
+![[Pasted image 20251102225201.png]]
+![[Pasted image 20251102225316.png]]
+
+
+### Considerations on SARSA, Q-Learning and Expected SARSA
+In practice Q-Learning often converges faster than SARSA because it takes a smaller number of iterations even if the single iterations are slower in Q-Learning due to the max operation.
+It might help to use a smaller value of $\alpha$ in SARSA compared to Q-Learning, this is because SARSA uses the estimate of the next action value in its target: this changes every time the agent takes an exploratory action. A smaller step-
+size can help SARSA to avoid overweighting exploratory actions that 'ruin' the estimate of a state.
+
+Sometimes acting off-policy can be detrimental, see cliff world example in Lecture 10.
+
+Expected SARSA moves deterministically in the same direction as SARSA moves in expectation. Thanks to its more stable updates, Expected SARSA can handle higher values of $\alpha$
+
+
+
+
