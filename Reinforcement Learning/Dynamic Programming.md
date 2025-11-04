@@ -1,4 +1,4 @@
-	#rl
+#rl
 The goals of dynamic programming are the following:
 1. Policy evaluation (also called prediction): to evaluate how good a policy $\pi$ is. This is done by computing the value functions $v_\pi(s)$ and/or $q_\pi(s,a)$ given as input the [[Markov Decision Processes|MDP]] and the policy $\pi$.
 2. Policy improvement (also called control): to improve the current policy to reach optimality. We want to obtain $\pi^*$ (and optionally $v_*(s)$ and/or $q_*(s,a)$) given as input the MDP.
@@ -88,7 +88,7 @@ Comparison of policy and value iteration:
 
 This high complexity can make the algorithms slow so we can use asynchronous DP approaches to make them faster.
 
-We call synchronous approaches the one that repeat $\forall s\in\cal S$, asynchronous approaches are a kind of in-place set of approaches that don't do a whole sweep of the state set per iteration.
+We call synchronous approaches the ones that repeat $\forall s\in\cal S$, asynchronous approaches are a kind of in-place set of approaches that don't do a whole sweep of the state set per iteration.
 
 We can for example: 
 1. Asynchronous DP approaches update the values of states in any order whatsoever, using whatever values of other states happen to be available.

@@ -97,7 +97,7 @@ In practice we will never solve it this way as:
 2. We don't actually know $P$ and $R$
 Actually we will use other efficient techniques to evaluate the Bellman equation (Dynamic programming, TD learning, Monte Carlo evaluation)
 
-IMPORTANT: we can notice how for MRPs, Bellman Equation is linear this is not the case when we try to choose the action with highest return in MDPs as the max is not a linear operation.
+IMPORTANT: we can notice how for MRPs, Bellman Equation is linear, this is not the case when we try to choose the action with highest return in MDPs as the max is not a linear operation.
 
 
 # Markov Decision Processes
@@ -111,7 +111,7 @@ Since the agent can take action we define what's the policy of an agent:
 * A policy fully defines the behaviour of an agent
 * MDP policies depend on the current state only (Markov property)
 * In MDP policies are stationary (do not depend on t), however we can change our policy in future episodes 
-* We consider stochastic policies: this allow us for example to deal with  exploration
+* We consider stochastic policies: this allows us for example to deal with  exploration
 The policy does not deal directly with rewards, it may be learned or given
 
 Now we also consider how the reward is a MRP where the transition probability between states and the reward expectation $R_s$ are influenced  by the policy:
@@ -135,6 +135,10 @@ We can express the 2 functions in terms of the other, then plugging in one of th
 These steps can be achieved with the Law of Total Expectation to express $v(s)$ in terms of $q(s,a)$ and linearity of expectation to obtain the expression for $q(s,a)$
 
 Again as we did for MRPs we can use the induced MRP by the MDP to write the Bellman expectation equation in matrix form (the only change is that both $P$ and $R$ depend on $\pi$)
+
+The Bellman Expectation equation can also be written in the notation with the expected value:
+![[Pasted image 20251103125644.png]]
+
 ## Bellman optimality equation
 
 To be able to take action we want to determine the optimal policy: an MDP can be considered ‘solved’ on a RL perspective when the optimal action-value function is known: we always know the optimal action to take from a certain state, we could just take the action that maximizes $q_*$ for the current state.
