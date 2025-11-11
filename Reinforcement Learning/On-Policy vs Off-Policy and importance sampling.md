@@ -1,5 +1,4 @@
 #rl 
-#todo 
 On-policy ("learning on the job"): learn about policy $\pi$ from experience sampled from policy $\pi$.
 
 Off-policy ("look over someone’s shoulder"): learn about policy $\pi$ (target policy) from experience sampled from policy 𝑏 (behavior policy). In off-policy we use the behavior policy to collect data from the environment in order to evaluate an optimal policy.

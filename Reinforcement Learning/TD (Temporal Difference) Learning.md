@@ -1,10 +1,9 @@
 #rl 
-#todo 
 As in [[Monte Carlo - On-Policy methods||Monte Carlo]] in TD we are in the model free case where transition probabilities and reward distributions are unknown, this paradigm can be used for both prediction and control.
 
 TD learning uses bootstrapping, meaning we can use it for incomplete episodes and also in the continuous case, unlike MC which needs to use finite length episodes.
 
-We'll also see how TD learning is a general framework that also includes [[Monte Carlo - On-Policy methods|MC]] methods but first we'll see the `TD(0)`version and then we'll generalize it later into [[asd|aggiungi link]].
+We'll also see how TD learning is a general framework that also includes [[Monte Carlo - On-Policy methods|MC]] methods but first we'll see the `TD(0)`version and then we'll generalize it later into [[n-step bootstrapping and TD lambda]].
 
 We can understand why TD learning is useful by examining some disadvantages of MC:
 1. MC needs to assume we are in the episodic case.

@@ -1,4 +1,4 @@
-#rl #todo
+#rl 
 [[On-Policy vs Off-Policy and importance sampling]]
 
 Monte Carlo methods are model-free full RL solutions, meaning we don't require knowledge of $P,R$ or any model unlike [[Dynamic Programming|dynamic programming]] which requires both a model and knowledge of $P,R$.

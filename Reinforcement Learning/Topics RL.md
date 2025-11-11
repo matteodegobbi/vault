@@ -8,7 +8,7 @@
 [[Monte Carlo - On-Policy methods]]
 [[Monte Carlo - Off-Policy methods]]
 [[TD (Temporal Difference) Learning]]
-[[n-step bootstrapping]]
+[[n-step bootstrapping and TD lambda]]
 
 
 ---

@@ -1,5 +1,4 @@
 #rl
-#todo 
 # Using importance sampling in MC methods
 Difference between on-policy and off-policy and importance sampling: [[On-Policy vs Off-Policy and importance sampling]].
 
