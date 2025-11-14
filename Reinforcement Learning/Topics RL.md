@@ -1,5 +1,5 @@
 #rl 
-
+### Primo parziale
 [[Reinforcement Learning Basics]]
 [[Multi Armed Bandits]]
 [[Markov Decision Processes]]
@@ -8,7 +8,9 @@
 [[Monte Carlo - On-Policy methods]]
 [[Monte Carlo - Off-Policy methods]]
 [[TD (Temporal Difference) Learning]]
+### Secondo parziale
 [[n-step bootstrapping and TD lambda]]
+[[Value function approximation]]
 
 
 ---
@@ -39,7 +41,8 @@
 [[TD (Temporal Difference) Learning#Control#Q-Learning]]
 [[TD (Temporal Difference) Learning#Control#Expected SARSA]]
 
-
+## n-step and td lambda
+## vfa
 
 
 
