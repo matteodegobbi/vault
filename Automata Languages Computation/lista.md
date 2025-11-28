@@ -83,6 +83,16 @@ CFG simplication with correct order of eliminations
 Chomsky normal form
 Conversion of CFG to CNF by simplification followed by decomposing productions
 FORSE SKIP Greibach Normal form
+## CFL properties 2 (CONTROLLA SUL SYLLABUS)
+TO DO
+## Turing Machines (COntrolla syllabus)
+Def of TM
+Def of ID for a TM 
+Def of computation (and transitive closure) for a TM 
+Accepting computation for a TM
+
+
+
 
 
 
