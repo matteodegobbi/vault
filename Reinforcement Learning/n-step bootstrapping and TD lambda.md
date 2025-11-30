@@ -90,6 +90,7 @@ we can write the update function $\forall s\in S$ at each time-step as:
 ![[Pasted image 20251127172559.png]]
 This means that the update for a state is weighted by the credit that the state gets according to the eligibility trace. Since we have an eligibility trace for each state we can update all of them by considering the current TD error and they get credit for that current TD error proportional to their eligibility.
 
+### Backward
 We can now build an algorithm for backward $\text{TD}(\lambda)$ with online updates:
 ![[Pasted image 20251127235443.png]]
 
@@ -106,6 +107,7 @@ Up to now we have considered accumulating traces but there are different version
 
 ## $\text{SARSA}(\lambda)$
 Since we are switching from prediction to control we will use $Q(s,a)$ instead of $V(s)$ and also the eligibility traces will be $E(s,a)$ instead of $E(s)$.
+Also $G_{t:t+n}$ from now on will refer to the version using Q instead of V.
 
 As in prediction we can define both a forward and backward view, the latter is more realistic to implement in practice.
 

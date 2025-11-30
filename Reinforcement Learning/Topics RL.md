@@ -11,7 +11,7 @@
 ### Secondo parziale
 [[n-step bootstrapping and TD lambda]]
 [[Value function approximation]]
-
+[[Policy gradient]]
 
 ---
 
@@ -42,6 +42,10 @@
 [[TD (Temporal Difference) Learning#Control#Expected SARSA]]
 
 ## n-step and td lambda
+[[n-step bootstrapping and TD lambda#Prediction#]]
+[[n-step bootstrapping and TD lambda#Control]]
+[[n-step bootstrapping and TD lambda#Backward]]
+[[n-step bootstrapping and TD lambda#$ text{SARSA}( lambda)$]]
 ## vfa
 
 
