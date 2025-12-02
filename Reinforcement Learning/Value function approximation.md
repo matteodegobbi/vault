@@ -85,7 +85,7 @@ we can also implement TD lambda:
 
 ---
 # How to build features
-In the PDF lecture 14
+In the PDF lecture 14 from slide 31
 Generalization vs Discrimination
 State aggregation
 Coarse coding
@@ -97,6 +97,7 @@ Similarly to what we saw in TD and MC when dealing with the tabular case for con
 
 ![[Pasted image 20251116005017.png]]
 
+Again we don't have access to the real $q_\pi(s,a)$ so depending on the method we will use a sample quantity ($G_t$ for MC etc...)
 We will represent state,action pairs with feature vectors:
 ![[Pasted image 20251116005058.png]]
 again like in prediction we show only examples for the linear approximation but they can be generalized by employing the gradient of the approximation function.

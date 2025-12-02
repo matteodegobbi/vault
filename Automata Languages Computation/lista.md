@@ -71,20 +71,34 @@ Conversion from empty stack to final states with proof
 Conversion from final state to empty stack with proof
 CFG to PDA statement and construction, no proof
 PDA to CFG statement only, no proof
-## CFL properties 1 (CONTROLLA SUL SYLLABUS)
+## CFL properties 1
 Def of reachable, generating, useful symbols
 Elimination of useless symbols
 Algorithm to compute generating symbols
 Algorithm to compute reachable symbols
 Algorithm for nullable variables
 Algorithm for elimination of epsilon productions
-Algorithm for elimination of unary productions
+Algorithm for elimination of unary productions (and unary pair def)
 CFG simplication with correct order of eliminations
 Chomsky normal form
 Conversion of CFG to CNF by simplification followed by decomposing productions
-FORSE SKIP Greibach Normal form
-## CFL properties 2 (CONTROLLA SUL SYLLABUS)
-TO DO
+## CFL properties 2 
+Pumping lemma for CFLs with proof
+Consequences of pumping lemma: counting more than 2 seq, crossing pairs, copie
+Closure properties:
+    - substitution
+    - union
+    - concatenation
+    - Kleene and + (meaning 1 or more) operator 
+    - homomorphism
+    - reverse
+    - intersection with a reg language (and construction of intersection PDA)
+    - set difference with reg language
+NOT closure: intersection of CFLs, complement of a CFL, set difference of CFLs
+Complexity of conversions, just knowing polynomial or exponential time
+Test for emptiness of CFL (informal description)
+CYK algorithm
+Undecidable problems for a CFL (DA SAPERE????)
 ## Turing Machines (COntrolla syllabus)
 Def of TM
 Def of ID for a TM 
