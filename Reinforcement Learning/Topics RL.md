@@ -12,6 +12,8 @@
 [[n-step bootstrapping and TD lambda]]
 [[Value function approximation]]
 [[Policy gradient]]
+[[Actor-Critic]]
+[[Batch Methods]]
 
 ---
 
