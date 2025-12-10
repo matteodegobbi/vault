@@ -1,4 +1,6 @@
 #rl 
+![[Pasted image 20251207130448.png]]
+
 ### Primo parziale
 [[Reinforcement Learning Basics]]
 [[Multi Armed Bandits]]
@@ -49,6 +51,15 @@
 [[n-step bootstrapping and TD lambda#Backward]]
 [[n-step bootstrapping and TD lambda#$ text{SARSA}( lambda)$]]
 ## vfa
+### Prediction
+MC
+TD 0
+n step
+TD lambda backward
+TD lambda FORSE FORWARD 
+### Control
+TD 0 semigradient SARSA
+n-step semigradient SARSA
 
 
 

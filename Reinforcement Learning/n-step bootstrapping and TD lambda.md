@@ -70,7 +70,8 @@ and if we considered $\hat n+1$ then we will have $R_T$ and no next state.
 After splitting the summation, the second summation is the geometric series translated by $T-t-1$.
 
 ## Forward vs Backward view of $\text{TD}(\lambda)$ 
-Since in the weighted sum we need to use all the n-steps returns we can only compute $G^\lambda$ at the end of the episode, like we did in MC so we cannot learn along the way like we did in TD(0) and even n-step bootstrapping TD. This means that this "forward" version of $\text{TD}(\lambda)$ can only be applied offline like MC.
+Since in the weighted sum we need to use all the n-steps returns we can only compute $G^\lambda$ at the end of the episode, like we did in MC. This means that we cannot learn along the way like we did in TD(0) and in n-step bootstrapping TD.
+This "forward" version of $\text{TD}(\lambda)$ can only be applied offline like MC.
 ![[Pasted image 20251127171153.png]]
 >forward view
 

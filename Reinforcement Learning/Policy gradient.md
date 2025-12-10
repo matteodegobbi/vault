@@ -2,19 +2,19 @@
 #todo 
 # Introduction
 Up to now we have dealt with value-based methods: we learn a value function and then the policy is defined implicitly on the value function, e.g. $\varepsilon$-greedy.
-In policy based methods we instead parametrize the policy directly and learn weights $\theta$ to optimize some objective of the policy. We call this parametrized policy $\pi(a|s,\theta)\triangleq\mathbb P[A_t=a|S_t=s,\theta_t=\theta]$, we use differentiable functional forms of the policy like softmax, this allows to use gradient ascent approaches, taking the name of policy gradient.
-Policy gradient methods both include ones that don't learn a value function (e.g. `REINFORCE`) and ones that learn both a value function and a parametrized policy (called actor-critic methods).
+In policy based methods we instead parametrize the policy directly and learn weights $\theta$ to optimize some objective measure that evaluates the policy. We call this parametrized policy $\pi(a|s,\theta)\triangleq\mathbb P[A_t=a|S_t=s,\theta_t=\theta]$, we use differentiable functional forms of the policy like Softmax, this allows to use gradient ascent approaches, taking the name of policy gradient.
+Policy gradient methods both include ones that don't learn a value function (e.g. `REINFORCE`) and ones that learn both a value function and a parametrized policy (called [[Actor-Critic]] methods).
 ![[Pasted image 20251202220922.png]]
 
 ## Reasons for policy gradient methods
 There are some advantages in using policy gradient approaches instead of inferring implicitly the policy from action value estimates. 
 One advantage is that policy-based approaches can learn optimal stochastic policies, while strictly value-based methods could only learn optimal deterministic policies. In some environments like poker or rock paper scissors the optimal policy might be stochastic. Also learning stochastic policies might help in the case of state aggregation, function approximation or partially observable environments e.g. example in lecture 18 pdf with corridor with undistinguishable states.
-Another important advantage is that with policy parametrization we can choose functional forms of the policy based on the prior knowledge we have of the environment. Also evaluating the policy directly may be simpler.
+Another important advantage is that with policy parametrization we can choose functional forms of the policy based on the prior knowledge we have of the environment. Also evaluating the policy directly may be simpler then trying to estimate the states' values.
 
 Some other pros of policy-based approaches compared to strictly value-based ones are:
 - Better convergence properties (intuitively: smooth changes in action probabilities instead of jumps like in $\varepsilon$-greedy approaches due to the max operation)
 - Effective in high-dimensional/continuous action spaces
-- Stochastic OPTIMAL policies can be learned (no max involved), non-optimal stochastic policies could be learned by strictly value-based (e.g. $\varepsilon$-soft approaches) 
+- Stochastic OPTIMAL policies can be learned (no max involved), non-optimal stochastic policies could also be learned by strictly value-based (e.g. $\varepsilon$-soft approaches) 
 While some cons are:
 - Convergence to local optima (usually) and not global optimum
 - Evaluating how good a policy is high variance and inefficient (if no value function is learned)
@@ -83,10 +83,11 @@ A possible baseline $b(S_t)$ is the state value function, computed with one of t
 In this example we use value function approximation to compute $\hat v(s,w)$, using Monte Carlo both for the value function and for the policy gradient.
 
 In general the baseline will help reduce the variance but it won't change the expectation as long the baseline doesn't depend on the action (proof of why in the book). This allows the policy gradient theorem to still hold even with the baseline.
+This means it's guaranteed to converge to a local minimum asymptotically.
 
 ---
 
-`REINFORCE` with baseline can be extended to [[Actor-Critic]] methods.
+`REINFORCE` with baseline can be extended to [[Actor-Critic]] methods if we learn a critic and use a bootstrapped estimate of the advantage function.
 
 ---
 

@@ -1,6 +1,4 @@
 #rl 
-#todo 
-
 # Introduction
 Up to now we have always represented the Q and V values in a table, but for high cardinalities of the state set S and the action set A, this is not feasible, e.g. Go has $10^{170}$ states so we don't have enough memory to store this table.
 
@@ -13,11 +11,18 @@ $\hat q(s,a,\vec w)\approx q_\pi(s,a)$
 
 An additional advantage of VFA other than the memory saving is that if the approximation is good we may generalize the value function to unseen states, making the RL algorithms better for partially observable problems.
 
+So summarizing:
+Pros:
+- VFA may be necessary for large state-action spaces (memory saving) or for situations where it would take a long time to visit all the space
+- Generalization to unseen states also may work with partially observable environments
+Cons:
+* May be harder to manage in terms of training stability and interpretability
+* VFA methods must be able to work with non-stationary targets, especially if bootstrapping is involved
+
 ---
 
 We can look at an example using a grid world:
 ![[Pasted image 20251113092921.png]]
-
 
 In this case we used a linear approximation but in principle we can use any available supervised learning method.
 In any case, differentiable approaches (linear regression, neural nets) are preferred because SGD can be applied. 
@@ -30,7 +35,6 @@ To apply this to reinforcement learning we can use SGD to find the value of the 
 
 ![[Pasted image 20251113132131.png]]
 In expectation SGD is equal to full GD.
-
 
 # Prediction 
 In the full RL problem we cannot apply the formulation we developed in the introduction directly since we don't have access to the true value function $v_\pi$ (we're not in a supervised learning setting).  
@@ -57,7 +61,9 @@ Also in the following we will only show the formulas for value function approxim
 (Tabular RL can be seen as a special case of linear approximation where the feature vector is a 1-hot vector with all the states, with this representation only the value of the state will be updated, making it equivalent to tabular RL)
 
 ## Algorithms using value function approximation
+Since we don't have access to the true $v_\pi(s)$ we need to use instead a target $U_t$ that can be sampled by experience:
 ![[Pasted image 20251115220839.png]]
+If the target $U_t$ is an unbiased estimate of $v_\pi(s)$ then SGD is guaranteed to converge to a local optimum. Out of our possible targets defined above the only unbiased one is MC Return, but in case of linear VFA we can make stronger claims on the convergence as we'll see later.
 
 ### Monte Carlo
 ![[Pasted image 20251115234148.png]]
@@ -73,7 +79,7 @@ It's a semi-gradient method and not gradient because the target itself is change
 In the linear case semi-gradient TD(0) the delta has the following equation ($\delta$ is the TD error):
 ![[Pasted image 20251115234659.png]]
 
-Linear TD(0) converges "close" to the global optimum (it converges to a fixed point of the projected bellman equation, which in practice yields a numerically close result to the global optimum).
+Linear TD(0) converges "close" to the global optimum (it converges to a fixed point of the projected bellman equation, which in practice yields a numerically close result to the global optimum). Anyway bootstrapping methods are useful in practice because of their faster convergence than MC methods.
 
 ### n-step and $\text{TD}(\lambda)$
 ![[Pasted image 20251115235714.png]]
@@ -98,7 +104,7 @@ Similarly to what we saw in TD and MC when dealing with the tabular case for con
 ![[Pasted image 20251116005017.png]]
 
 Again we don't have access to the real $q_\pi(s,a)$ so depending on the method we will use a sample quantity ($G_t$ for MC etc...)
-We will represent state,action pairs with feature vectors:
+We will represent state,action pairs with feature vectors instead of just states:
 ![[Pasted image 20251116005058.png]]
 again like in prediction we show only examples for the linear approximation but they can be generalized by employing the gradient of the approximation function.
 
@@ -109,4 +115,15 @@ Semi-gradient SARSA:
 
 We can also have optimistic value initialization strategies to foster exploration at the early stages of the episode (???????? episode or training)
 
-TODO aggiungi convergence condtions sum alfa^2\<infinito
+![[Pasted image 20251207174204.png]]
+
+---
+# Convergence conditions of SGD
+From stochastic approximation theory, to have a theoretical guarantee that with probability 1 SGD converges to a local optimum we would have to ensure that
+
+$$\begin{cases}
+\sum\limits_{n=1}^\infty{\alpha_n(a)}=\infty\\
+\sum\limits_{n=1}^\infty{\alpha_n(a)^2}<\infty\\
+\end{cases}$$
+The first condition is needed to guarantee that the step-size is big enough to overcome any initial condition.
+The second condition is needed to guarantee that the step-size eventually becomes small enough to converge.
