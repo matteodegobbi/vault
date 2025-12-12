@@ -1,7 +1,7 @@
 #rl 
 #todo 
 # What is Actor-Critic and differences with REINFORCE with baseline
-A set of approaches apply value-based and policy-based RL at the same time. In actor-critic we have two components:
+A set of approaches that apply value-based and policy-based RL at the same time. In actor-critic we have two components:
 1. Actor: improves the directly parametrized policy, taking care of the control task
 2. Critic: evaluate how good the policy is, taking care of the prediction task
 This set of approaches differs from the purely policy-based ones like [[Policy gradient#Reinforce|REINFORCE]] which are not considered actor-critic because even though they can use a learned state value function as a baseline, the error estimate is obtained at the end of the episode by computing $\delta\leftarrow G-\hat v(s,w)$ so no bootstrapping happens in the "actor". Instead in Advantage Actor-Critic $\delta\leftarrow R+ \gamma\hat v(s',w)-\hat v(s,w)$ this also implies that in Actor-Critic the update has bias (even if MC is used to update $\hat v$ the bias comes from the 'bootstrapping' in the actor update) while `REINFORCE` with baseline is unbiased because it uses MC to update the policy after the end of the episode.
@@ -40,10 +40,10 @@ We can simplify the algorithm by noticing how the TD-Error is actually an unbias
 ![[Pasted image 20251206162225.png]]
 So in the update rule we can now use the TD-Error instead of the difference of q and v.
 
-TODO metti immagine d A2C con TD-Error forse l'algoritmo nelle slide e' sbagliato.
+![[Pasted image 20251212160402.png]]
+![[Pasted image 20251212160536.png]]
 
 ---
-
 # Different time-scales
 For both the actor and the critic we can consider different approaches using the different targets we already developed in value-based methods.
 ## For the critic
@@ -57,7 +57,13 @@ Where MC policy gradient is the same as REINFORCE.
 ![[Pasted image 20251206163045.png]]
 
 We can mix actors and critics that work at different time-scales but it doesn't make sense to use critics that are 'slower' than actors, since the change in policy of the actor depends on having improved prediction by the critic.
-For this reason it makes no sense to use a TD(0) actor with a MC critic as many update steps of the actor are using old estimates since the MC critic will only be updated when the episode ends.
+For this reason it makes little sense to use a TD(0) actor with a MC critic as many update steps of the actor are using old estimates since the MC critic will only be updated when the episode ends.
+
+---
+
+Extension to continuing tasks and continuous action spaces in the lecture's pdf.
+
+---
 
 
 
