@@ -123,4 +123,5 @@ Backward version:
 
 # $\text{TD}(\lambda)$ with function approximation
 When using [[Value function approximation]] we can derive a different version of $\text{TD}(\lambda)$ defining eligibility traces for the approximation model's weights.
+In the book + truncated TD lambda.
 TODO continua

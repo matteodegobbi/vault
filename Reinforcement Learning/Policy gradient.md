@@ -1,5 +1,4 @@
 #rl 
-#todo 
 # Introduction
 Up to now we have dealt with value-based methods: we learn a value function and then the policy is defined implicitly on the value function, e.g. $\varepsilon$-greedy.
 In policy based methods we instead parametrize the policy directly and learn weights $\theta$ to optimize some objective measure that evaluates the policy. We call this parametrized policy $\pi(a|s,\theta)\triangleq\mathbb P[A_t=a|S_t=s,\theta_t=\theta]$, we use differentiable functional forms of the policy like Softmax, this allows to use gradient ascent approaches, taking the name of policy gradient.
