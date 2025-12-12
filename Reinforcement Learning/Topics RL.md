@@ -1,5 +1,4 @@
 #rl 
-![[Pasted image 20251207130448.png]]
 
 ### Primo parziale
 [[Reinforcement Learning Basics]]
@@ -17,7 +16,9 @@
 [[Actor-Critic]]
 [[Batch Methods]]
 
----
+
+![[Pasted image 20251207130448.png]]
+
 
 # List of algorithms
 ## Dynamic programming
