@@ -91,11 +91,27 @@ we can also implement TD lambda:
 
 ---
 # How to build features
-In the PDF lecture 14 from slide 31
-Generalization vs Discrimination
-State aggregation
-Coarse coding
-Tile coding
+## Generalization vs Discrimination
+Generalization is the capability of a feature representation to use information gathered from a state to influence the value estimate of other similar states, it's important when $|S|$ is big and we cannot achieve a perfect estimate either because of memory or number of samples required.
+
+Discrimination is the capability of a feature representation to distinguish different states for which the value estimate should be different, it's important to be able to reach optimality, if there's not enough discrimination the value estimates of different states will blur together and won't allow to get meaningful differences between them.
+
+These two concepts are antagonists and constitute the main trade-off in VFA. 
+This is similar to the bias-variance trade-off in supervised learning.
+
+We can place models on an axis that goes from maximum generalization to maximum discrimination:
+`---constant---linear---polynomial---kernel---neuralnet---tabular-->`
+A constant model has high inductive bias and high generalization but 0 discrimination (very low model capacity).
+On the other hand tabular RL has 0 generalization but perfect discrimination (all states get their own estimate).
+
+This has some consequences similar to NFL theorem in ML:
+- Low bias/high discrimination models (high capacity) will have low approximation error but can have higher estimation error (model is too complex-->overfitting).
+- High bias/low discrimination models (low capacity) can have higher approximation (model is too simple-->underfitting) error but will have lower estimation error.
+## Types of features
+In the PDF lecture 14 from slide 31:
+- State aggregation
+- Coarse coding
+- Tile coding
 
 ---
 # Control
