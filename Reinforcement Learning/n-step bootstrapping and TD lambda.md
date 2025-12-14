@@ -1,4 +1,3 @@
-#todo 
 #rl 
 # n-step bootstrapping
 We want to find a method that generalizes [[TD (Temporal Difference) Learning#TD(0)|TD(0)]] and [[Monte Carlo - On-Policy methods|Monte Carlo]], this can be useful to balance the bias-variance trade-off we have between these two methods.
@@ -123,5 +122,10 @@ Backward version:
 
 # $\text{TD}(\lambda)$ with function approximation
 When using [[Value function approximation]] we can derive a different version of $\text{TD}(\lambda)$ defining eligibility traces for the approximation model's weights.
-In the book + truncated TD lambda.
-TODO continua
+In the book + slides 17+ truncated TD lambda.
+
+Algorithms:
+Prediction:
+![[Pasted image 20251214155654.png]]
+Control:
+Adapt prediction algorithm to commit to A' and choose actions $\varepsilon$-greedily.
