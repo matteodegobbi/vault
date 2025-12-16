@@ -1,7 +1,7 @@
 #rl 
 [[On-Policy vs Off-Policy and importance sampling]]
 
-Monte Carlo methods are model-free full RL solutions, meaning we don't require knowledge of $P,R$ or any model unlike [[Dynamic Programming|dynamic programming]] which requires both a model and knowledge of $P,R$.
+Monte Carlo methods are model-free full RL solutions, meaning we don't require knowledge of $P,R$ or any model unlike [[Reinforcement Learning/Dynamic Programming|dynamic programming]] which requires both a model and knowledge of $P,R$.
 
 Monte Carlo is used for both prediction and control. These methods work with data gathered by the agent interacting with the environment. In Monte Carlo we require that we are in the episodic case as we will use the complete returns, which are available only in the case where the episode terminates in a finite amount of time-steps.
 
@@ -32,11 +32,11 @@ In both cases we can use incremental updates of $V(s)$ instead of recomputing th
 
 We can notice how the computational complexity does not depend on the size of the MDP but depends on the size of the episode.
 
-Both the first-visit and every-visit versions can be seen as a model free version of [[Dynamic Programming#Generalized policy iteration |GPI]].
+Both the first-visit and every-visit versions can be seen as a model free version of [[Reinforcement Learning/Dynamic Programming#Generalized policy iteration|GPI]].
 
 ---
 # Control
-Estimating state value functions is not enough in order to compute a greedy policy, this is because unlike [[Dynamic Programming|DP]] we don't have access to $P,R$ so we cannot use equation:
+Estimating state value functions is not enough in order to compute a greedy policy, this is because unlike [[Reinforcement Learning/Dynamic Programming|DP]] we don't have access to $P,R$ so we cannot use equation:
 
 ![[Pasted image 20251024184220.png]]
 
@@ -62,7 +62,7 @@ Where the Policy Evaluation step is the same as MC prediction but with $Q$ inste
 
 As in MC prediction instead of the average we could implement it with incremental updates.
 
-The convergence of this method is guaranteed by a policy improvement theorem similar to the one we discussed in [[Dynamic Programming|DP]]:
+The convergence of this method is guaranteed by a policy improvement theorem similar to the one we discussed in [[Reinforcement Learning/Dynamic Programming|DP]]:
 ![[Pasted image 20251026162916.png]]
 
 ES has an important drawback: sometimes is may not be possible to start an episode with all possible (state,action) pairs, for this reason we can look for other methods that guarantee exploration that are not based on ES.

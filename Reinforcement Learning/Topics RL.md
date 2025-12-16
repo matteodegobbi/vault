@@ -3,7 +3,7 @@
 [[Reinforcement Learning Basics]]
 [[Multi Armed Bandits]]
 [[Markov Decision Processes]]
-[[Dynamic Programming]]
+[[Reinforcement Learning/Dynamic Programming]]
 [[On-Policy vs Off-Policy and importance sampling]]
 [[Monte Carlo - On-Policy methods]]
 [[Monte Carlo - Off-Policy methods]]
@@ -22,10 +22,10 @@
 # List of algorithms
 ## Dynamic programming
 ### Prediction
-[[Dynamic Programming#Policy evaluation]]
+[[Reinforcement Learning/Dynamic Programming#Policy evaluation]]
 ### Control
-[[Dynamic Programming#Policy iteration]]
-[[Dynamic Programming#Value iteration]]
+[[Reinforcement Learning/Dynamic Programming#Policy iteration]]
+[[Reinforcement Learning/Dynamic Programming#Value iteration]]
 ## Monte Carlo On-Policy 
 
 ### Prediction
