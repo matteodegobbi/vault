@@ -10,7 +10,7 @@ Another added benefit is that we reuse past experience multiple times: increment
 
 This approach where we store transitions in a buffer and the sample a subset of them for each update is called experience replay.
 
-A simple implementation consists in keeping a buffer of fixed size and whenever we push a new transition the buffer we remove the oldest one if the buffer is already full.
+		A simple implementation consists in keeping a buffer of fixed size and whenever we push a new transition the buffer we remove the oldest one if the buffer is already full.
 
 Using a buffer for experience replay is equivalent to solving a least squares problem on the batch of sampled transitions using MSE of value function:
 ![[Pasted image 20251213160422.png]]
@@ -21,9 +21,38 @@ Now, it's clear that this formulation cannot be applied directly as it involves 
 
 Instead we use a target we can sample from experience:
 ![[Pasted image 20251213160633.png]]
+Using a mini-batch instead of a single sample in the SGD step is useful to decrease the variance of the updates.
 
 Batch approaches with policy gradient are done in a different format:
 ![[Pasted image 20251213160941.png]]
 
 ---
 
+```python
+# SARSA Batch method
+replay_buffer = [] # empty replay buffer
+
+function update_weights(w):
+	batch = sample(replay_buffer,batch_size)
+	for <S,A,R,S',A'> in batch:
+		delta = R+gamma*q(S',A',w) - q(S,A,w)
+		w = w + alpha*delta*gradient(q(S,A,w))
+	return w
+
+Inputs:
+	differentiable vfa q:SxAxR^d ---> R
+	we assume q(terminal,.,.) = 0
+	alpha > 0
+Init:
+	w = 0 # R^d
+Loop for every episode:
+	Init S
+	A = choose action greedily wrt to q in S
+	Loop for every step of episode until S is terminal:
+		R,S' = execute A and observe result
+		A' = choose action greedily wrt to q in S'
+		replay_buffer.append(<S,A,R,S',A'>)
+		w = update_weights(w)
+		S = S'
+		A = A'
+```
