@@ -2,7 +2,7 @@
 #todo 
 # What is Actor-Critic and differences with REINFORCE with baseline
 A set of approaches that apply value-based and policy-based RL at the same time. In actor-critic we have two components:
-1. Actor: improves the directly parametrized policy, taking care of the control task
+1. Actor: improves directly the parametrized policy, taking care of the control task
 2. Critic: evaluate how good the policy is, taking care of the prediction task
 This set of approaches differs from the purely policy-based ones like [[Policy gradient#Reinforce|REINFORCE]] which are not considered actor-critic because even though they can use a learned state value function as a baseline, the error estimate is obtained at the end of the episode by computing $\delta\leftarrow G-\hat v(s,w)$ so no bootstrapping happens in the "actor". Instead in Advantage Actor-Critic $\delta\leftarrow R+ \gamma\hat v(s',w)-\hat v(s,w)$ this also implies that in Actor-Critic the update has bias (even if MC is used to update $\hat v$ the bias comes from the 'bootstrapping' in the actor update) while `REINFORCE` with baseline is unbiased because it uses MC to update the policy after the end of the episode.
 [stackexchange post about this](https://stats.stackexchange.com/questions/340987/how-can-i-understand-reinforce-with-baseline-is-not-a-actor-critic-algorithm)

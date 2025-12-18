@@ -10,7 +10,7 @@ Another added benefit is that we reuse past experience multiple times: increment
 
 This approach where we store transitions in a buffer and the sample a subset of them for each update is called experience replay.
 
-		A simple implementation consists in keeping a buffer of fixed size and whenever we push a new transition the buffer we remove the oldest one if the buffer is already full.
+A simple implementation consists in keeping a buffer of fixed size and whenever we push a new transition the buffer we remove the oldest one if the buffer is already full.
 
 Using a buffer for experience replay is equivalent to solving a least squares problem on the batch of sampled transitions using MSE of value function:
 ![[Pasted image 20251213160422.png]]

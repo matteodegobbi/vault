@@ -16,10 +16,10 @@ Some other pros of policy-based approaches compared to strictly value-based ones
 - Stochastic OPTIMAL policies can be learned (no max involved), non-optimal stochastic policies could also be learned by strictly value-based (e.g. $\varepsilon$-soft approaches) 
 While some cons are:
 - Convergence to local optima (usually) and not global optimum
-- Evaluating how good a policy is high variance and inefficient (if no value function is learned)
+- Evaluating how good a policy is, is high variance and inefficient (if no value function is learned)
 
 ## Possible functional forms
-To parametrize the policy we can choose any functional form, with different representation capacities a possible example is the softmax distribution we already saw in gradient bandits. The preferences can be any representation or function of state and action e.g. a neural net or a linear model.
+To parametrize the policy we can choose any functional form, each with different representation capacities a possible example is the softmax distribution we already saw in gradient bandits. The preferences can be any representation or function of state and action e.g. a neural net or a linear model ($\textbf{x}^T(s,a)\cdot\textbf w$).
 Softmax:
 ![[Pasted image 20251204225719.png]]
 
