@@ -79,7 +79,7 @@ To deal with this problem we can change our view to look at the backward version
 ![[Pasted image 20251127171227.png]]
 >backward view
 
-Eligibility traces are a concept used for credit assignment of the reward to different states visited during the trajectory, eligibility traces include both a recency heuristic (states near the reward get more credit) and a frequency heuristic (a state that appears more often should get more credit).
+Eligibility traces are a concept used for credit assignment of the reward (actually of the td-error) to different states visited during the trajectory, eligibility traces include both a recency heuristic (states near the reward get more credit) and a frequency heuristic (a state that appears more often should get more credit).
 
 This is the definition of the eligibility trace for tabular $\text{TD}(\lambda)$:
 ![[Pasted image 20251127171755.png]]
