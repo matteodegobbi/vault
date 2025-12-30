@@ -103,7 +103,36 @@ Undecidable problems for a CFL (DA SAPERE????)
 Def of TM
 Def of ID for a TM 
 Def of computation (and transitive closure) for a TM 
-Accepting computation for a TM
+Accepting computation for a TM and language accepted by a TM
+Def of RE, REC, decidable problem, halting
+TM with registers, multiple tracks and subroutines
+MultiTape TM def
+MultiTape languages are RE theorem, with proof (simulation with a regular TM)
+Simulation of MultiTape is O(n^2) theorem, with proof 
+NTM def
+Languages accepted by NTM == Languages accepted by TM, with proof
+Semiinfinite tape TM and equivalence with TM, with proof
+Multistack machine and equivalence with TM, no proof 
+
+
+## Undecidability (Controlla syllabus)
+RE vs REC and decidability def
+String indexing
+Encoding of TMs --> indexing of TMs
+Diagonalization language, table of characteristic vectors
+Ld is not in RE, with proof
+Properties of REC and RE and valid combinations of L and $\bar L$
+Universal language, Universal TM
+Theorem Lu is in RE but not in REC, with proof using reduction
+Halting problem: only why it's in RE not why it's not REC
+Reduction
+PROOF OF REDUCTION FORSE???????
+Lne and Le and their placement into RE\REC and outside RE, with proof
+Properties of RE langs and Rice Theorem, with proof
+PCP, no proof
+CHECK THEOREMS TO SKIP IN BOOK
+
+
 
 
 
