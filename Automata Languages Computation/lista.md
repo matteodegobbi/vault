@@ -113,8 +113,6 @@ NTM def
 Languages accepted by NTM == Languages accepted by TM, with proof
 Semiinfinite tape TM and equivalence with TM, with proof
 Multistack machine and equivalence with TM, no proof 
-
-
 ## Undecidability (Controlla syllabus)
 RE vs REC and decidability def
 String indexing
@@ -126,11 +124,24 @@ Universal language, Universal TM
 Theorem Lu is in RE but not in REC, with proof using reduction
 Halting problem: only why it's in RE not why it's not REC
 Reduction
-PROOF OF REDUCTION FORSE???????
 Lne and Le and their placement into RE\REC and outside RE, with proof
 Properties of RE langs and Rice Theorem, with proof
-PCP, no proof
+PCP only the problem statement and its undecidability, no proof, no MCPC
 CHECK THEOREMS TO SKIP IN BOOK
+
+## Intractability (controlla syllabus)
+Computation complexity for a TM
+Class P def
+Class NP def
+Polynomial time reductions, def and theorem on P
+NP complete def and 2 theorems
+NP hard def
+Boolean expressions and their encoding
+Satisfiability of Boolean expressions and the SAT problem
+Cook theorem: SAT is NP-complete (first part of the proof only: SAT is in NP)
+Normal forms for Boolean expressions (CNF and k-CNF)
+CSAT and 3SAT are NP-complete (statement only, no proof)
+
 
 
 
