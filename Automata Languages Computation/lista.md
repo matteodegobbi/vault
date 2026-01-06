@@ -19,11 +19,11 @@ Def of eps-NFA
 ECLOSE definition
 Extension of transition function for eps-NFAs
 Language recognized by eps-NFA
-Conversion?????????
-Equivalence forse no proof??????
+Conversion to DFA
+Equivalence to DFAs, only statement no proof
 ## regex
 Operations on languages
-Regex inductive definition,operator precedence
+Regex inductive definition, operator precedence
 DFA to regex with state elimination, exercises and proof
 Regex to eps-NFA with proof 
 Properties of regex (forse da saltare non c'e' nel syllabus)
@@ -39,9 +39,9 @@ Closure properties (including proofs) of Reg wrt:
     - homomorphism (only statement no proof)
 Complexity of conversions, just knowing polynomial or exponential time
 Decision problems (only usage of algos no proof):
-    - Emptiness test
-    - Membership test
-    - State equivalence algorithm (and def of equivalent states)
+    - Emptiness test (FA or regex)
+    - Membership test for DFA, NFA, eps-NFA, RegEx
+    - State equivalence algorithm (and def of equivalent states) for DFA
     - Equivalence between 2 Reg languages
     - DFA minimization
 ## CFGs
@@ -79,7 +79,7 @@ Algorithm to compute reachable symbols
 Algorithm for nullable variables
 Algorithm for elimination of epsilon productions
 Algorithm for elimination of unary productions (and unary pair def)
-CFG simplication with correct order of eliminations
+CFG simplification with correct order of eliminations
 Chomsky normal form
 Conversion of CFG to CNF by simplification followed by decomposing productions
 ## CFL properties 2 
@@ -99,7 +99,7 @@ Complexity of conversions, just knowing polynomial or exponential time
 Test for emptiness of CFL (informal description)
 CYK algorithm
 Undecidable problems for a CFL (DA SAPERE????)
-## Turing Machines (COntrolla syllabus)
+## Turing Machines (Controlla syllabus)
 Def of TM
 Def of ID for a TM 
 Def of computation (and transitive closure) for a TM 
@@ -129,7 +129,7 @@ Properties of RE langs and Rice Theorem, with proof
 PCP only the problem statement and its undecidability, no proof, no MCPC
 CHECK THEOREMS TO SKIP IN BOOK
 
-## Intractability (controlla syllabus)
+## Intractability (Controlla syllabus)
 Computation complexity for a TM
 Class P def
 Class NP def
@@ -141,6 +141,12 @@ Satisfiability of Boolean expressions and the SAT problem
 Cook theorem: SAT is NP-complete (first part of the proof only: SAT is in NP)
 Normal forms for Boolean expressions (CNF and k-CNF)
 CSAT and 3SAT are NP-complete (statement only, no proof)
+Indipendent Set (FORSE PROOF????)
+Node Cover, no proof of NP-completeness
+DHC, no proof of NP-completeness
+HC, no proof of NP-completeness
+TSP, no proof of NP-completeness
+
 
 
 
