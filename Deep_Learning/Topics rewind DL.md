@@ -2,7 +2,7 @@
 # Architectures (broad)
 GAN
 Siamese Nets with triplet/contrastive loss, dissimilarity space and metric
-CNNs
+CNNs: [[CNN]]
 AutoEncoders
 Transformers
 ViTs
