@@ -1,4 +1,11 @@
 #dl 
+# Teoria ML
+[[Empirical risk minimization]]
+[[Train-test-validation, model selection]]
+Cross-validation methods
+Bias-Complexity tradeoff
+Metrics
+
 # Architectures (broad)
 GAN
 Siamese Nets with triplet/contrastive loss, dissimilarity space and metric
