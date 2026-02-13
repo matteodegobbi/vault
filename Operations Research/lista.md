@@ -56,20 +56,24 @@ Convex hull
 ## Unimodularity
 Unimodularity
 Theorem on ideal formulation if unimodular (6.2.1)
-Total Unimodularity
+<mark style="background: #FF5582A6;">Total Unimodularity</mark>
 Theorem on ideal formulation if totally unimodular (6.2.2) (forse proof semplificata)
-Theorem on sufficient condition for TUM (6.2.3)
+<mark style="background: #FF5582A6;">Theorem on sufficient condition for TUM (6.2.3)</mark>
 Proposition on equivalent conditions to TUM
 ## Cutting plane
 Definition of cut
 Chvatal inequalities
-Gomory cuts (integer and fractional form)
+<mark style="background: #FF5582A6;">Gomory cuts (integer and fractional form) with proof</mark>
 ## Branch and bound
 Branching, branching variable, branching tree
 Branching constraints active at a node
 Fathoming criteria
 Convergence argument (informal)
-MANCA PARTE IMPLMENTTION
+Implementation details: choice of branching var, visit order
+## Branch and cut
+Reason for cuts
+Globally vs locally valid cuts, cut pool
+Separation problem
 
 
 
@@ -116,7 +120,7 @@ Ford Fulkerson
 CPM????
 Primal Simplex
 Dual Simplex
-Gomory cosa?????
+Gomory cutting plane algo
 sensitivity analysis of a tableau
-matrice e' tum?
+dire se matrice e' tum 
 branch and bound applicazione a un esempio
