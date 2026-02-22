@@ -108,19 +108,25 @@ Theorem on flow through a cut (7.7.1)
 Theorem relating flow through a cut and capacity of cut (weak duality) (7.7.2)
 Min Cut, saturated arc and residual network
 Theorem identifying flow optimality with residual network (7.7.3)
+Ford Fulkerson Algorithm
 
-
+## NP-Hard problems
+0-1 Knapsack: ILP, Dantzig relaxation algorithm, DP-KP
+TSP: ILP, Separation problem and procedure
+Steiner Tree: ILP, Separation problem and procedure
+Plant location: ILP
+Set Covering/Partitioning: ILP
 
 
 
 --- 
-Esercizi numerici
+# Esercizi numerici
 Transform LP in Dual with rules
 Ford Fulkerson
-CPM????
+CPM
 Primal Simplex
 Dual Simplex
-Gomory cutting plane algo
-sensitivity analysis of a tableau
-dire se matrice e' tum 
-branch and bound applicazione a un esempio
+Gomory cutting plane algorithm
+Sensitivity analysis of a tableau
+Applying theorem to determine if matrix is TUM
+Branch and bound application to a tableau
