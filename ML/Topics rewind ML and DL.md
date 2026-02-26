@@ -1,10 +1,14 @@
-#dl 
+#dl #ml 
+
 # Teoria ML
 [[Empirical risk minimization]]
 [[Train-test-validation, model selection]]
-Cross-validation methods
-Bias-Complexity tradeoff
-Metrics
+[[Bias-Variance and Bias-Complexity trade-offs]]
+[[Metrics]]
+# Models ML
+OLS/linear reg
+percpetron
+logistic regression
 
 # Architectures (broad)
 GAN
