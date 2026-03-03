@@ -5,29 +5,41 @@
 [[Train-test-validation, model selection]]
 [[Bias-Variance and Bias-Complexity trade-offs]]
 [[Metrics]]
+[[Stochastic gradient descent]]
 # Models ML
 OLS/linear reg
-percpetron
+GLMs
+perceptron
 logistic regression
+SVM
+MLE
+decision tree 
+random forest
 
+# Deep learning
+
+[[Neural networks, backpropagation]]
+[[Expressiveness of Neural nets]]TODO
+[[Activation functions]]
 # Architectures (broad)
-GAN
-Siamese Nets with triplet/contrastive loss, dissimilarity space and metric
-CNNs: [[CNN]]
-AutoEncoders
+[[Convolutional neural networks]] 
+AutoEncoders /denoising AEs / VAEs
+RNN / LSTM / GRU
 Transformers
 ViTs
-RNN / LSTM / GRU
+GAN
+Diffusion models
+Siamese Nets with triplet/contrastive loss, dissimilarity space and metric
 TCN con atrous convolution (forse skip)
 # Specific layers
-Convolutional and pooling layers
-Batchnorm
-Global average pooling
+[[Convolutional neural networks#Convolutional layer]]
+[[Convolutional neural networks#Pooling]]
+[[Batch normalization]] TODO
+[[Convolutional neural networks#Global Average pooling]]
 Instance Normalization 
 Spectral Normalization 
 Layer Normalization 
 Dropout
-Activations
 # Losses and optimizers
 Cross-Entropy
 BCE
@@ -42,9 +54,6 @@ AdamW
 Segmentation losses like Dice and Tversky index
 
 # Theoretical concepts
-Bias variance tradeoff
-k-fold validation
-perceptron
 exploding vanishing gradient
 Xavier init, Kaiming-He init
 Autodifferentiation
