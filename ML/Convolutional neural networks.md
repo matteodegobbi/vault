@@ -65,9 +65,9 @@ GAP allows fewer parameters and potentially less overfitting
 # Other techniques useful in CNNs
 [[Batch normalization]]
 Strided convolution (meaning stride S>1) can be used to replace pooling layers.
-Dropout
+[[Dropout]]
 Regularization
-Data augmentation
+[[Data augmentation]]
 Depthwise Separable Convolution
 Atrous convolution
 Transposed Convolution (Deconvolution)

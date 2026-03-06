@@ -1,4 +1,4 @@
-#dl 
+#ml #dl 
 For Binary classification:
 ![[Pasted image 20251210091850.png]]
 

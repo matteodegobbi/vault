@@ -1,1 +1,10 @@
-{}
+{
+  "companion:toggle": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "Q"
+    }
+  ]
+}

@@ -25,12 +25,14 @@ exploding vanishing gradient
 Xavier init, Kaiming-He init
 Autodifferentiation
 Distribution shift
-Ensembles 
 Distillation
-Data augmentation
 Scaling laws
-Label smoothing
 Gradient checkpointing
+[[Regularization]]
+[[Data augmentation]] TODO
+[[Label smoothing]] TODO
+[[Ensembles]] TODO
+[[Early stopping]] TODO
 
 # Architectures (broad)
 [[Convolutional neural networks]] 
@@ -49,15 +51,16 @@ TCN con atrous convolution (forse skip)
 [[Convolutional neural networks#Global Average pooling]]
 
 
-Dropout
+[[Dropout]] TODO
 [[Batch normalization]] TODO
 Instance Normalization 
 Spectral Normalization 
 Layer Normalization 
 # Losses and optimizers
-Cross-Entropy for classification
-BCE
-
+[[Cross Entropy]], specifically:
+* Binary classification [[Cross Entropy#Binary Cross-Entropy (BCE)]]
+* Multi class classification [[Cross Entropy#Categorical Cross-Entropy (CCE)]]
+* Multi label classification [[Cross Entropy#Multi-Label]]
 MSE
 MAE
 
@@ -69,7 +72,7 @@ Weight decay
 SGD
 lr annealing
 Momentum
-Adam
+[[Adam]] TODO
 AdamW
 
 ---
