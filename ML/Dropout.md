@@ -1,13 +1,13 @@
 #ml #dl 
-Dropout is a [[Regularization]] technique used to easily reduce overfitting in neural networks. It consists of randomly deactivating some neurons during each training update, we set some specified probability $p$ to determine the chance of a neuron being dropped out. (obtained by multiplying the neuron's output by 0, except in some weird neural nets like RBF).
+Dropout is a [[Regularization]] technique used to easily reduce overfitting in neural networks. It consists of randomly deactivating some neurons during each training update, we set some specified probability $p$ to determine the chance of a neuron being dropped out (to dropout the neuron we multiply the neuron's output by 0, except in some weird neural nets like RBF which use some baseline different from 0 so some different method is used).
 
 For example, given a layer with 10 neurons, with a dropout rate of 0.5, each neuron has a 50% chance of being deactivated during each training update.
 
-In the implementation we also want to avoid biasing the neuron outputs by using dropout, therefore we adopt this definition:
+In the implementation we also want to avoid biasing the neurons' outputs by using dropout, therefore we adopt this definition:
 Each activation $h$ in the layer is replaced by $h'=\begin{cases}0 \text{ with probability } p \\ \frac{h}{1-p} \text{ with probability }1-p \end{cases}$ 
 This guarantees that $\mathbb E[h']=h$ .
 
-During inference Dropout is deactivate, it's only used in training as regularization.
+During inference Dropout is deactivated, it's only used in training as regularization.
 
 ---
 
@@ -17,7 +17,7 @@ With $n$ neurons in a layer, dropout implicitly trains an approximation of an en
 
 The idea behind dropout proposed in the original paper is to force neurons to not depend on other neuron's specific activations in order to output the correct value, making the network more robust to variations in training set.
 
-It's also similar to other techniques that add noise as regularization (e.g. Gaussian noise injection in the input or [[Autoencoders#Denoising autoencoder|denoising autoencoders]]) but in Dropout's case the noise is multiplicative and discrete.
+It's also similar to other techniques that add noise as regularization (e.g. Gaussian noise injection in the input or [[Autoencoders#Denoising autoencoder|denoising autoencoders]]) but in Dropout's case the noise is multiplicative, discrete and is applied to internal layers.
 
 ---
 
