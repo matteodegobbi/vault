@@ -67,12 +67,15 @@ The reason why it makes sense is that:
 * I get the output vector of the last decoder stage $h$ in $\mathbb R^d$ 
 Then I have that $h$ is a vector in the same space as embeddings, I want to assign probabilities to tokens based on how close their embeddings are to the vector $h$, to do this I can compute $\text{softmax}(E\cdot h)$ where each component $i$ of the logits will be the dot product (a similarity measure in the embedding space) between the embedding of token with index $i$ and the output of the decoder, the softmax just normalizes to obtain a valid probability distribution.
 
+>[!note] Note
+>In practice the matrix multiplication is not carried out, we just lookup the row (or column) in the embedding matrix, this is faster and still allows for auto-differentiation
+
 ---
 # Training from Scratch VS Pre-trained
 If we train from scratch: embeddings are randomly initialized and trained with the model, this is best when when we have a large dataset or domain-specific vocabulary
 If we use pre-trained embeddings we can:
 - Initialize with [[Word2Vec,GloVe and FastText]] vectors (one of these options)
-- Then we can either freeze or fine-tune during training
+- Then we can either freeze or fine-tune during training, freezing is a sort of regularization, decreasing the overfitting risk but of course freezing may limit model expressiveness
 
 ---
 #  Practical Considerations

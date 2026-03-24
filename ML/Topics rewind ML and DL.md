@@ -45,25 +45,25 @@ Unsupervised pretraining
 [[Siamese Networks]]
 GANs
 [[Recurrent Neural Networks]]
-[[Transformers]] TODO EMBEDDINGS E POS ENCODINGS
+[[Transformers]] TODO POS ENCODINGS
 ViTs
 Diffusion models
 TCN con atrous convolution (forse skip)
 # Specific layers
-
 [[Convolutional neural networks#Convolutional layer]]
 [[Convolutional neural networks#Pooling]]
 [[Convolutional neural networks#Global Average pooling]]
-
-
 [[Dropout]]
-[[Batch normalization]] 
 [[Attention]]
 [[Embedding layer]]
+## Normalization techniques
+[[Batch normalization]] 
+[[Layer Normalization]]
 Instance Normalization 
 Spectral Normalization 
-Layer Normalization 
 Group Normalization 
+[[RMSNorm]]
+[[Comparison of normalization layers]] 
 # Losses and optimizers
 [[Cross Entropy]], specifically:
 * Binary classification [[Cross Entropy#Binary Cross-Entropy (BCE)]]
@@ -85,12 +85,26 @@ Other optimizers RMSProp, Nesterov, Adagrad etc
 
 ---
 # NLP AND LLMS??
-[[Large Language Models]]
+> [!note]
+> Some of these notes were already linked in the deep learning section but are linked again since they are relevant to LLMs
+
 [[Natural Language Processing tasks]]
 [[Tokenization]] TODO BPE E WORDPIECE
 [[Word2Vec,GloVe and FastText]]
 [[Embedding layer]]
 [[Positional Embeddings]] TODO
+[[Transformers]]
+[[Layer Normalization]]
+[[RMSNorm]]
+
+[[Large Language Models]]
+	[[Supervised Finetuning]]
+	[[Reinforcement Learning From Human Feedback]]
+	[[Mixture of Experts]]
+
+
+TODO ADD NOTES ON LOCAL + GLOBAL ATTENTION IN DIFFERENT LAYERS LESSON 2 STANFORD COURSE
+TODO ADD NOTES ON SHARED KEY AND VALUE PROJECTION MATRICES IN MULTI HEAD LESSON 2 STANFORD COURSE
 # Specific Models:
 to add to their respective notes
 GPT

@@ -112,12 +112,6 @@ Summarizing in the position wise FFN layer:
 * It increases the model’s capacity by introducing non-linearity and feature transformation after attention. Usually the first transformation projects the input to a higher dimensional space (in the original transformer it’s 4 times the dimension of the input), and the second transformation projects it back to the original dimension. This allows the network to learn more complex representations of the input data.)
     
 ## Add & Norm
-TODO ADD ALSO NOTE HOW IN DEEP MODERN TRANDFORMERS ORDER IS INVERTED
-Here’s a section consistent with your notes:
-
----
-
-## Add & Norm
 
 Each sublayer in the Transformer (self-attention, cross-attention, or FFN) is wrapped in an Add & Norm structure, which consists of a residual connection followed by layer normalization.
 

@@ -2,21 +2,20 @@
 
 # What Is Cross-Entropy?
 
-Cross-entropy measures the difference between:
+>[!summary]
+>Cross-entropy measures the difference between:
+>
+>- The true probability distribution $p$
+>- The predicted probability distribution $q$
+>
+>It is the standard loss function for classification problems.
+>$$H(p, q) = - \sum_i p(i) \log q(i)$$
+>Where:
+> - $p(i)$ = true probability
+> - $q(i)$ = predicted probability
 
-- The **true probability distribution** $p$
-- The **predicted probability distribution** $q$
+> [!warning] Unfortunately it uses the same notation as joint entropy from information theory
 
-It is the standard loss function for **classification problems**.
-$$  
-H(p, q) = - \sum_i p(i) \log q(i)  
-$$
-
-Where:
-- $p(i)$ = true probability
-- $q(i)$ = predicted probability
-
-(Unfortunately it uses the same notation as joint entropy from information theory)
 Cross-entropy decomposes as:
 
 $$  
@@ -70,7 +69,7 @@ Penalizing confident wrong predictions heavily.
 
 # Categorical Cross-Entropy (CCE)
 
-Used for **multi-class classification** (meaning for C mutually exclusive classes).
+Used for multi-class classification (meaning for C mutually exclusive classes).
 We have $C$ classes, 1-hot target vector, using [[Activation functions#Softmax|softmax]] as activation.
 
 $$  
@@ -108,11 +107,11 @@ $$
 $$
 Gradient = Prediction - Target
 
-## Note on PyTorch implementation
-In torch CrossEntropyLoss expects raw logits and applies the softmax internally.
-If labels are scalars class indices, meaning only one class at a time is true, then CrossEntropyLoss is equivalent to applying LogSoftmax + NLL Loss.
-
-The differences between NLLL and CEL appears when we have soft labels, i.e. label smoothing or probabilistic labels (e.g. target is \[0.7,0.1,0.2\]). In this case NLLL cannot be used instead we can use CrossEntropyLoss which will do the usual cross entropy computation (in the case we use this vector target version but with 1-hot encoding then it's equivalent to the class indices but it might be slower to run so if we are in this case the class targets indices is better for performance).
+>[!tip] Note on PyTorch implementation of Cross-Entropy
+>In torch CrossEntropyLoss expects raw logits and applies the softmax internally.
+>If labels are scalars class indices, meaning only one class at a time is true, then CrossEntropyLoss is equivalent to applying LogSoftmax + NLL Loss.
+>
+> The differences between NLLL and CEL appears when we have soft labels, i.e. label smoothing or probabilistic labels (e.g. target is \[0.7,0.1,0.2\]). In this case NLLL cannot be used instead we can use CrossEntropyLoss which will do the usual cross entropy computation (in the case we use this vector target version but with 1-hot encoding then it's equivalent to the class indices but it might be slower to run so if we are in this case the class targets indices is better for performance).
 
 ---
 
