@@ -101,6 +101,12 @@ Other optimizers RMSProp, Nesterov, Adagrad etc
 	[[Supervised Finetuning]]
 	[[Reinforcement Learning From Human Feedback]]
 	[[Mixture of Experts]]
+	[[Retrieval Augmented Generation]]
+	[[Sparse Attention]]
+	[[KV-Cache]]
+	[[Prompt Caching]]
+	TODO FINIRE CHAIN OF THOUGHT AND SELF CONSISTENCY
+
 
 
 TODO ADD NOTES ON LOCAL + GLOBAL ATTENTION IN DIFFERENT LAYERS LESSON 2 STANFORD COURSE
