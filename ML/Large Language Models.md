@@ -22,6 +22,69 @@ Modern LLMs also incorporate [[Supervised Finetuning]] and [[Reinforcement Learn
 
 # Training
 
+LLM training is structured in multiple steps, exploiting transfer learning.
+## Pretraining
+Firstly we pre-train the model on a large (~trillions of tokens) corpus of text data (from the internet, forums, wikis, books, github etc.) using autoregressive next-token prediction. This is the most expensive step, requiring a lot of time and many GPUs. 
+
+In the pretraining step the model learns general language patterns, vocabulary, the relationship between words.
+
+The optimal relationship between model size and the dataset size is studied in [[Large Language Models#Scaling Laws]]
+
+The pretraining is carried out using [[Teacher Forcing]] and starting with the initial `[BOS]` token.
+## Supervised fine-tuning
+While during pre-training the model learns grammar and to predict next tokens but it doesn't work well as a chatbot.
+For example it may not answer questions or follow instruction, it just completes the prompt. It can also exhibit different styles: reddit post, wiki article, book excerpt mimicking the styles seen in training. Also many times the output sounds right but is not.
+
+To solve this problem and make the LLM a viable chatbot we use supervised fine-tuning. We train the model on a smaller dataset of questions and answers, instructions and responses, and dialogue.
+This aligns the model's output to work as a chatbot.
+
+During SFT the training is different from pre-training, instead of starting with just the `[BOS]` token we start from the input (that during inference will be the user's prompt)
+and do next word prediction conditioned on the input. (It still uses [[Teacher Forcing]] but only for the output tokens, the input ones are just passed through the model)
+
+#### Instruction tuning 
+Instruction tuning is a subset of SFT geared specifically to making the model follow instructions.
+For example if the input prompt is "create a list of fruits" we want the model to actually output a list.
+So for instruction tuning we do SFT on specific datasets with samples of responses following the given instructions in the prompt.
+(This step can also be done with examples generated from other LLMs)
+
+Some problems with instruction tuning are:
+* high quality data is needed
+* some instructions that will be asked by user may not be in the instruction dataset, this may lead to fail to generalize to other kinds of instructions 
+* difficult to evaluate if a model is actually following instructions
+## Preference tuning
+
+
+## Training optimizations
+#### Data parallelism
+During training we need to store other than the model weights themselves:
+* Activations
+* Gradients 
+* Optimizer state (i.e. [[Adam]] moments)
+All these don't fit in a single GPU. 
+For this reason we use data parallelism: the batch is divided across multiple GPUs. Each GPU processes a different subset of the data, and the results are aggregated to update the model's parameters.
+This has the drawback of adding communication cost which can be significant depending on the network architecture.
+
+In this approach though there is a lot of redundancy, as each GPU performs the same backward and forward pass on its assigned data, having to duplicate the full LLM weights in every GPU.
+
+A method called ZeRO (Zero Redundancy Optimization, various versions 1,2,3 which share different ) has been invented to avoid redundancy.
+
+While in regular data parallelism each GPU stores:
+- model weights 
+- gradients and activations
+- optimizer state
+In ZeRO, we divide some other memory:
+In ZeRO stage 1: we shard optimizer states only, the gradients ,activations and weights are still duplicated.
+In ZeRO stage 2: we shard optimizer states gradients and activations, only the weights are still duplicated.
+In ZeRO stage 3: we shard everything. Even though the model weights are sharded we still need all of them to complete the forward and backward pass, and every GPU in ZeRO still computes the full passes for their subset of data. So how do they do this if they only store part of the model's weights? They do this with communication across GPUs communicating weights and gradients.
+
+Each additional stage reduces memory needs but increases communication overhead.
+
+(Other implementations like torch's FSDP are similar to ZeRO)
+
+#### Model parallelism 
+This is another method to optimize training (and inference) orthogonal to Data parallelism (they can be used together).
+
+The idea is to split the computation across several devices. There are several variations: tensor parallelism, pipeline parallelism, expert parallelism (for [[Mixture of Experts]] models) and others.
 # Inference
 During inference we use the decoder LLM auto-regressively. Meaning we produce the next tokens using as input to decoder the previously generated tokens. We need a starting token to initiate the process and we choose to always start with the `[BOS]`[[Tokenization#Special tokens|special token]].
 Then we sample new tokens until we encounter the `[EOS]`token. 
@@ -85,7 +148,9 @@ Using $T>1$
 The idea is to only use temperature during inference to decide the degree of creativity/reliability of the model.
 
 It is used in conjunction with the sampling methods (top-k or top-p) to tune the inference behavior of the LLM.
-# Scaling laws
+# Scaling Laws
+
+TODO 
 
 ---
 
@@ -124,6 +189,8 @@ For example if we are generating a JSON object the first token's distribution is
 
 This does not guarantee that the generated output will always be perfectly valid or semantically correct, but it increases the chances by forcing the model to adhere to the correct structure. The guiding can be carried out with finite state machines or similar techniques.
 
+## Flash Attention
+[[Flash Attention]] is explained in it's own note.
 ## Mixture of Experts
 Refer to the [[Mixture of Experts]] note and especially its section of [[Mixture of Experts#MoE in Transformers and Large Language Models|MoE in Transformers and LLMs]] 
 
@@ -133,8 +200,13 @@ TODO CONTINUA MAYBE MOVE TO PROMPT?
 
 ## RAG
 
-![[Retrieval Augmented Generation]]
+[[Retrieval Augmented Generation]] is explained in it's own note.
 
+## Prompt Caching
+[[Prompt Caching]] is explained in its own note.
+
+## Tool calling
+[[Tool Calling]] is explained in its own note.
 
 ---
 

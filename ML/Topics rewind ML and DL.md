@@ -37,6 +37,7 @@ Gradient checkpointing
 Supervised pretraining
 Unsupervised pretraining
 [[Teacher Forcing]] TODO 
+[[Mixed Precision]]
 
 # Architectures (broad)
 [[Convolutional neural networks]] 
@@ -102,11 +103,17 @@ Other optimizers RMSProp, Nesterov, Adagrad etc
 	[[Reinforcement Learning From Human Feedback]]
 	[[Mixture of Experts]]
 	[[Retrieval Augmented Generation]]
+	[[Tool Calling]]
 	[[Sparse Attention]]
 	[[KV-Cache]]
 	[[Prompt Caching]]
+	[[Chain of Thought]]
 	TODO FINIRE CHAIN OF THOUGHT AND SELF CONSISTENCY
+	[[Flash Attention]]
+	[[Mixed Precision]]
+[[Agentic LLMs]]
 
+[[Contrastive Text Embeddings, text-embedding-3]], often used for [[Retrieval Augmented Generation|RAG]]
 
 
 TODO ADD NOTES ON LOCAL + GLOBAL ATTENTION IN DIFFERENT LAYERS LESSON 2 STANFORD COURSE

@@ -7,7 +7,7 @@ Vanilla LLMs have only access to knowledge encoded within their parameters durin
 
 
 ---
-
+# Outline of RAG
 In principle we could try to add all the information in the prompt but limited context size and the risk of adding useless distracting information (needle in a haystack) make this approach unfeasible in most practical cases or at least the performance is worse than RAG. Also since pricing is often done per token this is wasteful.
 
 The outline of RAG process is:
@@ -23,12 +23,14 @@ We collect a set of documents to use in the RAG process.
 Then we divide these documents into chunks of some number of tokens (e.g. 100 tokens), typically using a sliding window approach. 
 
 Then these chunks are converted into a vector representation using an embedding model (some pretrained transformer model). 
+A model commonly used for converting both documents chunks and queries into vectors used for RAG is openai's `text-embedding-3-large`, or the small version. They are a type of [[Contrastive Text Embeddings, text-embedding-3]] using some encoder only [[Transformers|transformer]] model with some interesting techniques applied explained in more detail in the related note.
 
 This knowledge base creation process has some hyperparameters:
 - Chunk Size: The number of tokens in each chunk
 - Sliding Window Step: The overlap between consecutive chunks
 - Embedding size
 
+---
 # Retrieval
 To carry out the retrieval we need to carry out 2 steps:
 1. Candidate retrieval: selecting potentially relevant candidate vectors, maximizing [[Metrics|recall]], the methods used for this typically use semantic embeddings and/or keyword based methods
@@ -52,7 +54,7 @@ In this example semantic search could detect that "Where is Cuddly?" is semantic
 #### Hybrid approaches
 In this case we can search combining both semantic and keyword search to obtain the advantages of both.
 
-#### Advanced techniques
+#### Advanced techniques to improve candidate retrieval
 
 Discrepancy mitigation: to mitigate discrepancies between the query embeddings (usually some kind of question in the prompt) and the document embeddings, we can employ techniques like generate a fake query document making the query embedding have the same nature as the document embeddings (like in [this paper](https://arxiv.org/pdf/2212.10496)) or use some data augmentation strategies in the query, e.g. dynamically adding synonyms.
 
@@ -69,4 +71,51 @@ Please give a short succinct context to situate this chunk within the overall do
 ```
 
 Since the first part of the prompt is the same for all chunks we can use [[Prompt Caching]] to save a lot of computational power by avoiding re-encoding the same parts of the prompt.
+
+### Ranking (or actually re-ranking)
+We want to re-rank the found candidate vectors, since now only a small portion of vectors have been selected from the knowledge base, we can use more computationally intensive approaches then when we had to scan the whole knowledge base.
+
+For this purpose we typically use a cross-encoder, meaning an encoder only model which takes as input both the query and the retrieved document embeddings simultaneously.
+This allows the model to see both the query and chunks at the same time (during Candidate retrieval the encoder only saw one at a time)
+![[Pasted image 20260324230857.png]]
+
+This is carried out for all the candidate vectors of chunks we had retrieved in the previous step obtaining a new ranking.
+
+![[Pasted image 20260324231102.png]]
+
+
+---
+# RAG performance metrics
+Now we need some metrics to quantify performance of RAG, we usually consider only the top k retrieved chunks.
+
+To compute the metrics we need to compare the retrieved chunks against the ground truth answer, meaning we need some kind of labeled RAG dataset.
+
+#### Normalized Discounted Cumulative Gain at k (NDCG@k)
+
+$\text{ NDCG@k}=\frac{\text{DCG@k}}{\text{IDCG@k}}$
+with:
+$$ \text{DCG@k}= \sum_{i=1}^{k} \frac{\text{rel}_i}{\log_2(i+1)}
+$$
+and with IDCG@k the normalization factor being the DCG@k if ranking was perfect.
+
+Where $\text{rel}_i\in\{0,1\}$ indicates whether the chunk is relevant or not.
+
+Basically DCG@k is higher if relevant chunks are ranked higher in the result list (hence why discounted, the denominator with log of the rank).
+
+The normalized version just compares how good the ranking is to the optimal one this is just to get a metric $\le 1$ with 1 being the perfect ranking.
+
+#### Reciprocal Rank at k (RR@k)
+
+$RR=\frac{1}{\text{rank}}$ where $\text{rank}$ is the rank of the first relevant rank
+
+#### Recall at k
+Usual definition of recall as:
+$\text{Recall}=\frac{|\text{relevant in top k}|}{|\text{total relevant}|}$
+As in [[Metrics]].
+#### Precision at k
+Usual definition of precision as:
+$\text{Precision}=\frac{|\text{relevant in top k}|}{k}$
+As in [[Metrics]].
+
+---
 

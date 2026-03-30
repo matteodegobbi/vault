@@ -183,6 +183,7 @@ Usually uses [[Xavier and Kaiming-He init]] for linear layers to prevent vanishi
 
 ### Other things
 Other types of attention (sparse, local etc)
+[[Flash Attention]]
 Temperature 
 Relative position encodings
 KV-Caches
