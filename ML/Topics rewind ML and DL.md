@@ -38,6 +38,8 @@ Supervised pretraining
 Unsupervised pretraining
 [[Teacher Forcing]] TODO 
 [[Mixed Precision]]
+[[LoRA]]
+[[Quantization]]
 
 # Architectures (broad)
 [[Convolutional neural networks]] 
@@ -47,7 +49,7 @@ Unsupervised pretraining
 GANs
 [[Recurrent Neural Networks]]
 [[Transformers]] TODO POS ENCODINGS
-ViTs
+[[ViT, Visual Transformers]]
 Diffusion models
 TCN con atrous convolution (forse skip)
 # Specific layers
@@ -99,7 +101,6 @@ Other optimizers RMSProp, Nesterov, Adagrad etc
 [[RMSNorm]]
 
 [[Large Language Models]]
-	[[Supervised Finetuning]]
 	[[Reinforcement Learning From Human Feedback]]
 	[[Mixture of Experts]]
 	[[Retrieval Augmented Generation]]
@@ -114,6 +115,7 @@ Other optimizers RMSProp, Nesterov, Adagrad etc
 [[Agentic LLMs]]
 
 [[Contrastive Text Embeddings, text-embedding-3]], often used for [[Retrieval Augmented Generation|RAG]]
+[[CLIP]]
 
 
 TODO ADD NOTES ON LOCAL + GLOBAL ATTENTION IN DIFFERENT LAYERS LESSON 2 STANFORD COURSE
@@ -121,7 +123,7 @@ TODO ADD NOTES ON SHARED KEY AND VALUE PROJECTION MATRICES IN MULTI HEAD LESSON 
 # Specific Models:
 to add to their respective notes
 GPT
-BeRT
+[[BERT]]
 ElMO??
 Neural Style Transfer
 
