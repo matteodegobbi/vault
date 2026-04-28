@@ -114,18 +114,26 @@ Other optimizers RMSProp, Nesterov, Adagrad etc
 	[[Mixed Precision]]
 [[Agentic LLMs]]
 
+Stuff useful for RAG:
 [[Contrastive Text Embeddings, text-embedding-3]], often used for [[Retrieval Augmented Generation|RAG]]
 [[CLIP]]
+[[BM25]] and [[TF-IDF]] 
+[[Hybrid search for RAG]]
+[[Reranking models]] 
+[[Vector databases]]
 
 
-TODO ADD NOTES ON LOCAL + GLOBAL ATTENTION IN DIFFERENT LAYERS LESSON 2 STANFORD COURSE
-TODO ADD NOTES ON SHARED KEY AND VALUE PROJECTION MATRICES IN MULTI HEAD LESSON 2 STANFORD COURSE
+
 # Specific Models:
 to add to their respective notes
 GPT
 [[BERT]]
 ElMO??
 Neural Style Transfer
+
+TODO LLMS stanford course:
+TODO ADD NOTES ON LOCAL + GLOBAL ATTENTION IN DIFFERENT LAYERS LESSON 2 STANFORD COURSE
+TODO ADD NOTES ON SHARED KEY AND VALUE PROJECTION MATRICES IN MULTI HEAD LESSON 2 STANFORD COURSE
 
 ---
 

@@ -74,7 +74,7 @@ Changed plotting in 2 types:
 ## Chiamata David Lunedi
 ## Riassunto cose fatte
 - Dense search con i 2 modelli (MiniLM e BGE base, provato anche BGE large ma e' lento), Sparse con BM25, Hybrid con RRF
-- scifact, quora e scidocs (scidocs ha un corpus strano probabilmente va chunkato)
+- scifact, quora e scidocs (scidocs ha un corpus strano probabilmente va chunkato) scifact e quora hanno documenti abbastanza corti in letteratura non vengono chunkati
 * reranking con modello qwen 
 * evaluation di NDCG, recall precision e MAP, 
 - plots comparando reranker vs no reranker e diversi search types
@@ -82,7 +82,7 @@ Changed plotting in 2 types:
 - struttura codice
 * servono altre metriche, Reverse Rank F1-Score etc? 
 * reranking altri modelli? 
-* altri sparse models da usare o non serve?
+* altri sparse models da usare o non serve? e.g. SPLADE anche perche hybrid e' peggio di solo dense come performance
 * api key openai e slack
 * come fare batch delle api call di openai?
 * per le query dovrei salvare l'embedding in qualche modo in qdrant o in locale per evitare re-embedding delle stesse query ogni volta soprattutto per modelli openai
