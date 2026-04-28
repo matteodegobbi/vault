@@ -2,7 +2,7 @@
 >[!summary]
 CLIP (Contrastive Language–Image Pre-training) is a ml model that learns to connect images with text. It's trained on a large dataset of image and caption pairs.
 It's useful for tasks like image classification and generation and allows tasks like zero-shot learning. 
-It also removes the need for specific labels like in regular computer vision classification, this greatly helps when building datasets as images together with a caption describing them are common on the internet (e.g. image and it's alt-text or image and it's description on Wikipedia) this makes it easier to scale to large dataset sizes. 
+It also removes the need for specific labels like in regular computer vision classification, this greatly helps when building datasets as images together with a caption describing them are common on the internet (e.g. image and it's alt-text or image and its description on Wikipedia) this makes it easier to scale to large dataset sizes. 
 
 ---
 # CLIP

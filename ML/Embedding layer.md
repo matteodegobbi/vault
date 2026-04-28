@@ -30,16 +30,16 @@ An embedding uses a matrix $E$ of shape: $E \in \mathbb{R}^{|V| \times d}$
 Given an integer index $i$, the forward pass is:
 $$\text{embed}(i) = E[i, :]$$
 
-This is a row lookup, not a matrix multiplication, this makes it extremely efficient.
+This is a row lookup, not a matrix multiplication, this makes it extremely efficient as we don't need to actually multiply the matrices, this constitutes a big save as embedding matrices can be rather large especially in the vocabulary dimension (~100k or more rows, ~10k or more cols).
 
 An important note is that no activation function is needed.
 
-Embeddings are learned end-to-end via backpropagation of the loss used in the downstream task.
+Embeddings are learned end-to-end via back-propagation of the loss used in the downstream task. (this is not the case for [[Contrastive Text Embeddings, text-embedding-3]] and [[CLIP]] often used in [[Retrieval Augmented Generation]])
+
 >[!note] Note
->This is different from [[Word2Vec,GloVe and FastText]] since they use a proxy training objective to learn fixed word representations which are then froze and given as input to a neural network
+>The training of Embedding layers in e2e networks is different from [[Word2Vec,GloVe and FastText]] since they use a proxy training objective to learn fixed word representations which are then froze and given as input to a neural network
 
 For the embedding layer, only the rows corresponding to tokens seen in the current batch receive gradient updates.
-
 
 > [!tip] Sparse Gradient Updates
 > Because only seen tokens get updated per batch, embedding layers are naturally **sparse** in their gradient updates. Frameworks like PyTorch handle this efficiently with sparse optimizers.
@@ -82,7 +82,7 @@ If we use pre-trained embeddings we can:
 
 ### Padding and `padding_idx`
 
-Sequences of different lengths are padded to the same length. The padding token (usually index `0`) should not contribute to gradients, this is handled by torch with `padding_idx` parameter.
+If sequences of different lengths are padded to the same length. The padding token (usually index `0`) should not contribute to gradients as it shouldn't have any intrinsic meaning, this is handled by torch with `padding_idx` parameter.
 
 ---
 

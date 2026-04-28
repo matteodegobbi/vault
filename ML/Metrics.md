@@ -33,3 +33,51 @@ or Coefficient of Determination $R^2$ :
 $$R^2 = 1 - \frac{\sum_{i=1}^{N} (y_i - \hat{y}_i)^2}  
 {\sum_{i=1}^{N} (y_i - \bar{y})^2}$$
 ---
+
+# Document retrieval and ranking 
+In information retrieval we often compute metric on the top-k selected relevant documents, we refer to these metrics as @k, e.g. Precision@k, AP@k etc.
+
+If we say we have $N$ documents and $Q$ queries.
+
+## Single query metrics
+We define all these quantities for a single query and then generalize to the whole set of queries by taking the mean across queries.
+
+$R=\#\{\text{all relevant documents\}}$
+
+**Relevance of a document at rank i**
+$$
+\mathrm{rel}(i) =
+\begin{cases}
+1 & \text{if the document at rank } i \text{ is relevant} \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+**Recall@k** 
+
+
+$$
+\mathrm{Recall@k} = \frac{\sum_{i=1}^{k} \mathrm{rel}(i)}{R}
+$$
+**Precision@k**
+$$
+\mathrm{Precision@k} = \frac{\sum_{i=1}^{k} \mathrm{rel}(i)}{k}
+$$
+**AP@k**
+$$\text{AP@k}=\frac{1}{R}\sum\limits_{i=1}^k{\text{Precision@i}\cdot \text{rel}(i)}$$
+basically we compute a weighted average of precision with weights 1 if the document is relevant or 0 otherwise.
+If there are more relevant documents than k (if $R>k$) then AP@k can never reach 1 (some rarer formulations divide by min(R,k) instead of R but BEIR for example uses the formulation above with R as denominator). 
+
+## Metrics across multiple queries
+
+**Mean Average Precision@k**
+
+$$
+\mathrm{MAP@k} = \frac{1}{Q} \sum_{q=1}^{Q} \mathrm{AP@k}_q
+$$
+basically we just take the mean across multiple queries.
+
+The same applied for precision and recall across multiple queries.
+
+---
+

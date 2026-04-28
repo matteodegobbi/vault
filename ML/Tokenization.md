@@ -45,4 +45,6 @@ Also the [[Embedding layer|embeddings]] are more interpretable than character le
 
 ## WordPiece
 
+## SentencePiece
+
 
