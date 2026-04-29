@@ -71,7 +71,8 @@ Moved to cuda or mps (mac) for perf
 Changed plotting in 2 types:
 1. compare search types: dense, hybrid with RRF, sparse BM25
 2. compare reranker vs no reranker using hybrid search only (otherwise too many plots)
-## Chiamata David Lunedi
+# 29/4/2026
+## Chiamata David 
 ## Riassunto cose fatte
 - Dense search con i 2 modelli (MiniLM e BGE base, provato anche BGE large ma e' lento), Sparse con BM25, Hybrid con RRF
 - scifact, quora e scidocs (scidocs ha un corpus strano probabilmente va chunkato) scifact e quora hanno documenti abbastanza corti in letteratura non vengono chunkati
@@ -103,8 +104,19 @@ Write some context helpful to understand this chunk
 ```
 
 - HyDE? Finto doc risposta alla query, cosi doc nel db e finto doc sono dello stesso tipo --> embedding piu simili
+# Code
+Added openai embeddings text-embedding-3-small with exponential backoff, no caching yet.
+
+
 
 
 ---
 
+Cose da fare
 
+embedding openai
+gemini embedding 2 query vocale speech --> embedding
+scores delle query per dist
+caching emb queries
+SPLADE
+riordinare progetto src, outs, aggiungere logger stdout e anche file con timestamp etc.
