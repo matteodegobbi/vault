@@ -107,16 +107,37 @@ Write some context helpful to understand this chunk
 # Code
 Added openai embeddings text-embedding-3-small with exponential backoff, no caching yet.
 
+# 4/5/2026
+Cose da fare
+x embedding openai
+x caching emb queries
+x riordinare progetto src, outs
+x aggiungere logger stdout e anche file con timestamp etc.
+scores delle query per dist
+SPLADE
+gemini embedding 2 query vocale speech --> embedding
 
+Added caching for API embeddings:
+without-caching indexing + eval:
+![[Screenshot from 2026-05-04 10-12-19.png]]
+cached embeddings indexing + eval:
+![[Screenshot from 2026-05-04 10-47-06.png]]
+Offline works after firstc run to fill cache.
+
+> [!Warning] 
+> La libreria bypassa la cache se si usa embed_query invece di embed_batch quindi se si vuole fare embed di un singolo doc va usato 
+`embed_batch([text])[0]`
+
+Refactor project, abs path etc, pip support
+Added logger to log to files and stdout across runs
 
 
 ---
 
-Cose da fare
+# 5/5/2026
 
-embedding openai
-gemini embedding 2 query vocale speech --> embedding
-scores delle query per dist
-caching emb queries
-SPLADE
-riordinare progetto src, outs, aggiungere logger stdout e anche file con timestamp etc.
+- Move metrics saving to parquet in order to be able to save retrieval scores efficiently
+- save retrieval scores
+- SPLADE
+
+
