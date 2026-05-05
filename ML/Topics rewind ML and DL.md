@@ -119,6 +119,7 @@ Stuff useful for RAG:
 [[CLIP]]
 [[BM25]] and [[TF-IDF]] 
 [[Hybrid search for RAG]]
+[[Reciprocal Rank Fusion]]
 [[Reranking models]] 
 [[Vector databases]]
 
