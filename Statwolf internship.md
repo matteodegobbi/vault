@@ -108,14 +108,7 @@ Write some context helpful to understand this chunk
 Added openai embeddings text-embedding-3-small with exponential backoff, no caching yet.
 
 # 4/5/2026
-Cose da fare
-x embedding openai
-x caching emb queries
-x riordinare progetto src, outs
-x aggiungere logger stdout e anche file con timestamp etc.
-scores delle query per dist
-SPLADE
-gemini embedding 2 query vocale speech --> embedding
+
 
 Added caching for API embeddings:
 without-caching indexing + eval:
@@ -135,9 +128,25 @@ Added logger to log to files and stdout across runs
 ---
 
 # 5/5/2026
+* Batch evaluation for speed
+- added SPLADE
+* changed plotting 
 
-- Move metrics saving to parquet in order to be able to save retrieval scores efficiently
+**Plot all models with only hybrid search**
+![[plot_20260505_161903.png]]
+**Plot bge vs openai small with only hybrid search**![[plot_20260505_162125.png]]
+**Plot bge only all types of search**
+![[plot_20260505_162222.png]]
+# 6/5/2026
+- Moved metrics saving to parquet in order to be able to save retrieval scores efficiently
 - save retrieval scores
-- SPLADE
+- plot retrieval scores dense and sparse?
 
 
+
+---
+
+scores delle query per dist
+SPLADE
+change two batch sizes for sparse and dense
+gemini embedding 2 query vocale speech --> embedding
