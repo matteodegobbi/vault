@@ -138,7 +138,7 @@ Added logger to log to files and stdout across runs
 **Plot bge only all types of search**
 ![[plot_20260505_162222.png]]
 # 6/5/2026
-- Moved metrics saving to parquet in order to be able to save retrieval scores efficiently
+- Move metrics saving to parquet in order to be able to save retrieval scores efficiently
 - save retrieval scores
 - plot retrieval scores dense and sparse?
 
