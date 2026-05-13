@@ -139,14 +139,28 @@ Added logger to log to files and stdout across runs
 ![[plot_20260505_162222.png]]
 # 6/5/2026
 - Move metrics saving to parquet in order to be able to save retrieval scores efficiently
-- save retrieval scores
-- plot retrieval scores dense and sparse?
+call: usa tts per avere audio dataset
 
+# 7/5/2026
+- save retrieval scores and metrics to parquet
+- plot retrieval scores dense and sparse?
+# 8/5/2026
+added gemini multimodal embedder
+added manual cache hash that works with LocalFilesStore + non-text embeddings
+![[Screenshot from 2026-05-12 16-46-22.png]]
+# 11/5/2026 & 12/5/2026
+Changed multimodal gemini embedder to try to avoid rate limiting, batched version with at most 100 docs at a time, the full-on bulk batch api is not supported yet by gemini-embedding so the notebook version doesnt work
+
+```
+uv run -m text_retrieval.main --search dense --config configs/gemini2_bm25_text.yaml --index 
+```
+
+# 13/5/2026
+Trying othe APIs by google, doesnt work.
 
 
 ---
 
-scores delle query per dist
-SPLADE
 change two batch sizes for sparse and dense
 gemini embedding 2 query vocale speech --> embedding
+fix batch gemini
