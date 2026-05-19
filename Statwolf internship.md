@@ -157,10 +157,36 @@ uv run -m text_retrieval.main --search dense --config configs/gemini2_bm25_text.
 
 # 13/5/2026
 Trying othe APIs by google, doesnt work.
+# 14/5/2026 & 15/5/2026
+Gemini embeddings work much better than others on scifact
+https://agentset.ai/blog/gemini-2-embedding?utm_source=chatgpt.com
 
+Tried audio embeddings vs textual on scifact with gemini2: more separation between rel and non rel for text than audio and better overall performance:
+
+![[plot_20260515_115356.png]]
+
+![[8bf595db2550f894.png]]
+
+![[baf92e2a0271f007.png]]
+
+Downloaded MSCOCO from HF repo, load dataset to be compatible with retriever
+
+# 18/5/2026 & 19/5/2026
+Added CLIP text to image search, full support for image embeddings 
+![[Screenshot from 2026-05-18 16-52-40.png]]
+
+![[Screenshot from 2026-05-18 16-54-58.png]]
+
+![[Screenshot from 2026-05-18 16-56-34.png]]
+
+!!! Importante Al massimo una immagine relevant per una caption, ho flattened tutte le queries, quindi recall etc sono sul al massimo 1 image  retrieved
+![[Screenshot from 2026-05-19 10-34-52.png]]
+
+# 20/5/2026
 
 ---
 
+
+
+
 change two batch sizes for sparse and dense
-gemini embedding 2 query vocale speech --> embedding
-fix batch gemini
