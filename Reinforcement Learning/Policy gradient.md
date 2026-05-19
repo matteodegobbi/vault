@@ -7,7 +7,8 @@ Policy gradient methods both include ones that don't learn a value function (e.g
 
 ## Reasons for policy gradient methods
 There are some advantages in using policy gradient approaches instead of inferring implicitly the policy from action value estimates. 
-One advantage is that policy-based approaches can learn optimal stochastic policies, while strictly value-based methods could only learn optimal deterministic policies. In some environments like poker or rock paper scissors the optimal policy might be stochastic. Also learning stochastic policies might help in the case of state aggregation, function approximation or partially observable environments e.g. example in lecture 18 pdf with corridor with undistinguishable states.
+One advantage is that policy-based approaches can learn optimal stochastic policies, while strictly value-based methods could only learn optimal deterministic policies. In some environments like poker or rock paper scissors the optimal policy might be stochastic. 
+Also learning stochastic policies might help in the case of state aggregation, function approximation or partially observable environments e.g. example in lecture 18 pdf with corridor with undistinguishable states.
 Another important advantage is that with policy parametrization we can choose functional forms of the policy based on the prior knowledge we have of the environment. Also evaluating the policy directly may be simpler then trying to estimate the states' values.
 
 Some other pros of policy-based approaches compared to strictly value-based ones are:
