@@ -172,7 +172,7 @@ Tried audio embeddings vs textual on scifact with gemini2: more separation betwe
 Downloaded MSCOCO from HF repo, load dataset to be compatible with retriever
 
 # 18/5/2026 & 19/5/2026
-Added CLIP text to image search, full support for image embeddings 
+Added CLIP text to image search, full support for image embeddings as corpus
 ![[Screenshot from 2026-05-18 16-52-40.png]]
 
 ![[Screenshot from 2026-05-18 16-54-58.png]]
@@ -183,10 +183,16 @@ Added CLIP text to image search, full support for image embeddings
 ![[Screenshot from 2026-05-19 10-34-52.png]]
 
 # 20/5/2026
+Local VLM to gen captions
+
+quali combinazioni valide di img, human capt, vlm capt?
+Image queries + text corpus ha senso?
 
 ---
 
-
-
-
-change two batch sizes for sparse and dense
+CORPUS -- QUERY
+1 IMG -- human
+2 vlm -- human 
+3 human -- vlm 
+4 human -- img
+5 IMG -- altered image perspective, rotate, color

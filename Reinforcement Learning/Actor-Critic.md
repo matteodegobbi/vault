@@ -65,6 +65,7 @@ Extension to continuing tasks and continuous action spaces in the lecture's pdf.
 
 ---
 
-
+# PPO 
+Proximal policy optimization
 
 

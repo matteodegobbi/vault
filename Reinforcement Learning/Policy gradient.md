@@ -77,7 +77,7 @@ As the others MC methods, REINFORCE suffers from high variance which can cause u
 An alternative to whitening consists in include a baseline, similarly to gradient bandits:
 ![[Pasted image 20251203232628.png]]
 
-	A possible baseline $b(S_t)$ is the state value function, computed with one of the methods in value-based RL e.g. MC or TD(0).
+A possible baseline $b(S_t)$ is the state value function, computed with one of the methods in value-based RL e.g. MC or TD(0).
 ![[Pasted image 20251203232741.png]]
 
 In this example we use value function approximation to compute $\hat v(s,w)$, using Monte Carlo both for the value function and for the policy gradient.
