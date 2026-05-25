@@ -188,8 +188,24 @@ Local VLM to gen captions
 quali combinazioni valide di img, human capt, vlm capt?
 Image queries + text corpus ha senso?
 
----
+# 21/5/2026
+## Continue local VLM for captions
+Local VLM to gen captions for coco + text embedder for  **vlm--human** comparison with **IMG--human**
 
+Finished VLM corpus + human queries
+## Img search 4 closer images in corpus
+![[Screenshot from 2026-05-21 10-27-57.png]]
+![[Screenshot from 2026-05-21 10-27-34.png]]
+
+
+# 22/5/2026
+inverted coco dataset with 
+human -- img 
+human -- vlm
+
+![[plot_20260522_162631.png]]
+
+---
 CORPUS -- QUERY
 1 IMG -- human
 2 vlm -- human 
