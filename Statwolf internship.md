@@ -185,8 +185,19 @@ Added CLIP text to image search, full support for image embeddings as corpus
 # 20/5/2026
 Local VLM to gen captions
 
-quali combinazioni valide di img, human capt, vlm capt?
-Image queries + text corpus ha senso?
+quali combinazioni valide di img, human capt, vlm capt? scritte sotto
+Image queries + text corpus ha senso? Si
+
+CALL
+
+CORPUS -- QUERY
+1 IMG -- human
+2 vlm -- human 
+3 human -- vlm 
+4 human -- img
+5 IMG -- altered image perspective, rotate, color
+
+---
 
 # 21/5/2026
 ## Continue local VLM for captions
@@ -203,12 +214,33 @@ inverted coco dataset with
 human -- img 
 human -- vlm
 
-![[plot_20260522_162631.png]]
+# 25/5/2026
+Jinav4 embeddings for IMG--human
+**quantized to 4 bits for memory**
+For now Jinav4 is only Img--human because I need to specify the prompt name
+should i add the others?
+
+# 26/5/2026
+Plots comparing Jinav4 and openclip
+Metrics plot
+Hits plots
+Hits examples queries
+
+![[plot_20260526_113748.png]]
+In ordine:
+
+| Corpus | Queries | Model        | Recall@10 |
+| ------ | ------- | ------------ | --------- |
+| Image  | Human   | Jinav4       | 0.835     |
+| Image  | Human   | openclip     | 0.792     |
+| VLM    | Human   | openai large | 0.736     |
+| Human  | Image   | openclip     | 0.587     |
+| Human  | VLM     | openai large | 0.476     |
+
+![[f61e10ee6aa0246a.png]]
+
+![[9e5d9e4928e734ad.png]]
+
 
 ---
-CORPUS -- QUERY
-1 IMG -- human
-2 vlm -- human 
-3 human -- vlm 
-4 human -- img
-5 IMG -- altered image perspective, rotate, color
+
