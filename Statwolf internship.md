@@ -216,7 +216,8 @@ human -- vlm
 
 # 25/5/2026
 Jinav4 embeddings for IMG--human
-**quantized to 4 bits for memory**
+**quantized to 4 bits for memory** OTHERWISE DOESNT FIT
+
 For now Jinav4 is only Img--human because I need to specify the prompt name
 should i add the others?
 
@@ -241,6 +242,9 @@ In ordine:
 
 ![[9e5d9e4928e734ad.png]]
 
+# 27/5/2026
+Jinav5?
+Corrupt Images?
 
 ---
 

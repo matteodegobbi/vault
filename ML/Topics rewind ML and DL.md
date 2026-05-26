@@ -124,6 +124,10 @@ Stuff useful for RAG:
 [[Vector databases]]
 
 
+# Papers to read
+BERT
+SentenceBert 
+Matryoshka representation learning
 
 # Specific Models:
 to add to their respective notes
