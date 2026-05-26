@@ -65,7 +65,88 @@ Extension to continuing tasks and continuous action spaces in the lecture's pdf.
 
 ---
 
-# PPO 
-Proximal policy optimization
+# PPO (Proximal Policy Optimization)
 
+PPO is a policy gradient method that tries to solve the problem of instability in PG methods. Once a bad gradient step collapses the policy PG methods can be unrecoverable, the idea of PPO is based on TRPO, constraining how much the policy can change (TRPO uses constrained optimization with constraints on KL divergence between old and new policy).
+
+PPO tries to obtain the same result as TRPO by using a clipped surrogate objective that is much simpler to optimize than TRPO's.
+
+The reason why regular PG method are unstable is that the PG theorem is derived under the assumption that the step size is small enough which can be false in practice.
+## Importance Sampling and the Surrogate Objective
+
+PPO reuses data collected under an **old policy** $\pi_{\theta_\text{old}}$ to perform multiple gradient updates. To correct for the distributional mismatch this introduces, importance sampling is applied.
+
+Define the probability ratio: $$r_t(\theta) = \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_\text{old}}(a_t|s_t)}$$
+
+The unclipped surrogate objective becomes: $$L^{\text{CPI}}(\theta) = \mathbb{E}_t\left[r_t(\theta) \hat A_t\right]$$
+
+This is called the Conservative Policy Iteration objective.
+Maximizing it without constraints would recover standard policy gradient on the old data, but $r_t(\theta)$ can become arbitrarily large if the new policy diverges from the old one, making the estimate unreliable and high variance (like with off-policy MC using importance sampling).
+
+The **clipped surrogate objective** is used to limit this divergence from the old policy: $$L^{\text{CLIP}}(\theta) = \mathbb{E}_t\left[\min\left(r_t(\theta),\hat A_t,; \text{clip}(r_t(\theta),, 1-\varepsilon,, 1+\varepsilon),\hat A_t\right)\right]$$
+
+The clip removes the incentive to move $r_t(\theta)$ outside $[1-\varepsilon,, 1+\varepsilon]$ (typically $\varepsilon = 0.1$ or $0.2$). 
+Taking the $\min$ of the clipped and unclipped versions ensures the objective is a **lower bound** (pessimistic estimate) of the true objective, the policy is only updated when doing so is safe.
+
+Intuitively:
+- If $\hat A_t > 0$ (the action was better than expected): we want to increase $\pi_\theta(a_t|s_t)$, but only up to $(1+\varepsilon)\pi_{\theta_\text{old}}$
+- If $\hat A_t < 0$ (the action was worse than expected): we want to decrease $\pi_\theta(a_t|s_t)$, but only down to $(1-\varepsilon)\pi_{\theta_\text{old}}$
+
+This is asymmetric in the right direction: the clipping is only active when ignoring it would lead to a large policy change, this is because when $\hat A>0$ $\pi_\theta$ wouldn't get decreased so the lower clip $1-\varepsilon$ is not active (vice-versa for $\hat A<0$).
+## Full PPO Objective
+
+This formula is slightly different if actor and critic are two heads of the same backbone network or they are entirely separate nets.
+In the more common case they share a backbone and the loss can be combined in a single one, the update signal will be correctly routed by backprop.
+$$L^{\text{PPO}}(\theta) = \mathbb{E}_t\left[L^{\text{CLIP}}(\theta) - c_1 L^{\text{VF}}(\theta) + c_2 S\pi_\theta\right]$$
+
+where:
+
+* $L^{\text{CLIP}}$ is the actor (policy net) objective
+- $L^{\text{VF}}(\theta) = \left(\hat V_\theta(s_t) - V_t^{\text{target}}\right)^2$ is the critic (value function) loss
+- $S\pi_\theta = -\sum_a \pi_\theta(a|s_t)\log\pi_\theta(a|s_t)$ is the entropy bonus, which encourages exploration and prevents premature convergence to a deterministic policy
+- $c_1, c_2$ are coefficients (typically $c_1 \approx 0.5$, $c_2 \approx 0.01$)
+
+The way I wrote $L^\text{PPO}$ is a maximization objective, when using torch just change the sign and perform gradient descent.
+
+# Advantage Estimation: GAE
+
+PPO is typically used together with **Generalized Advantage Estimation (GAE)** to compute $\hat A_t$. GAE interpolates between TD(0) and Monte Carlo returns via an exponential decay parameter $\lambda$, this is basically the policy gradient version of [[n-step bootstrapping and TD lambda|TD lambda]]:
+
+$$\hat A_t^{\text{GAE}(\gamma,\lambda)} = \sum_{l=0}^{\infty} (\gamma\lambda)^l \delta_{t+l}$$
+
+where $\delta_t = r_t + \gamma \hat V(s_{t+1}) - \hat V(s_t)$ is the TD error. 
+
+As in TD lambda:
+- $\lambda = 0$: pure TD(0), low variance, high bias
+- $\lambda = 1$: Monte Carlo, high variance, low bias
+* $\gamma\lambda$ product controls the effective horizon: small values favor short-horizon, low-variance estimates.
+
+## PPO Algorithm pseudocode
+
+```
+Initialize policy parameters θ, value parameters w
+for each iteration:
+    Collect trajectories {s_t, a_t, r_t} using π_{θ_old}
+    Compute advantages Â_t using GAE(γ, λ) with V̂_w
+    Compute value targets V_t^target = Â_t + V̂_w(s_t)
+    
+    for K epochs:
+        for each minibatch:
+            Compute r_t(θ) = π_θ(a_t|s_t) / π_{θ_old}(a_t|s_t)
+            Compute L^CLIP, L^VF, entropy bonus S
+            Update θ by ascending ∇_θ L^PPO
+    
+    θ_old ← θ
+```
+
+
+Data is collected on-policy using fresh rollouts each iteration, discarding trajectories gathered with previous policies, but used for more than one epoch of gradient ascent. This is done as a controlled form of off-policy reuse to increase sample efficiency.
+
+The only changes inside the K epochs will be 
+* The ratio $r_t$ as the numerator changes since we are updating the network's weights
+* The new policy, and therefore the three components of the objective function
+
+Typically whitening is applied to advantages before updates.
+
+---
 
