@@ -220,6 +220,7 @@ Jinav4 embeddings for IMG--human
 
 For now Jinav4 is only Img--human because I need to specify the prompt name
 should i add the others?
+Late Interaction multivector?
 
 # 26/5/2026
 Plots comparing Jinav4 and openclip

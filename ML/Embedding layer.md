@@ -51,7 +51,7 @@ The dimensionality $d$ of the embedding is a hyperparameter, bigger dimension me
 An embedding layer with vocabulary $|V|$ and dimension $d$ has: $|V| \times d\text{ params}$
 For GPT-2 small: $50{,}257 \times 768 = 38{,}597{,}376 \approx 38.6\text{M params}$
 
-This is often the largest single layer in a language model, which is why weight tying (sharing the embedding matrix with the output projection but with transposition) is commonly used.
+This is often the largest single layer in a language model, which is why weight tying (sharing the embedding matrix with the output projection but with transposition) is commonly used even though now it is in discussion whether to abandon this technique to add representational power.
 
 In many language models, the input embedding matrix and the output projection matrix (before softmax) are shared (with transposition):
 
