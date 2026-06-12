@@ -243,9 +243,35 @@ In ordine:
 
 ![[9e5d9e4928e734ad.png]]
 
-# 27/5/2026
-Jinav5?
-Corrupt Images?
+# 27/5/2026 & 28 & 29
+Jinav5 implemented and works
+Corrected inverted datasets to have many docs for a single query for coco recomputed all inverted datasets with correct version
 
+# 3/6/2026
+Provato gemini per NanoV2 per cambiare immagini, serve la api key
+Retrieve closer images to corrupted images 
+
+# 4/6/2026
+Look for images similar to changed gemini images
+MRR, mIoU and hit metrics for transformed images
+plots for these metrics
+Gemini Rate limits?
+
+# 5/6/2026
+Quora la performance e' troppo buona provo altri dataset:
+	Arguana new dataset.
+
+# 8/6/2026 & 9/6/2026 & 10/6/2026
+Image ranker website, supabase for db.
+Text ranker? caption ranking, text-text ranking
+Code for ranking images by image or text models.
+
+# 11-12/6/2026
+Added captions in a isngle html template
+Different vlm captions + merge 
+
+
+# 13 
+ADD TASK SELECTION PAGE + FIX DB FILENAME IN RANKING JSONB e va salvato il id non la caption direttamente 
 ---
 

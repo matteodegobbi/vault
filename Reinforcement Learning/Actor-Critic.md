@@ -67,7 +67,7 @@ Extension to continuing tasks and continuous action spaces in the lecture's pdf.
 
 # PPO (Proximal Policy Optimization)
 
-PPO is a policy gradient method that tries to solve the problem of instability in PG methods. Once a bad gradient step collapses the policy PG methods can be unrecoverable, the idea of PPO is based on TRPO, constraining how much the policy can change (TRPO uses constrained optimization with constraints on KL divergence between old and new policy).
+PPO is a policy gradient method that tries to solve the problem of instability in PG methods. Once a bad gradient step collapses the policy, PG methods can be unrecoverable, the idea of PPO is based on TRPO, constraining how much the policy can change (TRPO uses constrained optimization with constraints on KL divergence between old and new policy).
 
 PPO tries to obtain the same result as TRPO by using a clipped surrogate objective that is much simpler to optimize than TRPO's.
 
