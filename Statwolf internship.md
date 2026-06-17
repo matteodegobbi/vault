@@ -267,11 +267,17 @@ Text ranker? caption ranking, text-text ranking
 Code for ranking images by image or text models.
 
 # 11-12/6/2026
-Added captions in a isngle html template
-Different vlm captions + merge 
+Added captions in a single html template
+Ran Different vlm captions + merge 
 
+# 15/6/2026 - 16/6/2026
+Fixed code
+add task selection page 
+reworked db
+# 17/6/2026
+"smart sampler" with less info image first maybe improve
 
-# 13 
-ADD TASK SELECTION PAGE + FIX DB FILENAME IN RANKING JSONB e va salvato il id non la caption direttamente 
+![[Screenshot from 2026-06-17 15-11-03.png]]
+![[Screenshot from 2026-06-17 15-16-55.png]]
 ---
 
