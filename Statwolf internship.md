@@ -279,5 +279,11 @@ reworked db
 
 ![[Screenshot from 2026-06-17 15-11-03.png]]
 ![[Screenshot from 2026-06-17 15-16-55.png]]
+
 ---
 
+# 18-19/6/2026
+Jiang dataset added to image ranker, site needs to be fixed
+MDS with embeddign and human pairwise data
+
+TODO FIX SITE WITH CAPTIONS
