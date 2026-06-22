@@ -286,4 +286,16 @@ reworked db
 Jiang dataset added to image ranker, site needs to be fixed
 MDS with embeddign and human pairwise data
 
-TODO FIX SITE WITH CAPTIONS
+# 22/6/2026
+Fixed bugs with caption and images website
+Import data and analysis, convex hull plots
+
+---
+
+Cosine sims human data
+Disagreeement
+How to sample using disagreement
+
+
+
+ANIMAL Categories NEED TO BE FIXED manual CHECK
