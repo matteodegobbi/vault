@@ -288,7 +288,12 @@ MDS with embeddign and human pairwise data
 
 # 22/6/2026
 Fixed bugs with caption and images website
+Fixed dataset to load it easily
+
+
+# 23/6/2026
 Import data and analysis, convex hull plots
+Discordant and concordant various plots
 
 ---
 
