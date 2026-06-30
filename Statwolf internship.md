@@ -295,12 +295,23 @@ Fixed dataset to load it easily
 Import data and analysis, convex hull plots
 Discordant and concordant various plots
 
+# 24-29
+Montecarlo non sp se abbia sneso
+Sample discordance non ha senso con conti che ho fatto
+Combinations.ipynb
+AnalysisJiang solo roba varianza
+Mantel across dataset e' uitile
+forse add gemini
+
+# 30/6/2026
+local neighborhood analysis with KNN using the whole dataset
+KNN plots
+
+Set covering problem with ORtools to count rounds and generate round rows for db
+
+
+
 ---
-
-Cosine sims human data
-Disagreeement
-How to sample using disagreement
-
 
 
 ANIMAL Categories NEED TO BE FIXED manual CHECK
