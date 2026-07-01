@@ -315,3 +315,22 @@ Set covering problem with ORtools to count rounds and generate round rows for db
 
 
 ANIMAL Categories NEED TO BE FIXED manual CHECK
+
+
+
+
+
+---
+Aggiunta Resnet Dino che non uso, bge solo testo e 
+Montecarlo raggiunge CI molto stretti, ma ncdg@4 tra umano e dataset e' molto riassuntivo e non ha neanche senso perche possiamo gia' calcolare quale dei modelli e' meglio con i dati di jiang
+Discordance sampling andrebbe a non essere equo perche se prendo sample con discordance con jina sto facendo bias contro jina quindi a maggior ragione non ha senso e se prendo tutti i modelli combinatorial explosion.
+
+2nd idea, usare la varianza umana per selezionare, mostra plot Jiang. Scartata questa idea
+
+3rd idea quella corrente:
+1. Similarita' globale dello spazio delle distanze tra modelli e umani con Mantel, perche' mantel. CI con bootstrapping non ha senso quindi ho usato 4 dataset e calcolato su ogni dataset chi prevale. BGE+Dino funziona quasi quanto Jina
+2. Similarita' sul neighborhood locale usando IoU sul neighborhood di dim k media su tutti i dataset
+3. Esperimento con i dati dal sito guardando il neighborhood di umano+jina+openclip che sono i modelli migliori otteniamo un ranking diretto condizonato sull'anchor invece di avere ranking impliciti da distanze 1-to-1
+Spiegazioen del perche devo usare Set Covering
+
+
