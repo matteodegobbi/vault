@@ -93,6 +93,8 @@ Prendo l'unione di questi 3 insiemi e ottengo per ogni immagine 1 insieme con $4
 
 Vogliamo ottenere un ordine dalla piu' simile alla meno simile con veri ranking umani invece di ottenere ranking impliciti dati da similarita' pairwise.
 
+Ho una serie di rounds da completare dove un umano ordina 4 animali dal piu simile al piu' lontano, con OR-Tools ho calcolato i round ottimali per avere almeno 5 comparison per ogni paio di immagini nel candidate set con il minor numero di round.
+
 ---
 
 Dopo aver ottenuto i dati possiamo ottenere un ordine totale sul candidate condizionato sull'immagine, contando quante volte un'immagine A "vince" contro B possiamo costruire un grafo.
@@ -112,6 +114,8 @@ Dataset di 19 immagini prese da MS-COCO, per ogni immagine 4 captions:
 umana e 3 vlm gpt-4o-mini, gemini 2.5 flash, qwen 2.5 7B.
 
 La task per l'umano e' di ordinare le caption dalla migliore alla peggiore come descrizione dell'immagine.
+
+---
 
 Da questo possiamo ottenere quale captioning VLM e' preferita' tra le 3, e similarita' tra il ranking fatto dagli umani e quello fatto dagli embedding model per le stesse caption.
 
