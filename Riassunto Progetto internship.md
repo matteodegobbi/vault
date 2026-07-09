@@ -18,7 +18,6 @@ BM25 e splade come modelli sparse
 ![[Screenshot from 2026-07-08 17-41-22.png]]
 
 ![[plot_20260708_175651.png]]
-
 ![[plot_20260708_175655.png]]
 
 In generale per i modelli piccoli hybrid tende ad essere meglio ma con i modelli grandi peggiora le performance, si potrebbe fare tuning degli iperparametri ma non sul dataset di test usato per le misure.
@@ -74,6 +73,8 @@ Correlazione dei modelli con human visual
 ![[Screenshot from 2026-07-08 18-04-04.png]]
 
 Ho anche provato Dinov2 modello per feature usate per la segmentazione, feature puramente visuali.
+
+Mix resnet + bge testo arriva come secondo modello
 ![[Screenshot from 2026-07-08 18-09-26.png]]
 ## Distanza neighborhood locale
 Quando misuro correlazione globale do uguale importanza a paia di immagini molto distanti e paia di immagini vicine nel calcolo di una score per il modello di embedding. Nel contesto di retrieval e' piu' importante che paia vicine di immagini vengano riconosciute come simili.
@@ -81,8 +82,36 @@ Quando misuro correlazione globale do uguale importanza a paia di immagini molto
 #### mIoU over all folds vs k :
 ![[iou.png]]
 
-
-
 # Terza parte, esperimento ranking 
+## Ranking immagini
+Dato 1 fold del dataset, Animate Objects.
+Per ogni immagine calcolo:
+- top 4 simili secondo Jina
+- top 4 simili secondo OpenClip
+- top 4 simili secondo dati umani semantici del paper di Jiang 
+Prendo l'unione di questi 3 insiemi e ottengo per ogni immagine 1 insieme con $4\le|S|\le12$ immagini.
+
+Vogliamo ottenere un ordine dalla piu' simile alla meno simile con veri ranking umani invece di ottenere ranking impliciti dati da similarita' pairwise.
+
 ---
-Sul sito
+
+Dopo aver ottenuto i dati possiamo ottenere un ordine totale sul candidate condizionato sull'immagine, contando quante volte un'immagine A "vince" contro B possiamo costruire un grafo.
+
+Ad esempio con anchor:
+
+![[Pasted image 20260709094228.png]]
+
+![[Pasted image 20260709094348.png]]
+
+Se il grafo e' un DAG allora i voti sono consistenti e il ranking e' un total order.
+## Ranking caption
+Dataset di 19 immagini prese da MS-COCO, per ogni immagine 4 captions:
+umana e 3 vlm gpt-4o-mini, gemini 2.5 flash, qwen 2.5 7B.
+
+La task per l'umano e' di ordinare le caption dalla migliore alla peggiore come descrizione dell'immagine.
+
+Da questo possiamo ottenere quale captioning VLM e' preferita' tra le 3, e similarita' tra il ranking fatto dagli umani e quello fatto dagli embedding model per le stesse caption.
+
+![[['maria', 'matteo']caption_data.png]]
+
+---
