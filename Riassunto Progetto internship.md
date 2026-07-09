@@ -104,6 +104,9 @@ Ad esempio con anchor:
 ![[Pasted image 20260709094348.png]]
 
 Se il grafo e' un DAG allora i voti sono consistenti e il ranking e' un total order.
+
+Comparison con il ranking ottenuto dai modelli di embedding guardando anche le categorie a cui appartengono le immagini e.g. wild, aquatic.
+
 ## Ranking caption
 Dataset di 19 immagini prese da MS-COCO, per ogni immagine 4 captions:
 umana e 3 vlm gpt-4o-mini, gemini 2.5 flash, qwen 2.5 7B.
