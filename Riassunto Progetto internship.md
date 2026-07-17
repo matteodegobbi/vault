@@ -154,3 +154,42 @@ cow:['deer', 'horse', 'lion', 'mountain_goat', 'pig', 'water_bufflo']
 0
 additional candidates when using clip
 cow:['deer']
+
+
+---
+# Scaletta tesi?
+
+## Prima parte
+Prima parte tutto lavoro embedding models con QDRANT:
+### Dataset di solo testo arguana,scifact,quora
+Modelli di testo densi
+Con ricerca  ibrida
+Con reranker?
+
+Con query audio TTS Gemini e forse Jina
+
+### Dataset immagini-caption, MSCOCO
+Modelli multimodali Jinav4,v5,  clip, Gemini prob troppo lento?
+Ricerca inversa
+Captioning VLM ricerca diretta e inversa, forse sarebbe da provare con un captioning model migliore pero' e' lentissimo sul dataset di 5000 immagini
+
+## Seconda parte
+### Dataset Jiang 
+MDS plots with categories clusters?
+Mantel test Global Correlation with human
+K-neighborhoods Local similarity with human
+Category clusters?
+### Ranking Umano degli animali dal sito
+Comparison ranking umani con ranking di vari embedding model, solo testo, solo visuale, multimodali, testuale + enriched description VLM, testuale+visuale media distanze?? Cosa misuro??
+Categories impact ranking?
+Imparare un modello per avere una distanza globale forse non ha senso, Bradley-Terry simile a ELO ma non importa l'ordine?
+### Ranking Umano delle caption dal sito
+Quale captioning model e' apprezzato di piu', mean rank, win-rate
+Tra i modelli di embedding multimodali quale e' piu in accordo con gli umani nel rankare le caption?
+
+
+
+
+
+
+
