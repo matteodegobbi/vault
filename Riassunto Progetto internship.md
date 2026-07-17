@@ -1,26 +1,32 @@
 # Prima parte, testing di modelli di embedding
 ## Text retrieval
-Performance di vari modelli di embedding su dataset testuali come scifact, argument analysis,quora
+Performance di vari modelli di embedding su dataset testuali come scifact, argument analysis, quora
 anche hybrid search
 con gemini anche audio queries
 con alcuni modelli ho anche provato un reranker
 
+#### Argument analysis
+![[Pasted image 20260709101333.png]]
 ![[plot_20260708_131515.png]]
 
+#### Scifact
+![[Pasted image 20260709101242.png]]
 ![[plot_20260708_131501.png]]
 
 ![[e88299f2f6aad138.png]]
 ![[9a318176dff69798.png]]
 
+# Scifact nDCG@10
 ![[scifact_perf.png]]
 ### Hybrid Search con RRF
 BM25 e splade come modelli sparse 
 ![[Screenshot from 2026-07-08 17-41-22.png]]
 
+In generale per i modelli piccoli hybrid tende ad essere meglio ma con i modelli grandi peggiora le performance, si potrebbe fare tuning degli iperparametri ma non sul dataset di test usato per le misure.
+
 ![[plot_20260708_175651.png]]
 ![[plot_20260708_175655.png]]
 
-In generale per i modelli piccoli hybrid tende ad essere meglio ma con i modelli grandi peggiora le performance, si potrebbe fare tuning degli iperparametri ma non sul dataset di test usato per le misure.
 
 ![[b287b34597dd11bf.png]]
 ## Image retrieval
@@ -122,3 +128,29 @@ Da questo possiamo ottenere quale captioning VLM e' preferita' tra le 3, e simil
 ![[['maria', 'matteo']caption_data.png]]
 
 ---
+# Numero rounds
+
+#### 5 pairwise 
+![[Pasted image 20260713115354.png]]
+
+#### 7 pairwise 
+![[Pasted image 20260713115500.png]]
+
+#### 9 pairwise
+![[Pasted image 20260713115642.png]]
+
+
+
+![[Pasted image 20260713115617.png]]
+
+giraffe:['alpaca', 'camel', 'deer', 'elephant', 'horse', 'kangaroo', 'leopard', 'lion', 'ostrich', 'rhino']
+0
+additional candidates when using clip
+giraffe:['camel', 'ostrich']
+
+---
+
+cow:['deer', 'horse', 'lion', 'mountain_goat', 'pig', 'water_bufflo']
+0
+additional candidates when using clip
+cow:['deer']
