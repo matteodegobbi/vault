@@ -158,15 +158,17 @@ cow:['deer']
 
 ---
 # Scaletta tesi?
-
+Intro: scopo del lavoro uso RAG nell'industria, problemi col retrieve
+, embedding models summary vari modelli jina text-emebdding3 ecc un po spiegazione teorica breve, SOTA,
+4-5 pagine
 ## Prima parte
 Prima parte tutto lavoro embedding models con QDRANT:
 ### Dataset di solo testo arguana,scifact,quora
 Modelli di testo densi
 Con ricerca  ibrida
-Con reranker?
+Con reranker, poi ci siamo concentrati su solo embedding
 
-Con query audio TTS Gemini e forse Jina
+Con query audio TTS Gemini e forse Jinav5
 
 ### Dataset immagini-caption, MSCOCO
 Modelli multimodali Jinav4,v5,  clip, Gemini prob troppo lento?
