@@ -1,4 +1,4 @@
-# Prima parte, testing di modelli di embedding
+
 ## Text retrieval
 Performance di vari modelli di embedding su dataset testuali come scifact, argument analysis, quora
 anche hybrid search
