@@ -20,4 +20,19 @@ Philosophy tries to organize these beliefs into the a coherent system when belie
 
 ---
 
+# Chapter 3 -  The Nature of Matter
 
+Physical science has the view that all natural phenomena is reduced to motions (e.g. waves).
+When we say "light is a form of wave-motion", we are being misleading. The wave-motion is what causes our sensation of light. The light us non-blind people is not supposed by science to be any part of the world independently of our senses.
+The same holds for space not only for light and colors.
+
+If we assume there's a physical space where both objects and our sensors are located and a private-space where our sense-data is located we can see how the two seem related, in the sense that spatial relations in the physical space correspond to relations in the sense-data.
+Given this framework, we can only know about stuff in the physical space through the relations to the sense-data, we cannot know the nature of stuff on its own.
+
+"The relations of objects have all sorts of knowable properties, derived from their correspondence with sense-data, the physical objects remain unknown in their intrinsic nature" (this at least for any knowledge we aim to acquire through our senses)
+
+The question remains on whether we can have any method to discover the intrinsic nature of an object.
+
+Many philosophers, called idealists, believe that what appears as matter is really something mental. They do not deny that sense-data are signs of something which exists independently of sensations, but they deny that existence of matter is something intrinsically different from mind.
+
+---
