@@ -336,3 +336,5 @@ ANIMAL Categories NEED TO BE FIXED manual CHECK
 ---
 
 
+# Domande 27/8/2026
+Fine text-image search con captioning VLMs, comparison Delta varianza.
