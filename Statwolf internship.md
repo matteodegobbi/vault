@@ -338,3 +338,11 @@ ANIMAL Categories NEED TO BE FIXED manual CHECK
 
 # Domande 27/8/2026
 Fine text-image search con captioning VLMs, comparison Delta varianza.
+
+
+
+Domande prossima call
+ho aggiunto gemini
+-plots vanno bene?
+-altro da dire nelle analisi?
+-coe posso comparare rerieval performance e alignment
